@@ -1,0 +1,12 @@
+<?xml version = "1.0"?>
+<Plugin>
+    <Information>
+        <Name>Team Organizer Reloader</Name>
+        <Author>Henna</Author>
+        <Version>1.1.2</Version>
+        <Description>Internal Plugin for Team Orginizer to reload itself.</Description>
+        <Image>TeamOrganizer/Images/icon.tga</Image>
+    </Information>
+    <Package>TeamOrganizer.Scripts.Reloader</Package>
+    <Configuration Apartment = "Team Organizer Reloader" />
+</Plugin>

@@ -1,0 +1,150 @@
+-- Function for reloading the plugin --
+function reloadPlugin()
+	Turbine.PluginManager.LoadPlugin(pluginReloaderName);
+end
+
+-- Update method to see if plugin was reloaded --
+mainWindow.Update = function()
+	-- Check if reloader plugin is active --
+	local loadedPlugins = Turbine.PluginManager:GetLoadedPlugins();
+	for i = 1, #loadedPlugins do
+		if loadedPlugins[i].Name == pluginReloaderName then
+			-- Unload reloader plugin --
+			Turbine.PluginManager.UnloadScriptState(pluginReloaderName);
+			mainWindow:SetWantsUpdates(false);
+
+			-- Get players and Update UI if '/clear' command was not used --
+			if loadRequest ~= "Clear Groups" then
+
+				-- Check if player is in party --
+				party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
+				if loadRequest == nil then
+					if party == nil then
+						errorMessage(translate("noParty", settings["language"]));
+						loadRequest = "Previous Group";
+					else
+						getPlayers();
+					end
+				end
+
+				-- Create UI placeholders for party members --
+				createUIPlaceholders();
+				-- Update UI with found party members --
+				updateUI(true);
+			end
+			break;
+		end
+	end
+end
+mainWindow:SetWantsUpdates(true);
+
+
+function getPlayers()
+	-- Reset previous party members --
+	groupMembers = {};
+	offset = 0;
+
+	-- Get players --
+	for i = 1, party:GetMemberCount() do
+		local member = Turbine.Object();
+		member.name = party:GetMember(i):GetName();
+		member.class = tostring(party:GetMember(i):GetClass());
+
+		-- Avoid adding plugin owner into the array --
+		if (member.name ~= playerName) then
+			-- We have to save index as a string, since some clients turn . into , which causes errors when loading data --
+			groupMembers[tostring(i - offset)] = member;
+		else
+			-- Offset players when plugin owner is found --
+			offset = 1;
+		end
+	end
+
+	-- Save party members to prevent losing data when disconnecting or switching characters --
+	saveData(Turbine.DataScope.Server, "TeamOrganizer_GroupMembers", groupMembers);
+end
+
+
+function updateUI(reload)
+	-- Hide previous party members --
+	clearWindow();
+
+	-- Return if group is empty --
+	if groupMembers == nil then return end
+
+	-- Sort party members --
+	Utility.sortPartyMembers(groupMembers);
+
+	-- Get party members count --
+	groupMembersCount = Utility.getLenght(groupMembers);
+
+	-- Update the size of the main window depending on how many members group has --
+	local height;
+	local width;
+	if (groupMembersCount > 11 and settings["horizontalWindow"]) then
+		width = 520;
+		height = 450;
+	else
+		if (groupMembersCount > 11 and not settings["horizontalWindow"]) then
+			width = 285;
+			height = 740;
+		else
+			width = 285;
+			height = 450;
+		end
+	end
+
+	-- Update UI dimensions --
+	mainWindow:SetSize(width, height);
+	errorLabel:SetPosition(mainWindow:GetSize()/2 - errorLabel:GetSize()/2, height - 50);
+
+	-- Loop through the party members and add party member's information to placeholder UI elements --
+	for i = 1, groupMembersCount do
+		-- Stop loop if there are too many players --
+		if i > 23 then break end
+
+		-- Class icons --
+		icons[i]:SetVisible(true);
+		icons[i]:SetBackground("TeamOrganizer/Images/Classes/" .. groupMembers[tostring(i)].class .. ".tga");
+
+		-- Members' names
+		names[i]:SetVisible(true);
+		names[i]:SetText(groupMembers[tostring(i)].name);
+		if (not reload or loadRequest ~= nil) then
+			names[i]:SetForeColor(playerNameColor["notInParty"]);
+		else
+			names[i]:SetForeColor(playerNameColor["inParty"]);
+		end
+
+		-- Invite buttons --
+		inviteButtons[i].quickSlot:SetVisible(true);
+		inviteButtons[i].button:SetVisible(true);
+		local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_invite", clientLanguage) .. groupMembers[tostring(i)].name);
+		inviteButtons[i].quickSlot:SetShortcut(act);
+
+		-- Dismiss buttons --
+		dismissButtons[i].quickSlot:SetVisible(true);
+		dismissButtons[i].button:SetVisible(true);
+		local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_dismiss", clientLanguage) .. groupMembers[tostring(i)].name);
+		dismissButtons[i].quickSlot:SetShortcut(act);
+	end
+end
+
+function clearWindow()
+	-- Hide previous party members --
+	for i = 1, 23 do
+		icons[i]:SetVisible(false);
+		names[i]:SetVisible(false);
+		inviteButtons[i].quickSlot:SetVisible(false);
+		inviteButtons[i].button:SetVisible(false);
+		dismissButtons[i].quickSlot:SetVisible(false);
+		dismissButtons[i].button:SetVisible(false);
+	end
+end
+
+-- Hide main window if escape is pressed and escape setting is enabled --
+mainWindow.KeyDown = function(sender,args)
+    if (args.Action == 145 and settings["enableEscape"]) then
+        mainWindow:SetVisible(false);
+    end
+end

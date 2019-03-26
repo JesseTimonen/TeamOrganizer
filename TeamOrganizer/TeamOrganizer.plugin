@@ -1,0 +1,29 @@
+<?xml version = "1.0"?>
+<Plugin> 
+	<Information>
+		<Name>Team Organizer</Name>
+		<Author>Henna</Author>
+		<Version>1.1.2</Version>
+		<Image>TeamOrganizer/Images/icon.tga</Image>
+<Description>
+This plugin helps you quickly reinvite player from your previous groups.
+
+You can toggle Team Organizer window using command
+/team or /team toggle
+Or by creating a shortcut using command
+(English): /shortcut 1 /team
+(German): /kurztext 1 /team
+(French): /raccourci 1 /team
+
+You can save groups using command
+/team save [name]
+and load groups using command
+/team load [name]
+
+You can clear Team Organizer window using command
+/team clear
+</Description>
+	</Information>
+	<Package>TeamOrganizer.Compiler</Package>
+	<Configuration Apartment = "Team Organizer" />
+</Plugin>

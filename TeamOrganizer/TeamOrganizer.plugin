@@ -3,24 +3,31 @@
 	<Information>
 		<Name>Team Organizer</Name>
 		<Author>Henna</Author>
-		<Version>1.1.2</Version>
+		<Version>1.2.0</Version>
 		<Image>TeamOrganizer/Images/icon.tga</Image>
 <Description>
-This plugin helps you quickly reinvite player from your previous groups.
+This plugin allows you to save group setups for different events (raid group, friends, etc.)
+or simply just keep track of your previous group members
+with the ability to invite them quickly with a click of a button.
 
-You can toggle Team Organizer window using command
-/team or /team toggle
-Or by creating a shortcut using command
-(English): /shortcut 1 /team
-(German): /kurztext 1 /team
-(French): /raccourci 1 /team
+Changing plugin's visibility:
+/team           -  toggles the plugin
+/team toggle  -  toggles the plugin
+/team show   -  hides the plugin
+/team hide    -  shows the plugin
 
-You can save groups using command
-/team save [name]
-and load groups using command
-/team load [name]
+Create a shortcut to toggle the plugin's visibility:
+(English) :  /shortcut 1 /team
+(German) :  /kurztext 1 /team
+(French)  :  /raccourci 1 /team
 
-You can clear Team Organizer window using command
+Team management commands:
+/team save [name]      -  Save group
+/team load [name]       -  Load group
+/team add [player]       -  Add player
+/team remove [player]  -  Remove player
+
+You can clear Team Organizer window by using command
 /team clear
 </Description>
 	</Information>

@@ -206,6 +206,21 @@ translations = {
 		german = "Laden fehlgeschlagen: Ungültiger Ladungsname!",
 		french = "Echec du chargement: Nom de chargement invalide!"
 	},
+	invalidClass = {
+		english = " is an invalid class!",
+		german = " ist eine ungültige Klasse!",
+		french = " est une classe invalide!"
+	},
+	addCommandUsage = {
+		english = " Usage: /team add <name> <class>",
+		german = " Usage: /team add <name> <class>",
+		french = " Usage: /team add <name> <class>"
+	},
+	playerNotInGroup = {
+		english = " is not in your group!",
+		german = " ist nicht in deiner Gruppe!",
+		french = " n'est pas dans votre groupe!"
+	},
 	loaded = {
 		english = "Activated version",
 		german = "Aktivierte Version",
@@ -269,6 +284,16 @@ translations = {
 		german = "load ",
 		french = "load "
 	},
+	command_add = {
+		english = "add ",
+		german = "add ",
+		french = "add "
+	},
+	command_remove = {
+		english = "remove ",
+		german = "remove ",
+		french = "remove "
+	},
 	command_clear = {
 		english = "clear",
 		german = "clear",
@@ -280,9 +305,9 @@ translations = {
 		french = "aide"
 	},
 	command_arguments = {
-		english = "List of all commands:\n/team toggle or /team - toggles the Team Organizer window's visibility\n/team show - shows the Team Organizer window\n/team hide - hides the Team Organizer window\n/team save <name> - saves the current group\n/team load <name> - loads a custom group\n/team clear - clears Team Organizer window",
-		german = "Liste aller Befehle:\n/team toggle oder /team - schaltet die Sichtbarkeit des Teamorganisator Fenster um\n/team show - Zeigt das Teamorganisator Fenster\n/team hide - verbirgt Teamorganisator Fenster\n/team save <name> - aktuelle Gruppe speichern\n/team load <name> - benutzerdefinierte Gruppe laden\n/team clear - klar das Teamorganisator Fenster",
-		french = "Liste de toutes les commandes:\n/team toggle ou /team - bascule la visibilité de la fenêtre du gestionnaire de groupe\n/team show - montre la fenêtre de Team Organizer\n/team hide - cache la fenêtre de Team Organizer\n/team save <nom> - enregistrer le groupe actuel\n/team load <nom> - charger un groupe personnalisé\n/team clear - efface la fenêtre Team Organizer"
+		english = "List of all commands:\n/team toggle or /team - toggles the Team Organizer window's visibility\n/team show - shows the Team Organizer window\n/team hide - hides the Team Organizer window\n/team save <name> - saves the current group\n/team load <name> - loads a custom group\n/team add <name> <class> - adds player into your group setup\n/team remove <name> - removes player from your group setup\n/team clear - clears Team Organizer window",
+		german = "Liste aller Befehle:\n/team toggle oder /team - schaltet die Sichtbarkeit des Teamorganisator Fenster um\n/team show - Zeigt das Teamorganisator Fenster\n/team hide - verbirgt Teamorganisator Fenster\n/team save <name> - aktuelle Gruppe speichern\n/team load <name> - benutzerdefinierte Gruppe laden\n/team add <name> <class> - fügt Spieler zum Gruppen-Setup hinzu\n/team remove <name> - entfernt den Spieler aus dem Gruppen-Setup\n/team clear - klar das Teamorganisator Fenster",
+		french = "Liste de toutes les commandes:\n/team toggle ou /team - bascule la visibilité de la fenêtre du gestionnaire de groupe\n/team show - montre la fenêtre de Team Organizer\n/team hide - cache la fenêtre de Team Organizer\n/team save <nom> - enregistrer le groupe actuel\n/team load <nom> - charger un groupe personnalisé\n/team add <name> <class> - ajoute le joueur dans votre configuration de groupe\n/team remove <name> - supprime le joueur de la configuration de votre groupe\n/team clear - efface la fenêtre Team Organizer"
 	},
 	command_unknown = {
 		english = "Unknown command argument, use '/team help' to see list of all commands",

@@ -22,6 +22,12 @@ function teamCommand:Execute(cmd, args)
 	-- Load group --
 	if string.find(args, translate("command_load", clientLanguage)) == 1 then loadGroupCommand(string.match(args, translate("command_load", clientLanguage) .. "(%S+)")); return; end
 
+	-- Add player to group --
+	if string.find(args, translate("command_add", clientLanguage)) == 1 then addPlayerCommand(string.match(args, translate("command_add", clientLanguage) .. "(%S+)"), args:match("%s(%S+)$")); return; end
+
+	-- Remove player from group --
+	if string.find(args, translate("command_remove", clientLanguage)) == 1 then removePlayerCommand(string.match(args, translate("command_remove", clientLanguage) .. "(%S+)")); return; end
+
 	-- Clear window --
 	if string.find(args, translate("command_clear", clientLanguage)) == 1 then clearWindowCommand(); return; end
 
@@ -65,6 +71,74 @@ function loadGroupCommand(name)
 	end
 
 	saveData(Turbine.DataScope.Server, "TeamOrganizer_LoadRequest", name);
+	reloadPlugin();
+end
+
+-- Add player into a group --
+function addPlayerCommand(player, class)
+	-- Prevent player from adding itself to the list --
+	if (string.lower(player) == string.lower(playerName)) then
+		return;
+	end
+	
+	-- Get ID of the class --
+	classID = Utility.getClassID(class);
+
+	-- Make sure player gave a valid class --
+	if (classID == nil) then
+		notification(rgb["error"] .. class .. translate("invalidClass", settings["language"]) .. rgb["clear"] .. translate("addCommandUsage", settings["language"]));
+		return;
+	end
+
+	-- Create new player --
+	local member = Turbine.Object();
+	member.name = player;
+	member.class = tostring(classID);
+
+	if (groupMembers == nil) then
+		groupMembers = {};
+		groupMembers["1"] = member;
+	else
+		groupMembers[tostring(Utility.getLenght(groupMembers) + 1)] = member;
+	end
+
+	-- Save new player --
+	saveData(Turbine.DataScope.Server, "TeamOrganizer_GroupMembers", groupMembers);
+	reloadPlugin();
+end
+
+-- Remove player from a group --
+function removePlayerCommand(player)
+	-- Make sure group is not already empty --
+	if (groupMembers == nil) then
+		return;
+	end
+
+	local updatedMembers = {};
+	local counter = 1;
+	local playerFound = false;
+
+	-- update group --
+	for k,v in pairs(groupMembers) do
+		if (v["name"] ~= player) then
+			local member = Turbine.Object();
+			member.name = v["name"];
+			member.class = v["class"];
+			updatedMembers[tostring(counter)] = member;
+			counter = counter + 1;
+		else
+			playerFound = true;
+		end
+	end
+
+	-- Check if removed player was found --
+	if (playerFound == false) then
+		notification(rgb["error"] .. player .. translate("playerNotInGroup", settings["language"]) .. rgb["clear"]);
+		return;
+	end
+
+	-- Save updated group --
+	saveData(Turbine.DataScope.Server, "TeamOrganizer_GroupMembers", updatedMembers);
 	reloadPlugin();
 end
 

@@ -182,7 +182,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Turn all names to gray if player leaves the group or group gets disband --
+	-- Turn all names to gray if player leaves the group or group gets disbanded --
 	if (action == "disband") then
 		for i = 1, table.getn(names) do
 			names[i]:SetForeColor(playerNameColor["notInParty"]);

@@ -91,7 +91,7 @@ end
 
 
 
--- Update players names when certain actions happen --
+-- Update players' names when certain actions happen --
 function updateNameLabels(name, action)
 
 	-- Turn name to light blue if player has been invited to the group --

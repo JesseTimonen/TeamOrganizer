@@ -24,7 +24,7 @@ Create a shortcut to toggle the plugin's visibility:
 Team management commands:
 /team save [name]      -  Save group
 /team load [name]       -  Load group
-/team add [player]       -  Add player
+/team add [player] [class] -  Add player
 /team remove [player]  -  Remove player
 
 You can clear Team Organizer window by using command

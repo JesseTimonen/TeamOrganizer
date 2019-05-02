@@ -21,10 +21,8 @@ function analyzeMessage(sender, args)
 	-- Check if the player has pending invitation --
 	name = string.match(message, translate("invited", clientLanguage));
 	if name ~= nil then
-		-- Return if player is not the leader of the party --
+		-- Make sure the player is the leader of the party --
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
-
-		-- Make sure player had a party and he is the leader of the party --
 		if (party ~= nil and party:GetLeader():GetName() ~= playerName) then return end
 
 		invitedPlayerName = name;

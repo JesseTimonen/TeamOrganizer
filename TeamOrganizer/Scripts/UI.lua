@@ -8,11 +8,9 @@ end
 mainWindow:SetText(translate("pluginName", settings["language"]));
 mainWindow:SetVisible(true);
 mainWindow:SetWantsKeyEvents(true);
-mainWindow:SetPosition(windowPosition["xPos"], windowPosition["yPos"]);
+mainWindow:SetPosition(settings["windowPosition"]["xPos"], settings["windowPosition"]["yPos"]);
 mainWindow:SetSize(285, 450);
 mainWindow:SetZOrder(1000);
-mainWindow.font = Turbine.UI.Lotro.Font.Verdana8;
-mainWindow.fontColor = color["white"];
 
 
 -- Button to get players --
@@ -30,7 +28,7 @@ end
 errorLabel = Turbine.UI.Label();
 errorLabel:SetParent(mainWindow);
 errorLabel:SetSize(230, 30);
-errorLabel:SetPosition(mainWindow:GetSize()/2 - errorLabel:GetSize()/2, 400);
+errorLabel:SetPosition(mainWindow:GetWidth()/2 - errorLabel:GetWidth()/2, 400);
 errorLabel:SetTextAlignment(Turbine.UI.ContentAlignment.BottomCenter);
 errorLabel:SetText("");
 errorLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
@@ -53,6 +51,7 @@ createRaidLabel:SetVisible(true);
 createRaidLabel:SetZOrder(3);
 createRaidLabel:SetTextAlignment(Turbine.UI.ContentAlignment.BottomCenter);
 createRaidButton.quickSlot:SetVisible(true);
+createRaidButton.quickSlot:SetAllowDrop(false);
 createRaidButton.button:SetVisible(true);
 
 
@@ -72,6 +71,7 @@ readycheckLabel:SetVisible(true);
 readycheckLabel:SetZOrder(3);
 readycheckLabel:SetTextAlignment(Turbine.UI.ContentAlignment.BottomCenter);
 readycheckButton.quickSlot:SetVisible(true);
+readycheckButton.quickSlot:SetAllowDrop(false);
 readycheckButton.button:SetVisible(true);
 
 
@@ -92,6 +92,7 @@ if settings["enableDisband"] then
 	disbandLabel:SetZOrder(3);
 	disbandLabel:SetTextAlignment(Turbine.UI.ContentAlignment.BottomCenter);
 	disbandButton.quickSlot:SetVisible(true);
+	disbandButton.quickSlot:SetAllowDrop(false);
 	disbandButton.button:SetVisible(true);
 end
 

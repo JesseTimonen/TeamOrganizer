@@ -101,12 +101,13 @@ function Tooltip:Constructor()
 	end
 end	
 
+-- Static functions to handle tooltip --
 function TooltipShow(text)
-	gTooltip.Show(Turbine.UI.Display:GetMouseX() + 20, Turbine.UI.Display:GetMouseY() + 10, text);
+	TeamOrganizer.Utility.Tooltip.Show(Turbine.UI.Display:GetMouseX() + 20, Turbine.UI.Display:GetMouseY() + 10, text);
 end
 
 function TooltipHide()
-	gTooltip.Hide();
+	TeamOrganizer.Utility.Tooltip.Hide();
 end
 
 function TooltipAttach(c, text)
@@ -118,4 +119,5 @@ function TooltipAttach(c, text)
 	end
 end
 
-gTooltip = Tooltip();
+if (not TeamOrganizer.Utility) then TeamOrganizer.Utility = {}; end
+TeamOrganizer.Utility.Tooltip = Tooltip();

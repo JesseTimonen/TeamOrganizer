@@ -13,7 +13,7 @@ function createCustomizationOption(parent, xPos, yPos, name, tooltipText, keyVal
 	labelTooltipHolder:SetPosition(xPos, yPos);
 	TooltipAttach(labelTooltipHolder, tooltipText);
 
-
+	
 	local name = Turbine.UI.Label();
 	name:SetParent(parent);
 	name:SetSize(100, 30);
@@ -32,8 +32,11 @@ function createCustomizationOption(parent, xPos, yPos, name, tooltipText, keyVal
 		if colorPicker ~= nil then
 			colorPicker:Close();
 		end
-		colorPicker = TeamOrganizer.UI.ColorPicker(name:GetForeColor(), "H");
+		colorPicker = TeamOrganizer.Utility.ColorPicker(name:GetForeColor(), "H");
 		colorPicker:SetZOrder(9999);
+		colorPicker.ColorChanged  = function(picker)
+			name:SetForeColor(picker:GetColor());
+		end
 		colorPicker.Accepted = function(picker)
 			name:SetForeColor(picker:GetColor());
 			colorPicker:Close();

@@ -5,35 +5,29 @@ end
 
 -- Update method to see if plugin was reloaded --
 mainWindow.Update = function()
-	-- Check if reloader plugin is active --
-	local loadedPlugins = Turbine.PluginManager:GetLoadedPlugins();
-	for i = 1, #loadedPlugins do
-		if loadedPlugins[i].Name == pluginReloaderName then
-			-- Unload reloader plugin --
-			Turbine.PluginManager.UnloadScriptState(pluginReloaderName);
-			mainWindow:SetWantsUpdates(false);
 
-			-- Get players and Update UI if '/clear' command was not used --
-			if loadRequest ~= "Clear Groups" then
+	-- Unload reloader plugin --
+	Turbine.PluginManager.UnloadScriptState(pluginReloaderName);
+	mainWindow:SetWantsUpdates(false);
 
-				-- Check if player is in party --
-				party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
-				if loadRequest == nil then
-					if party == nil then
-						errorMessage(translate("noParty", settings["language"]));
-						loadRequest = "Previous Group";
-					else
-						getPlayers();
-					end
-				end
+	-- Get players and Update UI if '/clear' command was not used --
+	if loadRequest ~= "Clear Groups" then
 
-				-- Create UI placeholders for party members --
-				createUIPlaceholders();
-				-- Update UI with found party members --
-				updateUI(true);
+		-- Check if player is in party --
+		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
+		if loadRequest == nil then
+			if party == nil then
+				errorMessage(translate("noParty", settings["language"]));
+				loadRequest = "Previous Group";
+			else
+				getPlayers();
 			end
-			break;
 		end
+	
+		-- Create UI placeholders for party members --
+		createUIPlaceholders();
+		-- Update UI with found party members --
+		updateUI(true);
 	end
 end
 mainWindow:SetWantsUpdates(true);
@@ -61,7 +55,7 @@ function getPlayers()
 	end
 
 	-- Save party members to prevent losing data when disconnecting or switching characters --
-	saveData(Turbine.DataScope.Server, "TeamOrganizer_GroupMembers", groupMembers);
+	save("server", groupMembersFileName, groupMembers);
 end
 
 
@@ -121,12 +115,14 @@ function updateUI(reload)
 		inviteButtons[i].button:SetVisible(true);
 		local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_invite", clientLanguage) .. groupMembers[tostring(i)].name);
 		inviteButtons[i].quickSlot:SetShortcut(act);
+		inviteButtons[i].quickSlot:SetAllowDrop(false);
 
 		-- Dismiss buttons --
 		dismissButtons[i].quickSlot:SetVisible(true);
 		dismissButtons[i].button:SetVisible(true);
 		local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_dismiss", clientLanguage) .. groupMembers[tostring(i)].name);
 		dismissButtons[i].quickSlot:SetShortcut(act);
+		dismissButtons[i].quickSlot:SetAllowDrop(false);
 	end
 end
 

@@ -1,5 +1,5 @@
 plugin.GetOptionsPanel = function(self)
-	
+
 	-- Create Options Panel --
 	optionsPanel = Turbine.UI.Control();
 	optionsPanel:SetSize(500, 800);
@@ -21,25 +21,27 @@ plugin.GetOptionsPanel = function(self)
 
 	-- Language Selection --
 	local languages = { "English", "German", "French" };
-	local peers = {};
+	local radioButtons = {};
 	local top = 60;
 
-	for l = 1, #languages do
-		local radioButton = Utility.RadioButton(optionsPanel);
-		radioButton:SetSize(300, 20);
+	for i = 1, #languages do
+		radioButton = TeamOrganizer.Utility.RadioButton();
+		radioButton:SetParent(optionsPanel);
 		radioButton:SetPosition(50, top);
-		radioButton:SetForeColor(color["golden"]);
+		radioButton:SetSize(300, 20);
 		radioButton:SetFont(Turbine.UI.Lotro.Font.TrajanPro15);
-		radioButton:SetText(languages[l]);
-		if (string.lower(languages[l]) == settings["language"]) then
-			radioButton:SetChecked(true);
+		radioButton:SetForeColor(color["golden"]);
+		radioButton:SetText(languages[i]);
+		if (string.lower(languages[i]) == settings["language"]) then radioButton:SetChecked(true); end
+		radioButton.Clicked = function()
+			settings["language"] = string.lower(languages[i]);
 		end
 
 		top = top + 20;
-		table.insert(peers, radioButton);
+		table.insert(radioButtons, radioButton);
 	end
 
-	Utility.RadioButton.LinkPeers(peers);
+	Utility.RadioButton.LinkPeers(radioButtons);
 
 
 	-- General Settings --
@@ -141,6 +143,7 @@ plugin.GetOptionsPanel = function(self)
 	customizationLabel:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	customizationLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/optionsTitleBackground.tga"));
 
+
 	customization1 = Utility.createCustomizationOption(optionsPanel, 50, 390, translate("customizationLabelInParty", settings["language"]),  translate("customizationLabelInPartyTooltip", settings["language"]), "inParty");
 	customization2 = Utility.createCustomizationOption(optionsPanel, 50, 450, translate("customizationLabelNotInParty", settings["language"]),  translate("customizationLabelNotInPartyTooltip", settings["language"]), "notInParty");
 	customization3 = Utility.createCustomizationOption(optionsPanel, 50, 510, translate("customizationLabelInvited", settings["language"]),  translate("customizationLabelInvitedTooltip", settings["language"]), "invited");
@@ -157,79 +160,13 @@ plugin.GetOptionsPanel = function(self)
 	saveSettingsButton:SetPosition(50, 780);
 	saveSettingsButton:SetZOrder(100);
 	saveSettingsButton.Click = function( sender, args)
+		settings["loadRequest"] = "previous group";
 		saveSettings();
+		saveCustomization();
+		notification(translate("settingsSaved", settings["language"]));
 		reloadPlugin();
 	end
 
 	-- Return View --
 	return optionsPanel;
-end
-
-
-function saveSettings()
-	-- Check if user has chosen a language, else keep the current language --
-	if settingsLanguage == nil then
-		settingsLanguage = settings["language"];
-	end
-
-	-- Create settings array for saving--
-	local _settings = {
-		enableEscape = enableEscapeCheckbox:IsChecked(),
-		enableDisband = enableDisbandCheckbox:IsChecked(),
-		horizontalWindow = horizontalUICheckbox:IsChecked(),
-		goldenTheme = goldenWindowCheckbox:IsChecked(),
-		language = settingsLanguage
-	}
-
-	-- Save settings --
-	saveData(Turbine.DataScope.Server, "TeamOrganizer_Settings", _settings);
-
-
-	-- Customization settings --
-	local _customizationSettings = {
-		inParty = {
-			red = numberToStringMinMax(customization1["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization1["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization1["name"]:GetForeColor().B, 0, 1)
-		},
-		notInParty = {
-			red = numberToStringMinMax(customization2["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization2["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization2["name"]:GetForeColor().B, 0, 1)
-		},
-		invited = {
-			red = numberToStringMinMax(customization3["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization3["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization3["name"]:GetForeColor().B, 0, 1)
-		},
-		declined = {
-			red = numberToStringMinMax(customization4["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization4["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization4["name"]:GetForeColor().B, 0, 1)
-		},
-		anotherGroup = {
-			red = numberToStringMinMax(customization5["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization5["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization5["name"]:GetForeColor().B, 0, 1)
-		},
-		offline = {
-			red = numberToStringMinMax(customization6["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization6["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization6["name"]:GetForeColor().B, 0, 1)
-		}
-	}
-
-	-- Save customization settings --
-	saveData(Turbine.DataScope.Server, "TeamOrganizer_Customization", _customizationSettings);
-	
-	-- Notify player about successful save --
-	notification(translate("settingsSaved", settings["language"]));
-end
-
-
-function numberToStringMinMax(value, min, max)
-	if value == nil then return tostring(min); end
-	if value < min then return tostring(min); end
-	if value > max then return tostring(max); end
-	return tostring(value):gsub(",", ".");
 end

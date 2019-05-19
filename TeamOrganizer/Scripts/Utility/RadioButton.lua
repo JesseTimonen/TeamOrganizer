@@ -2,28 +2,31 @@ RadioButton = class(Turbine.UI.Control);
 
 function RadioButton:Constructor(parent, text, checked, disabled)
     Turbine.UI.Control.Constructor(self);
+
     self:SetParent(parent);
+
     self.icon = Turbine.UI.Control();
     self.icon:SetParent(self);
-	self.icon:SetSize(10, 10);
+    self.icon:SetSize(10, 10);
     self.icon:SetBlendMode(Turbine.UI.BlendMode.Overlay);
     self.icon.MouseClick = function()
         self:MouseClick();
     end
 
     self.text = Turbine.UI.Label();
-	self.text:SetParent(self);
-	self.text:SetText(text);
-	self.text:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleLeft);
+    self.text:SetParent(self);
+    self.text:SetText(text);
+    self.text:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleLeft);
     self.text.MouseClick = function()
         self:MouseClick();
     end
-    
+
     self:SetForeColor(Turbine.UI.Color(1, 1, 1, 1));
     self:SetChecked(checked);
-	self:SetEnabled(not disabled);
+    self:SetEnabled(not disabled);
 end
 
+-- Static function to link radio buttons to eachother--
 function RadioButton.LinkPeers(peers)
     for p = 1, #peers, 1 do
         peers[p].peerGroup = peers;
@@ -38,25 +41,8 @@ function RadioButton:SetSize(width, height)
     self.text:SetWidth(width - self.text:GetLeft());
 end
 
-function RadioButton:SetWidth(width)
-    self:SetSize(width, self:GetHeight());
-end
-
-function RadioButton:SetHeight(height)
-    self:SetSize(self:GetWidth(), height);
-end
-
-function RadioButton:AutoSize()
-    self.text:AutoSize();
-    self:SetWidth(self.text:GetLeft() + self.text:GetWidth());
-end
-
 function RadioButton:SetText(text)
     self.text:SetText(text);
-end
-
-function RadioButton:SetMultiline(multi)
-    self.text:SetMultiline(multi);
 end
 
 function RadioButton:SetForeColor(color)
@@ -69,19 +55,16 @@ function RadioButton:SetFont(font)
     self.text:SetText(self.text:GetText());
 end
 
-function RadioButton:MouseClick(args)
+function RadioButton:MouseClick()
     if (self.enabled) then
         for p = 1, #self.peerGroup, 1 do
             self.peerGroup[p]:SetChecked(false);
         end
-		self:SetChecked(true);
-		
-		SaveValue(self.text:GetText());
+        self:SetChecked(true);
+        if (self.Clicked ~= nil) then
+            self:Clicked();
+        end
     end
-end
-
-function SaveValue(value)
-	Scripts.settingsLanguage = string.lower(value);
 end
 
 function RadioButton:SetChecked(checked)
@@ -102,10 +85,14 @@ function RadioButton:SetEnabled(enabled)
     if (enabled) then
         self.text:SetForeColor(self.foreColor);
     else
-        self.text:SetForeColor(Turbine.UI.Color(1, 0.5, 0.5, 0.5));
+        self.text:SetForeColor(Turbine.UI.Color(1, 0.25, 0.25, 0.25));
     end
 end
 
 function RadioButton:IsEnabled()
     return self.enabled;
 end
+
+
+if (not TeamOrganizer.Utility) then TeamOrganizer.Utility = {}; end
+TeamOrganizer.Utility.RadioButton = RadioButton;

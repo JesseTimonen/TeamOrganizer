@@ -3,32 +3,60 @@
 	<Information>
 		<Name>Team Organizer</Name>
 		<Author>Henna</Author>
-		<Version>1.2.0</Version>
+		<Version>1.3.0</Version>
 		<Image>TeamOrganizer/Images/icon.tga</Image>
 <Description>
-This plugin allows you to save group setups for different events (raid group, friends, etc.)
-or simply just keep track of your previous group members
-with the ability to invite them quickly with a click of a button.
+DESCRIPTION
+¯¯¯¯¯¯¯¯¯¯¯
+This plugin allows you to save group setups (friends, raiding groups, etc.)
+or meaby you just want to keep track of your previous group members with the ability to invite them quickly with a click of a button.
 
-Changing plugin's visibility:
-/team           -  toggles the plugin
-/team toggle  -  toggles the plugin
-/team show   -  hides the plugin
-/team hide    -  shows the plugin
 
-Create a shortcut to toggle the plugin's visibility:
-(English) :  /shortcut 1 /team
-(German) :  /kurztext 1 /team
-(French)  :  /raccourci 1 /team
 
-Team management commands:
-/team save [name]      -  Save group
-/team load [name]       -  Load group
-/team add [player] [class] -  Add player
-/team remove [player]  -  Remove player
 
-You can clear Team Organizer window by using command
-/team clear
+DEVELOPER NOTES
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+To start using this plugin find yourself a fellowship or a raid and click the 'get player' button after you have joined the group.
+
+This will display all the player currenly in your group, clicking the button again will update the players in your group.
+
+If you are the leader of that group you can invite the player by clicking the green area next to the player's name, and if you wish to disband someone from your group you can click the red area.
+
+
+You can create a shortcut which toggles the window's visibility by typing the following command into the chat.
+(English)  :  /shortcut 1 /timer
+(German) :  /kurztext 1 /timer
+(French)  :  /raccourci 1 /timer
+
+
+If you wish to add someone into your group setup without needing to first invite them, you can use '/team add' command.
+/team add [name] [class]
+
+To change player's information use '/team change' command.
+/team change [player] to [name] [class]
+
+To remove player from your group setup use '/team remove' command.
+/team remove [name]
+
+
+
+
+LIST OF ALL COMMANDS
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+/team help                     -  Display list of all commands
+
+/team                           -  Toggle the window's visibility
+/team toggle                  -  Toggle the window's visibility
+/team show                   -  Show the window
+/team hide                     -  Hide the window
+
+/team save [name]          -  Save group with name
+/team load [name]           -  Load group with name
+
+/team clear                     -  Remove all players from group setup
+/team add [name] [class]   -  Add player to your team setup
+/team remove [name]        -  Remove player from your group setup
+/team change [player] to [name] [class]  -  Update player in your group setup
 </Description>
 	</Information>
 	<Package>TeamOrganizer.Compiler</Package>

@@ -11,8 +11,7 @@ invitedPlayerName = "";
 function analyzeMessage(sender, args)
 	-- Return if chat type is not correct --
 	if (args.ChatType ~= Turbine.ChatType.Standard and args.ChatType ~= Turbine.ChatType.Error) then return end
-	if args.Message == nil then return end
-	if args.Message == "" then return end
+	if (args.Message == nil or args.Message == "") then return end
 
 	-- Variables --
 	local message = args.Message;
@@ -99,10 +98,9 @@ function updateNameLabels(name, action)
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["invited"]);
-				break;
+				return;
 			end
 		end
-		return;
 	end
 
 
@@ -111,10 +109,9 @@ function updateNameLabels(name, action)
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["inParty"]);
-				break;
+				return;
 			end
 		end
-		return;
 	end
 
 
@@ -123,10 +120,9 @@ function updateNameLabels(name, action)
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["declined"]);
-				break;
+				return;
 			end
 		end
-		return;
 	end
 
 
@@ -136,10 +132,9 @@ function updateNameLabels(name, action)
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["inParty"]);
 				invitedPlayerName = "";
-				break;
+				return;
 			end
 		end
-		return;
 	end
 
 
@@ -149,10 +144,9 @@ function updateNameLabels(name, action)
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["anotherGroup"]);
 				invitedPlayerName = "";
-				break;
+				return;
 			end
 		end
-		return;
 	end
 
 
@@ -161,10 +155,9 @@ function updateNameLabels(name, action)
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["offline"]);
-				break;
+				return;
 			end
 		end
-		return;
 	end
 
 
@@ -173,10 +166,9 @@ function updateNameLabels(name, action)
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["notInParty"]);
-				break;
+				return;
 			end
 		end
-		return;
 	end
 
 

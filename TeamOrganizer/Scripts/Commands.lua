@@ -192,14 +192,14 @@ function changePlayerCommand(args)
 		notification(rgb["error"] .. player .. translate("playerNotInGroup", settings["language"]) .. rgb["clear"]);
 		return;
 	end
-
+	
 	-- If player was found, remove player aswell so we can add the player again --
 	if (playerFound) then
 		removePlayerCommand(player, true);
+	else
+		removePlayerCommand(original, true);
 	end
-	
-	-- Change player --
-	removePlayerCommand(original, true);
+
 	addPlayerCommand(player, class, true);
 	settings["loadRequest"] = "previous group";
 	save("server", groupMembersFileName, groupMembers);

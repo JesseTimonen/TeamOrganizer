@@ -104,13 +104,17 @@ end
 
 
 function saveSettings()
+	-- Return if plugin settings don't exist --
+	if (enableEscapeCheckbox == nil) then return end
+
+	-- Get settings --
 	settings["windowPosition"]["xPos"] = tostring(mainWindow:GetLeft());
 	settings["windowPosition"]["yPos"] = tostring(mainWindow:GetTop());
 	settings["enableEscape"] = enableEscapeCheckbox:IsChecked();
 	settings["enableDisband"] = enableDisbandCheckbox:IsChecked();
 	settings["horizontalWindow"] = horizontalUICheckbox:IsChecked();
 	settings["goldenTheme"] = goldenWindowCheckbox:IsChecked();
-
+	
 	-- Save new Settings --
 	save("server", settingsFileName, settings);
 end

@@ -4,11 +4,11 @@ function reloadPlugin()
 end
 
 -- Update method to see if plugin was reloaded --
-mainWindow.Update = function()
+UI.mainWindow.Update = function()
 
 	-- Unload reloader plugin --
 	Turbine.PluginManager.UnloadScriptState(pluginReloaderName);
-	mainWindow:SetWantsUpdates(false);
+	UI.mainWindow:SetWantsUpdates(false);
 
 	-- Get players and Update UI if '/clear' command was not used --
 	if loadRequest ~= "Clear Groups" then
@@ -17,7 +17,7 @@ mainWindow.Update = function()
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
 		if loadRequest == nil then
 			if party == nil then
-				errorMessage(translate("noParty", settings["language"]));
+				errorMessage(translate("noParty"));
 				loadRequest = "Previous Group";
 			else
 				getPlayers();
@@ -25,12 +25,12 @@ mainWindow.Update = function()
 		end
 	
 		-- Create UI placeholders for party members --
-		createUIPlaceholders();
+		Scripts.UI.createUIPlaceholders();
 		-- Update UI with found party members --
-		updateUI(true);
+		updateUI();
 	end
 end
-mainWindow:SetWantsUpdates(true);
+UI.mainWindow:SetWantsUpdates(true);
 
 
 function getPlayers()
@@ -59,7 +59,7 @@ function getPlayers()
 end
 
 
-function updateUI(reload)
+function updateUI()
 	-- Hide previous party members --
 	clearWindow();
 
@@ -77,20 +77,25 @@ function updateUI(reload)
 	local width;
 	if (groupMembersCount > 11 and settings["horizontalWindow"]) then
 		width = 520;
-		height = 450;
+		height = 470;
 	else
 		if (groupMembersCount > 11 and not settings["horizontalWindow"]) then
 			width = 285;
-			height = 740;
+			height = 750;
 		else
 			width = 285;
-			height = 450;
+			height = 470;
 		end
 	end
 
 	-- Update UI dimensions --
-	mainWindow:SetSize(width, height);
-	errorLabel:SetPosition(mainWindow:GetSize()/2 - errorLabel:GetSize()/2, height - 50);
+	UI.mainWindow:SetSize(width, height);
+	UI.errorLabel:SetPosition(UI.mainWindow:GetWidth()/2 - UI.errorLabel:GetWidth()/2, UI.mainWindow:GetHeight() - 80);
+	UI.saveGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.saveGroupButton:GetWidth()/2 - 70, UI.mainWindow:GetHeight() - 40);
+	UI.loadGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.loadGroupButton:GetWidth()/2, UI.mainWindow:GetHeight() - 40);
+	UI.deleteGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.deleteGroupButton:GetWidth()/2 + 70, UI.mainWindow:GetHeight() - 40);
+
+
 
 	-- Loop through the party members and add party member's information to placeholder UI elements --
 	for i = 1, groupMembersCount do
@@ -104,10 +109,10 @@ function updateUI(reload)
 		-- Members' names
 		names[i]:SetVisible(true);
 		names[i]:SetText(groupMembers[tostring(i)].name);
-		if (not reload or loadRequest ~= nil) then
-			names[i]:SetForeColor(playerNameColor["notInParty"]);
-		else
+		if (Utility.playerIsInGroup(groupMembers[tostring(i)].name)) then
 			names[i]:SetForeColor(playerNameColor["inParty"]);
+		else
+			names[i]:SetForeColor(playerNameColor["notInParty"]);
 		end
 
 		-- Invite buttons --
@@ -126,6 +131,7 @@ function updateUI(reload)
 	end
 end
 
+
 function clearWindow()
 	-- Hide previous party members --
 	for i = 1, 23 do
@@ -138,9 +144,10 @@ function clearWindow()
 	end
 end
 
+
 -- Hide main window if escape is pressed and escape setting is enabled --
-mainWindow.KeyDown = function(sender,args)
+UI.mainWindow.KeyDown = function(sender,args)
     if (args.Action == 145 and settings["enableEscape"]) then
-        mainWindow:SetVisible(false);
+        UI.mainWindow:SetVisible(false);
     end
 end

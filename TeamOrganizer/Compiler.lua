@@ -4,7 +4,7 @@ import "Turbine.UI";
 import "Turbine.UI.Lotro";
 import "Turbine.Gameplay";
 
--- Import Essentials --
+-- Import scripts that needs to be loaded first --
 import "TeamOrganizer.Scripts.Language";
 import "TeamOrganizer.Scripts.Notification";
 import "TeamOrganizer.Scripts.SaveLoad";
@@ -18,20 +18,27 @@ import "TeamOrganizer.Scripts.Utility.Class";
 import "TeamOrganizer.Scripts.Utility.Type";
 import "TeamOrganizer.Scripts.Utility.Tooltip";
 import "TeamOrganizer.Scripts.Utility.RadioButton";
+import "TeamOrganizer.Scripts.Utility.DropDownList";
 import "TeamOrganizer.Scripts.Utility.Miscellaneous";
-import "TeamOrganizer.Scripts.Utility.PlayerUIBuilder";
-import "TeamOrganizer.Scripts.Utility.CustomizationBuilder";
 
 -- Import color picker --
 import "TeamOrganizer.Scripts.ColorPicker";
 
 -- Import UI components --
-import "TeamOrganizer.Scripts.UI";
-import "TeamOrganizer.Scripts.Settings";
+import "TeamOrganizer.Scripts.UI.BuilderPlayerUI";
+import "TeamOrganizer.Scripts.UI.BuilderCustomization";
+import "TeamOrganizer.Scripts.UI.GroupSaveWindow";
+import "TeamOrganizer.Scripts.UI.GroupLoadWindow";
+import "TeamOrganizer.Scripts.UI.GroupDeleteWindow";
+import "TeamOrganizer.Scripts.UI.PlayerAddWindow";
+import "TeamOrganizer.Scripts.UI.PlayerRemoveWindow";
+import "TeamOrganizer.Scripts.UI.PlayerChangeWindow";
+import "TeamOrganizer.Scripts.UI.Renderer";
+import "TeamOrganizer.Scripts.UI.Settings";
 
--- Import custom scripts --
+-- Import main scripts --
 import "TeamOrganizer.Scripts.Main";
 import "TeamOrganizer.Scripts.ChatListener";
 
--- Import command scripts --
+-- Import commands --
 import "TeamOrganizer.Scripts.Commands";

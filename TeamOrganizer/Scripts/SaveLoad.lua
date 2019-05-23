@@ -48,13 +48,14 @@ function loadGroup()
 		-- See if requested group exists --
 		if _groupMembers ~= nil then
 			-- Group loaded successfully --
-			notification(translate("groupLoaded", settings["language"]) .. " " .. loadRequest);
+			notification(translate("groupLoaded") .. loadRequest);
 			save("server", groupMembersFileName, _groupMembers);
 			return _groupMembers;
 		else
 			-- Failed to load group --
-			notification(rgb["error"] .. translate("groupLoadFailed", settings["language"]) .. " " .. loadRequest .. rgb["clear"]);
-			errorMessage(translate("groupLoadFailedError", settings["language"]));
+			notification(rgb["error"] .. translate("groupLoadFailed") .. loadRequest .. rgb["clear"]);
+			errorMessage(translate("groupLoadFailedError"));
+			Utility.table_removeKey(savedGroupNames, loadRequest);
 			return load("server", groupMembersFileName);
 		end
 	end
@@ -73,9 +74,13 @@ function loadSettings()
 	-- Load Settings and customization --
 	local _settings = load("server", settingsFileName);
 	local _customization = load("server", customizationFileName);
+	local _savedGroupNames = load("server", savedGroupNamesFileName);
 
 	-- Apply settings --
 	if _settings ~= nil then settings = _settings; end
+
+	-- Apply saved groups data --
+	if _savedGroupNames ~= nil then savedGroupNames = _savedGroupNames; end
 
 	-- Apply customization --
 	if _customization ~= nil then
@@ -105,52 +110,53 @@ end
 
 function saveSettings()
 	-- Return if plugin settings don't exist --
-	if (enableEscapeCheckbox == nil) then return end
+	if (UI.enableEscapeCheckbox == nil) then return end
 
 	-- Get settings --
-	settings["windowPosition"]["xPos"] = tostring(mainWindow:GetLeft());
-	settings["windowPosition"]["yPos"] = tostring(mainWindow:GetTop());
-	settings["enableEscape"] = enableEscapeCheckbox:IsChecked();
-	settings["enableDisband"] = enableDisbandCheckbox:IsChecked();
-	settings["horizontalWindow"] = horizontalUICheckbox:IsChecked();
-	settings["goldenTheme"] = goldenWindowCheckbox:IsChecked();
+	settings["windowPosition"]["xPos"] = tostring(UI.mainWindow:GetLeft());
+	settings["windowPosition"]["yPos"] = tostring(UI.mainWindow:GetTop());
+	settings["enableEscape"] = UI.enableEscapeCheckbox:IsChecked();
+	settings["enableDisband"] = UI.enableDisbandCheckbox:IsChecked();
+	settings["horizontalWindow"] = UI.horizontalUICheckbox:IsChecked();
+	settings["goldenTheme"] = UI.goldenWindowCheckbox:IsChecked();
 	
 	-- Save new Settings --
 	save("server", settingsFileName, settings);
+	save("server", savedGroupNamesFileName, savedGroupNames);
 end
 
 
 function saveCustomization()
 	local _customization = {
 		inParty = {
-			red = numberToStringMinMax(customization1["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization1["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization1["name"]:GetForeColor().B, 0, 1)
+			red = numberToStringMinMax(UI.customization1["name"]:GetForeColor().R, 0, 1),
+			green = numberToStringMinMax(UI.customization1["name"]:GetForeColor().G, 0, 1),
+			blue = numberToStringMinMax(UI.customization1["name"]:GetForeColor().B, 0, 1)
 		},
 		notInParty = {
-			red = numberToStringMinMax(customization2["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization2["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization2["name"]:GetForeColor().B, 0, 1)
+			red = numberToStringMinMax(UI.customization2["name"]:GetForeColor().R, 0, 1),
+			green = numberToStringMinMax(UI.customization2["name"]:GetForeColor().G, 0, 1),
+			blue = numberToStringMinMax(UI.customization2["name"]:GetForeColor().B, 0, 1)
 		},
 		invited = {
-			red = numberToStringMinMax(customization3["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization3["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization3["name"]:GetForeColor().B, 0, 1)
+			red = numberToStringMinMax(UI.customization3["name"]:GetForeColor().R, 0, 1),
+			green = numberToStringMinMax(UI.customization3["name"]:GetForeColor().G, 0, 1),
+			blue = numberToStringMinMax(UI.customization3["name"]:GetForeColor().B, 0, 1)
 		},
 		declined = {
-			red = numberToStringMinMax(customization4["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization4["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization4["name"]:GetForeColor().B, 0, 1)
+			red = numberToStringMinMax(UI.customization4["name"]:GetForeColor().R, 0, 1),
+			green = numberToStringMinMax(UI.customization4["name"]:GetForeColor().G, 0, 1),
+			blue = numberToStringMinMax(UI.customization4["name"]:GetForeColor().B, 0, 1)
 		},
 		anotherGroup = {
-			red = numberToStringMinMax(customization5["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization5["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization5["name"]:GetForeColor().B, 0, 1)
+			red = numberToStringMinMax(UI.customization5["name"]:GetForeColor().R, 0, 1),
+			green = numberToStringMinMax(UI.customization5["name"]:GetForeColor().G, 0, 1),
+			blue = numberToStringMinMax(UI.customization5["name"]:GetForeColor().B, 0, 1)
 		},
 		offline = {
-			red = numberToStringMinMax(customization6["name"]:GetForeColor().R, 0, 1),
-			green = numberToStringMinMax(customization6["name"]:GetForeColor().G, 0, 1),
-			blue = numberToStringMinMax(customization6["name"]:GetForeColor().B, 0, 1)
+			red = numberToStringMinMax(UI.customization6["name"]:GetForeColor().R, 0, 1),
+			green = numberToStringMinMax(UI.customization6["name"]:GetForeColor().G, 0, 1),
+			blue = numberToStringMinMax(UI.customization6["name"]:GetForeColor().B, 0, 1)
 		}
 	};
 

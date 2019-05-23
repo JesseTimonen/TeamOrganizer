@@ -3,18 +3,18 @@ teamCommand = Turbine.ShellCommand();
 -- Execute command --
 function teamCommand:Execute(command, args)
 	-- Check if command has arguments --
-	if string.len(args) < 1 then toggleVisibility(not mainWindow:IsVisible()); return; end
+	if string.len(args) < 1 then toggleVisibility(not UI.mainWindow:IsVisible()); return; end
 
 	-- Turn arguments to lower case characters --
 	args = string.lower(args);
 
 	-- Display command help message --
-	if string.find(args, translate("command_help", clientLanguage)) == 1 then notification(translate("command_arguments", settings["language"])); return; end
+	if string.find(args, translate("command_help", clientLanguage)) == 1 then notification(translate("command_arguments")); return; end
 
 	-- Toggle visibility --
 	if string.find(args, translate("command_show", clientLanguage)) == 1 then toggleVisibility(true); return; end
 	if string.find(args, translate("command_hide", clientLanguage)) == 1 then toggleVisibility(false); return; end
-	if string.find(args, translate("command_toggle", clientLanguage)) == 1 then toggleVisibility(not mainWindow:IsVisible()); return; end
+	if string.find(args, translate("command_toggle", clientLanguage)) == 1 then toggleVisibility(not UI.mainWindow:IsVisible()); return; end
 
 	-- Save group --
 	if string.find(args, translate("command_save", clientLanguage)) == 1 then saveGroupCommand(string.match(args, translate("command_save", clientLanguage) .. "(%S+)")); return; end
@@ -35,45 +35,61 @@ function teamCommand:Execute(command, args)
 	if string.find(args, translate("command_clear", clientLanguage)) == 1 then clearWindowCommand(); return; end
 
 	-- Unknown command argument --
-	notification(rgb["error"] .. translate("command_unknown_1", settings["language"]) .. translate("command_help", clientLanguage) .. translate("command_unknown_2", settings["language"]) .. rgb["clear"]);
+	notification(rgb["error"] .. translate("command_unknown_1") .. translate("command_help", clientLanguage) .. translate("command_unknown_2") .. rgb["clear"]);
 end
+
 
 
 -- Toggle visibility of the main window --
 function toggleVisibility(state)
-	mainWindow:SetVisible(state);
+	UI.mainWindow:SetVisible(state);
 end
 
 
 -- Save group --
 function saveGroupCommand(name)
+	-- Turn name to lower capitals and remove spaces
+	name = string.lower(name);
+	name = name:gsub("%s+", "");
+	
+	-- Make sure save name is not empty --
+	if (string.len(name) < 1) then
+		notification(rgb["error"] .. translate("invalidSaveName") .. rgb["clear"]);
+		return false;
+	end
+
 	-- Return error if there is no group to save --
 	if Utility.getLenght(groupMembers) < 1 then
-		notification(rgb["error"] .. translate("nothingToSave", settings["language"]) .. rgb["clear"]);
-		errorMessage(translate("nothingToSave", settings["language"]))
-		return;
+		notification(rgb["error"] .. translate("nothingToSave") .. rgb["clear"]);
+		errorMessage(translate("nothingToSave"))
+		return false;
 	end
 
 	-- Check if name contains invalid characters --
 	if name == nil or name:match("%W") then
-		notification(rgb["error"] .. translate("invalidSaveName", settings["language"]) .. rgb["clear"]);
-		errorMessage(translate("groupSaveFailedError", settings["language"]));
-		return;
+		notification(rgb["error"] .. translate("invalidSaveName") .. rgb["clear"]);
+		errorMessage(translate("groupSaveFailedError"));
+		return false;
 	end
 
 	-- Save group --
+	if (not Utility.inArray(savedGroupNames, name)) then savedGroupNames[name] = name; end
 	save("server", customGroupFileName .. name, groupMembers);
-	notification(translate("groupSaved", settings["language"]) .. " " .. name);
+	notification(translate("groupSaved") .. name);
+	return true;
 end
 
 
 -- Load group --
 function loadGroupCommand(name)
+	-- Turn name to lower capitals --
+	name = string.lower(name);
+
 	-- Check if name contains invalid characters --
 	if name == nil or name:match("%W") then
-		notification(rgb["error"] .. translate("invalidLoadName", settings["language"]) .. rgb["clear"]);
-		errorMessage(translate("groupLoadFailedError", settings["language"]));
-		return;
+		notification(rgb["error"] .. translate("invalidLoadName") .. rgb["clear"]);
+		errorMessage(translate("groupLoadFailedError"));
+		return false;
 	end
 
 	settings["loadRequest"] = name;
@@ -81,14 +97,21 @@ function loadGroupCommand(name)
 end
 
 
+
 -- Add player into a group --
 function addPlayerCommand(player, class, changePlayer)
+	-- Check is group already full --
+	if (Utility.getLenght(groupMembers) > 23) then
+		notification(rgb["error"] .. translate("groupFullError") .. rgb["clear"]);
+		return false;
+	end
+	
 	-- Capitalize first character --
 	player = player:gsub("^%l", string.upper)
 
 	-- Prevent player from adding itself to the list --
 	if (player == playerName) then
-		return;
+		return false;
 	end
 	
 	-- Get ID of the class --
@@ -97,11 +120,11 @@ function addPlayerCommand(player, class, changePlayer)
 	-- Make sure player gave a valid class --
 	if (classID == nil) then
 		if (string.lower(player) == string.lower(class)) then
-			notification(rgb["error"] .. translate("missingClass", settings["language"]) .. player .. "!" .. rgb["clear"] .. translate("addCommandUsage", settings["language"]));
+			notification(rgb["error"] .. translate("missingClass") .. player .. "!" .. rgb["clear"] .. translate("addCommandUsage"));
 		else
-			notification(rgb["error"] .. class .. translate("invalidClass", settings["language"]) .. rgb["clear"] .. translate("addCommandUsage", settings["language"]));
+			notification(rgb["error"] .. class .. translate("invalidClass") .. rgb["clear"] .. translate("addCommandUsage"));
 		end
-		return;
+		return false;
 	end
 
 	-- Create new player --
@@ -121,12 +144,12 @@ function addPlayerCommand(player, class, changePlayer)
 			end
 		end
 
-		-- Check is player already in your group setup --
+		-- Check if player is already in your group setup --
 		if (playerFound == false) then
 			groupMembers[tostring(Utility.getLenght(groupMembers) + 1)] = member;
 		else
-			notification(rgb["error"] .. player .. translate("playerAlreadyInGroupSetup", settings["language"]) .. rgb["clear"]);
-			return;
+			notification(rgb["error"] .. player .. translate("playerAlreadyInGroupSetup") .. rgb["clear"]);
+			return false;
 		end
 	end
 
@@ -139,6 +162,7 @@ function addPlayerCommand(player, class, changePlayer)
 	save("server", groupMembersFileName, groupMembers);
 	reloadPlugin();
 end
+
 
 
 -- Change player --
@@ -155,10 +179,10 @@ function changePlayerCommand(args)
 
 	-- Return if not enough arguments were passed to change command --
 	if (Utility.getLenght(command) < 4) then
-		return;
+		return false;
 	end
 
-	-- Parse player name and class from arguments
+	-- Parse player name and class from arguments --
 	if (Utility.getLenght(command) > 4) then
 		-- /team change <player> to <player> <class> --
 		original = command[2];
@@ -170,12 +194,19 @@ function changePlayerCommand(args)
 		player = command[3];
 		class = command[4];
 	end
-
+	
 	-- Capitalize first character from player names --
-	original = original:gsub("^%l", string.upper)
-	player = player:gsub("^%l", string.upper)
+	original = original:gsub("^%l", string.upper);
+	player = player:gsub("^%l", string.upper);
 
-	-- Make original player is in party --
+	-- Make sure new name and class are valid --
+	if (player == playerName) then return false; end	
+	if (Utility.getClassID(class) == nil) then
+		notification(rgb["error"] .. class .. translate("invalidClass") .. rgb["clear"]);
+		return false;
+	end;
+
+	-- Check if specified players are in the group --
 	local originalFound = false;
 	local playerFound = false;
 	for k,v in pairs(groupMembers) do
@@ -189,8 +220,8 @@ function changePlayerCommand(args)
 
 	-- If original player was not found cancel change command --
 	if (not originalFound) then
-		notification(rgb["error"] .. original .. translate("playerNotInGroup", settings["language"]) .. rgb["clear"]);
-		return;
+		notification(rgb["error"] .. original .. translate("playerNotInGroup") .. rgb["clear"]);
+		return false;
 	end
 	
 	-- If player was found, remove player aswell so we can add the player again --
@@ -211,6 +242,7 @@ function changePlayerCommand(args)
 end
 
 
+
 -- Remove player from a group --
 function removePlayerCommand(player, changePlayer)
 	-- Capitalize first character --
@@ -218,7 +250,7 @@ function removePlayerCommand(player, changePlayer)
 
 	-- Make sure group is not already empty --
 	if (groupMembers == nil) then
-		return;
+		return false;
 	end
 
 	local updatedMembers = {};
@@ -241,8 +273,8 @@ function removePlayerCommand(player, changePlayer)
 
 	-- Check if removed player was found --
 	if (playerFound == false) then
-		notification(rgb["error"] .. player .. translate("playerNotInGroup", settings["language"]) .. rgb["clear"]);
-		return;
+		notification(rgb["error"] .. player .. translate("playerNotInGroup") .. rgb["clear"]);
+		return false;
 	end
 
 	if (changePlayer == true) then
@@ -256,12 +288,14 @@ function removePlayerCommand(player, changePlayer)
 end
 
 
+
 -- Clear Team Organizer window --
-function clearWindowCommand(name)
+function clearWindowCommand()
 	settings["loadRequest"] = "clear group"
 	save("server", groupMembersFileName, nil);
 	reloadPlugin();
 end
+
 
 
 -- Commands --

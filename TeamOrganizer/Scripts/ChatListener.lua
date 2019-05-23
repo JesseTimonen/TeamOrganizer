@@ -20,7 +20,7 @@ function analyzeMessage(sender, args)
 	-- Check if the player has pending invitation --
 	name = string.match(message, translate("invited", clientLanguage));
 	if name ~= nil then
-		-- Make sure the player is the leader of the party --
+		-- Make sure the player is the leader of the party if player is in party --
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
 		if (party ~= nil and party:GetLeader():GetName() ~= playerName) then return end
 
@@ -51,11 +51,9 @@ function analyzeMessage(sender, args)
 		end
 
 		-- Check if invited player is in players party --
-		for i = 1, party:GetMemberCount() do
-			if (party:GetMember(i):GetName() == invitedPlayerName) then
-				updateNameLabels(invitedPlayerName, "alreadyInMyParty");
-				return;
-			end
+		if (Utility.playerIsInGroup(invitedPlayerName)) then
+			updateNameLabels(invitedPlayerName, "alreadyInMyParty");
+			return;
 		end
 
 		updateNameLabels(invitedPlayerName, "alreadyInAnotherParty");
@@ -82,9 +80,8 @@ function analyzeMessage(sender, args)
 	if string.find(message, translate("dropped", clientLanguage)) then updateNameLabels(name, "disband"); return end
 
 
-	-- Check if fellowship is dismissed --
+	-- Check if fellowship/raid was dismissed --
 	if string.find(message, translate("fellowshipDisbanded", clientLanguage)) then updateNameLabels(name, "disband"); return end
-	-- Check if raid is dismissed --
 	if string.find(message, translate("raidDisbanded", clientLanguage)) then updateNameLabels(name, "disband"); return end
 end
 
@@ -93,7 +90,7 @@ end
 -- Update players' names when certain actions happen --
 function updateNameLabels(name, action)
 
-	-- Turn name to light blue if player has been invited to the group --
+	-- Update player's color if player received invitation --
 	if (action == "invited") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -104,7 +101,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Turn name to green if player joins the party --
+	-- Update player's color if player joins the group --
 	if (action == "joined") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -115,7 +112,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Turn name to red if player declines to join the party --
+	-- Update player's color if player declines to join the group --
 	if (action == "declined") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -126,7 +123,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Turn name to green if player is already in your party --
+	-- Update player's color if player is already in party --
 	if (action == "alreadyInMyParty") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -138,7 +135,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Turn name to orange if player is already in another party --
+	-- Update player's color if player is already in another group --
 	if (action == "alreadyInAnotherParty") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -150,7 +147,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Turn name to purple if player doesn't exist --
+	-- Update player's color if player doesn't exist --
 	if (action == "unknownCharacter") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -161,7 +158,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Turn name to gray if player leaves the group --
+	-- Update player's color if player leaves the group --
 	if (action == "left/dismiss") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -172,7 +169,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Turn all names to gray if player leaves the group or group gets disbanded --
+	-- Update every players' color if group gets disbanded or user leave the group --
 	if (action == "disband") then
 		for i = 1, table.getn(names) do
 			names[i]:SetForeColor(playerNameColor["notInParty"]);

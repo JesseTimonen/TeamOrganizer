@@ -39,6 +39,49 @@ function getLenght(array)
 end
 
 
+function inArray(array, value)
+	if (array[value] == value) then
+		return true;
+	end
+
+	return false;
+end
+
+
+function inTable(array, value)
+	for index, val in ipairs(array) do
+		if (val == value) then
+			return true;
+		end
+	end
+
+    return false;
+end
+
+
+function table_removeKey(table, key)
+    local element = table[key]
+    table[key] = nil
+    return element
+end
+
+
+function playerIsInGroup(name)
+	party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
+	if (party == nil) then
+		return false;
+	end
+
+	for i = 1, party:GetMemberCount() do
+		if (string.lower(name) == string.lower(party:GetMember(i):GetName())) then
+			return true;
+		end
+	end
+	
+	return false;
+end
+
+
 -- Return ID of a class --
 function getClassID(class)
 	class = string.lower(tostring(class));

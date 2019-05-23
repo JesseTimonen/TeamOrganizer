@@ -1,5 +1,16 @@
 -- Return translated message --
 function translate(key, lang)
+	-- Default language --
+	if (lang == nil) then
+		lang = settings["language"];
+	end
+
+	-- Check does translaton exist --
+	if (translations[key] == nil) then
+		return "Invalid translation key: " .. key;
+	end
+
+	-- Get Translation --
 	return translations[key][lang];
 end
 
@@ -66,11 +77,6 @@ translations = {
 		english = "Disable this option to change the theme back to normal Lotro UI",
 		german = "Deaktivieren Sie diese Option, um das Design wieder in die normale Lotro-Benutzeroberfläche zu ändern",
 		french = "Désactivez cette option pour rétablir le thème en interface utilisateur normale de Lotro"
-	},
-	save = {
-		english = "Save",
-		german = "sparen",
-		french = "sauver"
 	},
 	settingsSaved = {
 		english = "Settings have been successfully saved",
@@ -141,6 +147,71 @@ translations = {
 
 	
 	-- General --
+	yes = {
+		english = "Yes",
+		german = "Ja",
+		french = "Oui"
+	},
+	no = {
+		english = "No",
+		german = "Nein",
+		french = "Non"
+	},
+	removeAll = {
+		english = "Remove All",
+		german = "Alles Entfernen",
+		french = "Enlever Tout"
+	},
+	removeAllConfirmation = {
+		english = "Are you sure you want to remove every player?",
+		german = "Möchten Sie wirklich alle Spieler entfernen?",
+		french = "Êtes-vous sûr de vouloir supprimer chaque joueur?"
+	},
+	save = {
+		english = "Save",
+		german = "Sparen",
+		french = "Sauver"
+	},
+	load = {
+		english = "Load",
+		german = "Laden",
+		french = "Charge"
+	},
+	delete = {
+		english = "Delete",
+		german = "Löschen",
+		french = "Effacer"
+	},
+	saveGroup = {
+		english = "Save Group",
+		german = "Gruppe Speichern",
+		french = "sauver le groupe"
+	},
+	loadGroup = {
+		english = "Load Group",
+		german = "Gruppe Laden",
+		french = "Groupe de Charge"
+	},
+	deleteGroup = {
+		english = "Delete Group",
+		german = "Gruppe Löschen",
+		french = "Effacer Groupe"
+	},
+	addPlayer = {
+		english = "Add Player",
+		german = "Spieler Addieren",
+		french = "Ajouter un Joueur"
+	},
+	removePlayer = {
+		english = "Remove Player",
+		german = "Spieler Entfernen",
+		french = "Enlever le Joueur"
+	},
+	changePlayer = {
+		english = "Change Player",
+		german = "Spieler Wechseln",
+		french = "Changer de Joueur"
+	},
 	getPlayers = {
 		english = "Get Players",
 		german = "Spieler bekommen",
@@ -167,9 +238,9 @@ translations = {
 		french = "Aucun membre du parti trouvé!"
 	},
 	groupSaved = {
-		english = "Saved group with name",
-		german = "Gruppe mit Namen gespeichert",
-		french = "Groupe enregistré avec nom"
+		english = "Saved group with name ",
+		german = "Gruppe mit Namen gespeichert ",
+		french = "Groupe enregistré avec nom "
 	},
 	nothingToSave = {
 		english = "You need to have a group before you can save it!",
@@ -182,9 +253,9 @@ translations = {
 		french = "Sauver échoué: Nom incorrect (seules les lettres et les chiffres sont acceptés)!"
 	},
 	groupSaveFailedError = {
-		english = "Failed to save group",
-		german = "Speichern der Gruppe fehlgeschlagen",
-		french = "Échec de la sauvegarde du groupe"
+		english = "Failed to save group!",
+		german = "Speichern der Gruppe fehlgeschlagen!",
+		french = "Échec de la sauvegarde du groupe!"
 	},
 	unknownError = {
 		english = "Unknown Error!",
@@ -192,19 +263,19 @@ translations = {
 		french = "Erreur Inconnue!"
 	},
 	groupLoaded = {
-		english = "Loaded group with name",
-		german = "Geladene Gruppe mit Namen",
-		french = "Groupe chargé avec nom"
+		english = "Loaded group with name ",
+		german = "Geladene Gruppe mit Namen ",
+		french = "Groupe chargé avec nom "
 	},
 	groupLoadFailed = {
-		english = "Failed to load group, unknown group name:",
-		german = "Fehler beim Laden der Gruppe, unbekannter Gruppenname:",
-		french = "Échec du chargement du groupe, nom de groupe inconnu:"
+		english = "Failed to load group, unknown group name: ",
+		german = "Fehler beim Laden der Gruppe, unbekannter Gruppenname: ",
+		french = "Échec du chargement du groupe, nom de groupe inconnu: "
 	},
 	groupLoadFailedError = {
-		english = "Failed to load group",
-		german = "Fehler beim Laden der Gruppe",
-		french = "Impossible de charger le groupe"
+		english = "Failed to load group!",
+		german = "Fehler beim Laden der Gruppe!",
+		french = "Impossible de charger le groupe!"
 	},
 	invalidLoadName = {
 		english = "Load failed: Invalid load name!",
@@ -271,6 +342,57 @@ translations = {
 		german = "Ändern",
 		french = "Modifier"
 	},
+	name = {
+		english = "Name",
+		german = "Name",
+		french = "Nom"
+	},
+	nothingToDelete = {
+		english = "Nothing to delete!",
+		german = "Nichts zu löschen!",
+		french = "Rien à supprimer!"
+	},
+	nothingToRemove = {
+		english = "Nothing to remove!",
+		german = "Nichts zu entfernen!",
+		french = "Rien à enlever!"
+	},
+	nothingToChange = {
+		english = "Nothing to change!",
+		german = "nichts zu ändern!",
+		french = "Rien à changer!"
+	},
+	deletedGroup = {
+		english = "Deleted group ",
+		german = "Gelöschte Gruppe ",
+		french = "Groupe supprimé "
+	},
+	nameTooShort = {
+		english = "Name too short!",
+		german = "Name zu kurz!",
+		french = "Nom trop court!"
+	},
+	addPlayerFailed = {
+		english = "Failed to add player!",
+		german = "Fehler beim Hinzufügen des Players!",
+		french = "Impossible d'ajouter le joueur!"
+	},
+	groupFullError = {
+		english = "Group is full, can not add more players!",
+		german = "Gruppe ist voll, kann nicht mehr Spieler hinzufügen!",
+		french = "Le groupe est complet, impossible d'ajouter plus de joueurs!"
+	},
+	change = {
+		english = "Change",
+		german = "Ändern Sie",
+		french = "changer"
+	},
+	to = {
+		english = "To",
+		german = "In",
+		french = "En"
+	},
+
 
 
 	-- Commands --
@@ -326,7 +448,7 @@ translations = {
 	},
 	command_arguments = {
 		english = "List of all commands:\n/team toggle or /team - Toggles the Team Organizer window's visibility\n/team show - Shows the Team Organizer window\n/team hide - Hides the Team Organizer window\n/team save <name> - Saves the current group\n/team load <name> - Loads a custom group\n/team add <name> <class> - Adds player into your group setup\n/team change <player> to <name> <class> - Update player from your group setup\n/team remove <name> - Removes player from your group setup\n/team clear - Clears Team Organizer window",
-		german = "Liste aller Befehle:\n/team toggle or /team - Schaltet die Sichtbarkeit des Team Organizer-Fensters um\n/team show - Zeigt das Team Organizer-Fenster\n/team hide - Blendet das Team Organizer-Fenster aus\n/team save <name> - Speichert die aktuelle Gruppe\n/team load <name> - Lädt eine benutzerdefinierte Gruppe\n/team add <name> <class> - Fügt Spieler zu Ihrer Gruppe hinzu\n/team change <player> to <name> <class> - Aktualisieren Sie den Player von Ihrem Gruppen-Setup\n/team remove <name> - Entfernt den Spieler aus Ihrem Gruppen-Setup\n/team clear - Löscht das Team Organizer-Fenster",
+		german = "Liste aller Befehle:\n/team toggle or /team - Schaltet die Sichtbarkeit des Teamorganisator-Fensters um\n/team show - Zeigt das Teamorganisator-Fenster\n/team hide - Blendet das Teamorganisator-Fenster aus\n/team save <name> - Speichert die aktuelle Gruppe\n/team load <name> - Lädt eine benutzerdefinierte Gruppe\n/team add <name> <class> - Fügt Spieler zu Ihrer Gruppe hinzu\n/team change <player> to <name> <class> - Aktualisieren Sie den Player von Ihrem Gruppen-Setup\n/team remove <name> - Entfernt den Spieler aus Ihrem Gruppen-Setup\n/team clear - Löscht das Teamorganisator-Fenster",
 		french = "Liste de toutes les commandes:\n/team toggle or /team - bascule la visibilité de la fenêtre de l'organisateur d'équipe\n/team show - affiche la fenêtre Team Organizer\n/team hide - masque la fenêtre Team Organizer\n/team save <name> - enregistre le groupe actuel\n/team load <name> - charge un groupe personnalisé\n/team add <name> <class> - ajoute un joueur dans la configuration de votre groupe\n/team change <player> to <name> <class> - Mettre à jour le lecteur depuis votre configuration de groupe\n/team remove <name> - supprime le joueur de la configuration de votre groupe\n/team clear - efface la fenêtre de l'organisateur d'équipe"
 	},
 	command_unknown_1 = {

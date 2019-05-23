@@ -12,10 +12,10 @@ Plugins[pluginName].Load = function()
 	end
 
 	-- Hide error message when plugin is loaded the first time --
-	errorLabel:SetVisible(false);
+	UI.errorLabel:SetVisible(false);
 
 	-- Display plugin loaded message --
-	notification(translate("loaded", settings["language"]) .. " " .. Plugins[pluginName]:GetVersion() .. " " .. translate("credits", settings["language"]));
+	notification(translate("loaded") .. " " .. Plugins[pluginName]:GetVersion() .. " " .. translate("credits"));
 end
 
 
@@ -25,7 +25,7 @@ Plugins[pluginName].Unload = function()
 	if colorPicker ~= nil then
 		colorPicker:Close();
 	end
-
+	
 	-- Prevent plugin from activating code below if it was internally reloaded --
 	local loadedPlugins = Turbine.PluginManager:GetLoadedPlugins();
 	local internalReload = false;
@@ -40,7 +40,7 @@ Plugins[pluginName].Unload = function()
 		settings["loadRequest"] = "previous group";
 
 		-- Display plugin unloaded message --
-		notification(translate("unloaded", settings["language"]));
+		notification(translate("unloaded"));
 	end
 
 	-- Save settings --

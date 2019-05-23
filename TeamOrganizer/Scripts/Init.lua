@@ -5,6 +5,7 @@ pluginReloaderName = "Team Organizer Reloader";
 -- File names --
 settingsFileName = "TeamOrganizer_Main_Settings";
 customizationFileName = "TeamOrganizer_Customization_Settings";
+savedGroupNamesFileName = "TeamOrganizer_SavedGroups";
 groupMembersFileName = "TeamOrganizer_GroupMembers";
 customGroupFileName = "TeamOrganizer_CustomData_";
 
@@ -43,6 +44,7 @@ settings = {
     loadRequest = nil
 };
 
+savedGroupNames = {};
 playerNameColor = defaultPlayerNameColor;
 
 -- RGB color codes --
@@ -54,6 +56,7 @@ rgb = {
 
 -- UI color codes --
 color = {
+    black = Turbine.UI.Color(0, 0, 0),
     white = Turbine.UI.Color(1, 1, 1),
     golden = Turbine.UI.Color(242/255, 217/255, 140/255),
     yellow = Turbine.UI.Color(244/255, 255/255, 51/255),

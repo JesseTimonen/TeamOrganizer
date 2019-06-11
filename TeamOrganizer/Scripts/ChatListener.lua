@@ -1,6 +1,8 @@
 -- Track Chat Messages --
-Turbine.Chat.Received = function (sender, args) 
-	analyzeMessage(sender, args);
+Turbine.Chat.Received = function (sender, args)
+	if (args.ChatType == Turbine.ChatType.Standard or args.ChatType == Turbine.ChatType.Error) then
+		analyzeMessage(args);
+	end
 end
 
 -- Track the player's name who was last invited to the party --
@@ -8,9 +10,7 @@ end
 invitedPlayerName = "";
 
 -- Analyze info about party actions in the chat --
-function analyzeMessage(sender, args)
-	-- Return if chat type is not correct --
-	if (args.ChatType ~= Turbine.ChatType.Standard and args.ChatType ~= Turbine.ChatType.Error) then return end
+function analyzeMessage(args)
 	if (args.Message == nil or args.Message == "") then return end
 
 	-- Variables --

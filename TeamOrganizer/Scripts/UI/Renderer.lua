@@ -123,7 +123,7 @@ errorLabel:SetText("");
 errorLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 errorLabel:SetForeColor(Scripts.color["red"]);
 
-Scripts.notification(Scripts.clientLanguage);
+
 -- Convert to raid button --
 if Scripts.settings["language"] == "german" then
 	createRaidButton = createButton(mainWindow, 165, 40, 90, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));

@@ -77,12 +77,22 @@ function analyzeMessage(args)
 
 
 	-- check if player leaves the party --
-	if string.find(message, translate("dropped", clientLanguage)) then updateNameLabels(name, "disband"); return end
+	if string.find(message, translate("dropped", clientLanguage)) then updateNameLabels("", "disband"); return end
+
+
+	-- Update UI when player joins a group --
+	if string.find(message, translate("joinedFellowship", clientLanguage)) then updateUI(); return end
+	if string.find(message, translate("joinedRaid", clientLanguage)) then updateUI(); return end
+
+
+	-- Check if player was dismissed --
+	if string.find(message, translate("dismissedFromFellowship", clientLanguage)) then updateNameLabels("", "disband"); return end
+	if string.find(message, translate("dismissedFromRaid", clientLanguage)) then updateNameLabels("", "disband"); return end
 
 
 	-- Check if fellowship/raid was dismissed --
-	if string.find(message, translate("fellowshipDisbanded", clientLanguage)) then updateNameLabels(name, "disband"); return end
-	if string.find(message, translate("raidDisbanded", clientLanguage)) then updateNameLabels(name, "disband"); return end
+	if string.find(message, translate("fellowshipDisbanded", clientLanguage)) then updateNameLabels("", "disband"); return end
+	if string.find(message, translate("raidDisbanded", clientLanguage)) then updateNameLabels("", "disband"); return end
 end
 
 

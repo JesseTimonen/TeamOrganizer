@@ -123,16 +123,16 @@ errorLabel:SetText("");
 errorLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 errorLabel:SetForeColor(Scripts.color["red"]);
 
-
+Scripts.notification(Scripts.clientLanguage);
 -- Convert to raid button --
 if Scripts.settings["language"] == "german" then
-	createRaidButton = createButton(mainWindow, 165, 40, 90, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", clientLanguage));
+	createRaidButton = createButton(mainWindow, 165, 40, 90, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));
 	createRaidLabel = createLabel(mainWindow, 160, 38, 100, 20, Scripts.color["white"], Scripts.translate("raid"));
 elseif Scripts.settings["language"] == "french" then
-	createRaidButton = createButton(mainWindow, 180, 40, 70, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", clientLanguage));
+	createRaidButton = createButton(mainWindow, 180, 40, 70, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));
 	createRaidLabel = createLabel(mainWindow, 165, 38, 100, 20, Scripts.color["white"], Scripts.translate("raid"));
 else
-	createRaidButton = createButton(mainWindow, 190, 40, 60, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", clientLanguage));
+	createRaidButton = createButton(mainWindow, 190, 40, 60, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));
 	createRaidLabel = createLabel(mainWindow, 170, 38, 100, 20, Scripts.color["white"], Scripts.translate("raid"));
 end
 createRaidLabel:SetMouseVisible(false);
@@ -146,13 +146,13 @@ createRaidButton.button:SetVisible(true);
 
 -- Readycheck button --
 if Scripts.settings["language"] == "german" then
-	readycheckButton = createButton(mainWindow, 165, 65, 90, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", clientLanguage));
+	readycheckButton = createButton(mainWindow, 165, 65, 90, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", Scripts.clientLanguage));
 	readycheckLabel = createLabel(mainWindow, 160, 63, 100, 20, Scripts.color["white"], Scripts.translate("readycheck"));
 elseif Scripts.settings["language"] == "french" then
-	readycheckButton = createButton(mainWindow, 180, 65, 70, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", clientLanguage));
+	readycheckButton = createButton(mainWindow, 180, 65, 70, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", Scripts.clientLanguage));
 	readycheckLabel = createLabel(mainWindow, 165, 63, 100, 20, Scripts.color["white"], Scripts.translate("readycheck"));
 else
-	readycheckButton = createButton(mainWindow, 190, 65, 60, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", clientLanguage));
+	readycheckButton = createButton(mainWindow, 190, 65, 60, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", Scripts.clientLanguage));
 	readycheckLabel = createLabel(mainWindow, 170, 63, 100, 20, Scripts.color["white"], Scripts.translate("readycheck"));
 end
 readycheckLabel:SetMouseVisible(false);
@@ -167,13 +167,13 @@ readycheckButton.button:SetVisible(true);
 if Scripts.settings["enableDisband"] then
 	-- Disband button --
 	if Scripts.settings["language"] == "german" then
-		disbandButton = createButton(mainWindow, 165, 90, 90, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", clientLanguage));
+		disbandButton = createButton(mainWindow, 165, 90, 90, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
 		disbandLabel = createLabel(mainWindow, 160, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
 	elseif Scripts.settings["language"] == "french" then
-		disbandButton = createButton(mainWindow, 180, 90, 70, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", clientLanguage));
+		disbandButton = createButton(mainWindow, 180, 90, 70, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
 		disbandLabel = createLabel(mainWindow, 165, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
 	else
-		disbandButton = createButton(mainWindow, 190, 90, 60, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", clientLanguage));
+		disbandButton = createButton(mainWindow, 190, 90, 60, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
 		disbandLabel = createLabel(mainWindow, 170, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
 	end
 	disbandLabel:SetMouseVisible(false);

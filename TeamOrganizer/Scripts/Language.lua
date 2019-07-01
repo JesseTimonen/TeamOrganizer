@@ -532,6 +532,26 @@ translations = {
 		german = "Ihr verlasst",
 		french = "Vous quittez votre .+"
 	},
+	joinedFellowship = {
+		english = "You have joined a Fellowship",
+		german = "Ihr habt Euch einer Gruppe von Gefährten angeschlossen",
+		french = "Vous avez rejoint une communauté"
+	},
+	joinedRaid = {
+		english = "You have joined a Raid",
+		german = "Ihr habt Euch einem Schlachtzug angeschlossen",
+		french = "Vous avez rejoint un raid"
+	},
+	dismissedFromFellowship = {
+		english = "You have been dismissed from your Fellowship",
+		german = "hr wurdet aus Eurer Gruppe von Gefährten ausgeschlossen",
+		french = "Vous avez été renvoyée de votre communauté"
+	},
+	dismissedFromRaid = {
+		english = "You have been dismissed from your Raid",
+		german = "Ihr wurdet aus Eurem Schlachtzug ausgeschlossen",
+		french = "Vous avez été renvoyée de votre raid"
+	},
 	fellowshipDisbanded = {
 		english = "Your .+ has been disbanded",
 		german = "wurde aufgelöst",

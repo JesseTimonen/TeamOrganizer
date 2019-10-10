@@ -3,7 +3,7 @@
     <Information>
         <Name>Team Organizer Reloader</Name>
         <Author>Henna</Author>
-        <Version>1.4.1</Version>
+        <Version>1.4.2</Version>
         <Description>Internal Plugin for Team Orginizer to reload itself.</Description>
         <Image>TeamOrganizer/Images/icon.tga</Image>
     </Information>

@@ -22,6 +22,60 @@ translations = {
 		french = "Team Organizer"
 	},
 
+
+	-- Classes --
+	beorning = {
+		english = "Beorning",
+		german = "Beorninger",
+		french = "Beornides"
+	},
+	burglar = {
+		english = "Burglar",
+		german = "Schurke",
+		french = "Cambrioleur"
+	},
+	captain = {
+		english = "Captain",
+		german = "Hauptmann",
+		french = "Capitaine"
+	},
+	champion = {
+		english = "Champion",
+		german = "Waffenmeister",
+		french = "Champion"
+	},
+	guardian = {
+		english = "Guardian",
+		german = "Wächter",
+		french = "Gardien"
+	},
+	hunter = {
+		english = "Hunter",
+		german = "Jäger",
+		french = "Chasseur"
+	},
+	lore_master = {
+		english = "Lore-master",
+		german = "Kundiger",
+		french = "Maîtres du savoir"
+	},
+	minstrel = {
+		english = "Minstrel",
+		german = "Barde",
+		french = "Ménestrel"
+	},
+	rune_keeper = {
+		english = "Rune-keeper",
+		german = "Runenbewahrer",
+		french = "Gardien des runes"
+	},
+	warden = {
+		english = "Warden",
+		german = "Hüter",
+		french = "Sentinelle"
+	},
+
+
 	-- Settings --
 	language = {
 		english = "Language",

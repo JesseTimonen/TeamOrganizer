@@ -87,16 +87,16 @@ function getClassID(class)
 	class = string.lower(tostring(class));
 
 	classes = {
-		["beorning"] = 214, ["beorn"] = 214, ["bear"] = 214, ["214"] = 214,
-		["burglar"] = 40, ["burg"] = 40, ["40"] = 40,
-		["captain"] = 24, ["cappy"] = 24, ["24"] = 24,
-		["champion"] = 172, ["champ"] = 172, ["172"] = 172,
-		["guardian"] = 23, ["guard"] = 23, ["tank"] = 23, ["23"] = 23,
-		["hunter"] = 162, ["hunt"] = 162, ["162"] = 162,
-		["lore-master"] = 185, ["loremaster"] = 185, ["lm"] = 185, ["185"] = 185,
-		["minstrel"] = 31, ["minny"] = 31, ["mini"] = 31, ["healer"] = 31, ["heal"] = 31, ["31"] = 31,
-		["rune-keeper"] = 193, ["runekeeper"] = 193, ["rk"] = 193, ["193"] = 193,
-		["warden"] = 194, ["ward"] = 194, ["194"] = 194
+		["beorning"] = 214, ["beorn"] = 214, ["bear"] = 214, ["214"] = 214, ["beorninger"] = 214, ["beornides"] = 214,
+		["burglar"] = 40, ["burg"] = 40, ["40"] = 40, ["schurke"] = 40, ["cambrioleur"] = 40,
+		["captain"] = 24, ["cappy"] = 24, ["24"] = 24, ["hauptmann"] = 24, ["capitaine"] = 24,
+		["champion"] = 172, ["champ"] = 172, ["172"] = 172, ["waffenmeister"] = 172, ["champion"] = 172,
+		["guardian"] = 23, ["guard"] = 23, ["tank"] = 23, ["23"] = 23, ["wächter"] = 23, ["gardien"] = 23,
+		["hunter"] = 162, ["hunt"] = 162, ["162"] = 162, ["Jäger"] = 162, ["chasseur"] = 162,
+		["lore-master"] = 185, ["loremaster"] = 185, ["lm"] = 185, ["185"] = 185, ["kundiger"] = 185, ["maîtres-du-savoir"] = 185, ["maîtres_du_savoir"] = 185,
+		["minstrel"] = 31, ["minny"] = 31, ["mini"] = 31, ["healer"] = 31, ["heal"] = 31, ["31"] = 31, ["barde"] = 31, ["ménestrel"] = 31,
+		["rune-keeper"] = 193, ["runekeeper"] = 193, ["rk"] = 193, ["193"] = 193, ["runenbewahrer"] = 193, ["gardien-des-runes"] = 193, ["gardien_des_runes"] = 193,
+		["warden"] = 194, ["ward"] = 194, ["194"] = 194, ["hüter"] = 194, ["sentinelle"] = 194
 	};
 
 	return classes[class];

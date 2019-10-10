@@ -43,16 +43,17 @@ function addPlayerWindow:Constructor()
 	self.classSelect:SetBackColor(Turbine.UI.Color(0, 0, 0));
 	self.classSelect:SetTextColor(Turbine.UI.Color(1, 1, 1));
 	self.classSelect:SetCurrentBackColor(Turbine.UI.Color(0, 0, 0));
-	self.classSelect:AddItem("beorning", 214);
-	self.classSelect:AddItem("burglar", 40);
-	self.classSelect:AddItem("captain", 24);
-	self.classSelect:AddItem("champion", 172);
-	self.classSelect:AddItem("guardian", 23);
-	self.classSelect:AddItem("hunter", 162);
-	self.classSelect:AddItem("lore-master", 185);
-	self.classSelect:AddItem("minstrel", 31);
-	self.classSelect:AddItem("rune-keeper", 193);
-	self.classSelect:AddItem("warden", 194);
+	self.classSelect:AddItem(Scripts.translate("beorning"), 214);
+	self.classSelect:AddItem(Scripts.translate("burglar"), 40);
+	self.classSelect:AddItem(Scripts.translate("captain"), 24);
+	self.classSelect:AddItem(Scripts.translate("champion"), 172);
+	self.classSelect:AddItem(Scripts.translate("guardian"), 23);
+	self.classSelect:AddItem(Scripts.translate("hunter"), 162);
+	self.classSelect:AddItem(Scripts.translate("lore_master"), 185);
+	self.classSelect:AddItem(Scripts.translate("minstrel"), 31);
+	self.classSelect:AddItem(Scripts.translate("rune_keeper"), 193);
+	self.classSelect:AddItem(Scripts.translate("warden"), 194);
+
 
 	-- Error label --
 	self.errorLabel = Turbine.UI.Label();

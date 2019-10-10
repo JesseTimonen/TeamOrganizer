@@ -148,7 +148,7 @@ function addPlayerCommand(player, class, changePlayer)
 		if (playerFound == false) then
 			groupMembers[tostring(Utility.getLenght(groupMembers) + 1)] = member;
 		else
-			notification(rgb["error"] .. player .. translate("playerAlreadyInGroupSetup") .. rgb["clear"]);
+			notification(rgb["error"] .. "'" .. player .. "'" .. translate("playerAlreadyInGroupSetup") .. rgb["clear"]);
 			return false;
 		end
 	end

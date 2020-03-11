@@ -40,6 +40,7 @@ settings = {
     enableEscape = false,
     enableDisband = false,
     horizontalWindow = true,
+    forceTop = false,
     goldenTheme = true,
     loadRequest = nil
 };

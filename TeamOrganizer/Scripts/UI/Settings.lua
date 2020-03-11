@@ -2,7 +2,7 @@ plugin.GetOptionsPanel = function(self)
 
 	-- Create Options Panel --
 	optionsPanel = Turbine.UI.Control();
-	optionsPanel:SetSize(500, 800);
+	optionsPanel:SetSize(500, 850);
 
 
 	-- Language label --
@@ -112,11 +112,29 @@ plugin.GetOptionsPanel = function(self)
 	Scripts.Utility.TooltipAttach(horizontalUICheckbox, Scripts.translate("horizontalUITooltip"));
 
 
+	-- Force top label --
+	forceTopLabel = Turbine.UI.Label();
+	forceTopLabel:SetParent(optionsPanel);
+	forceTopLabel:SetSize(300, 30);
+	forceTopLabel:SetPosition(80, 290);
+	forceTopLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
+	forceTopLabel:SetText(Scripts.translate("forceTop"));
+	forceTopLabel:SetForeColor(Scripts.color["golden"]);
+
+	-- Checkbox for force top setting --
+	forceTopCheckbox = Turbine.UI.Lotro.CheckBox();
+	forceTopCheckbox:SetParent(optionsPanel);
+	forceTopCheckbox:SetSize(20, 20);
+	forceTopCheckbox:SetPosition(50, 289);
+	forceTopCheckbox:SetChecked(Scripts.settings["forceTop"]);
+	Scripts.Utility.TooltipAttach(forceTopCheckbox, Scripts.translate("forceTopTooltip"));
+
+
 	-- Golden window label --
 	goldenWindowLabel = Turbine.UI.Label();
 	goldenWindowLabel:SetParent(optionsPanel);
 	goldenWindowLabel:SetSize(300, 30);
-	goldenWindowLabel:SetPosition(80, 290);
+	goldenWindowLabel:SetPosition(80, 320);
 	goldenWindowLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	goldenWindowLabel:SetText(Scripts.translate("goldTheme"));
 	goldenWindowLabel:SetForeColor(Scripts.color["golden"]);
@@ -125,7 +143,7 @@ plugin.GetOptionsPanel = function(self)
 	goldenWindowCheckbox = Turbine.UI.Lotro.CheckBox();
 	goldenWindowCheckbox:SetParent(optionsPanel);
 	goldenWindowCheckbox:SetSize(20, 20);
-	goldenWindowCheckbox:SetPosition(50, 289);
+	goldenWindowCheckbox:SetPosition(50, 319);
 	goldenWindowCheckbox:SetChecked(Scripts.settings["goldenTheme"]);
 	Scripts.Utility.TooltipAttach(goldenWindowCheckbox, Scripts.translate("goldThemeTooltip"));
 
@@ -135,7 +153,7 @@ plugin.GetOptionsPanel = function(self)
 	customizationLabel:SetParent(optionsPanel);
 	customizationLabel:SetText(Scripts.translate("customization"));
 	customizationLabel:SetSize(400, 30);
-	customizationLabel:SetPosition(0, 340);
+	customizationLabel:SetPosition(0, 370);
 	customizationLabel:SetFont(Turbine.UI.Lotro.Font.TrajanPro18);
 	customizationLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
 	customizationLabel:SetForeColor(Scripts.color["yellow"]);
@@ -144,12 +162,12 @@ plugin.GetOptionsPanel = function(self)
 	customizationLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/optionsTitleBackground.tga"));
 
 
-	customization1 = createCustomizationOption(optionsPanel, 50, 390, Scripts.translate("customizationLabelInParty", Scripts.settings["language"]),  Scripts.translate("customizationLabelInPartyTooltip", Scripts.settings["language"]), "inParty");
-	customization2 = createCustomizationOption(optionsPanel, 50, 450, Scripts.translate("customizationLabelNotInParty", Scripts.settings["language"]),  Scripts.translate("customizationLabelNotInPartyTooltip", Scripts.settings["language"]), "notInParty");
-	customization3 = createCustomizationOption(optionsPanel, 50, 510, Scripts.translate("customizationLabelInvited", Scripts.settings["language"]),  Scripts.translate("customizationLabelInvitedTooltip", Scripts.settings["language"]), "invited");
-	customization4 = createCustomizationOption(optionsPanel, 50, 570, Scripts.translate("customizationLabelDeclined", Scripts.settings["language"]),  Scripts.translate("customizationLabelDeclinedTooltip", Scripts.settings["language"]), "declined");
-	customization5 = createCustomizationOption(optionsPanel, 50, 630, Scripts.translate("customizationLabelInAnotherGroup", Scripts.settings["language"]),  Scripts.translate("customizationLabelInAnotherGroupTooltip", Scripts.settings["language"]), "anotherGroup");
-	customization6 = createCustomizationOption(optionsPanel, 50, 690, Scripts.translate("customizationLabelOffline", Scripts.settings["language"]),  Scripts.translate("customizationLabelOfflineTooltip", Scripts.settings["language"]), "offline");
+	customization1 = createCustomizationOption(optionsPanel, 50, 420, Scripts.translate("customizationLabelInParty", Scripts.settings["language"]),  Scripts.translate("customizationLabelInPartyTooltip", Scripts.settings["language"]), "inParty");
+	customization2 = createCustomizationOption(optionsPanel, 50, 480, Scripts.translate("customizationLabelNotInParty", Scripts.settings["language"]),  Scripts.translate("customizationLabelNotInPartyTooltip", Scripts.settings["language"]), "notInParty");
+	customization3 = createCustomizationOption(optionsPanel, 50, 540, Scripts.translate("customizationLabelInvited", Scripts.settings["language"]),  Scripts.translate("customizationLabelInvitedTooltip", Scripts.settings["language"]), "invited");
+	customization4 = createCustomizationOption(optionsPanel, 50, 600, Scripts.translate("customizationLabelDeclined", Scripts.settings["language"]),  Scripts.translate("customizationLabelDeclinedTooltip", Scripts.settings["language"]), "declined");
+	customization5 = createCustomizationOption(optionsPanel, 50, 660, Scripts.translate("customizationLabelInAnotherGroup", Scripts.settings["language"]),  Scripts.translate("customizationLabelInAnotherGroupTooltip", Scripts.settings["language"]), "anotherGroup");
+	customization6 = createCustomizationOption(optionsPanel, 50, 720, Scripts.translate("customizationLabelOffline", Scripts.settings["language"]),  Scripts.translate("customizationLabelOfflineTooltip", Scripts.settings["language"]), "offline");
 
 
 	-- Save settings button --
@@ -157,7 +175,7 @@ plugin.GetOptionsPanel = function(self)
 	saveSettingsButton:SetText(Scripts.translate("save"));
 	saveSettingsButton:SetParent(optionsPanel);
 	saveSettingsButton:SetSize(125, 20);
-	saveSettingsButton:SetPosition(50, 780);
+	saveSettingsButton:SetPosition(50, 810);
 	saveSettingsButton:SetZOrder(100);
 	saveSettingsButton.Click = function( sender, args)
 		Scripts.settings["loadRequest"] = "previous group";

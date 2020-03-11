@@ -118,6 +118,7 @@ function saveSettings()
 	settings["enableEscape"] = UI.enableEscapeCheckbox:IsChecked();
 	settings["enableDisband"] = UI.enableDisbandCheckbox:IsChecked();
 	settings["horizontalWindow"] = UI.horizontalUICheckbox:IsChecked();
+	settings["forceTop"] = UI.forceTopCheckbox:IsChecked();
 	settings["goldenTheme"] = UI.goldenWindowCheckbox:IsChecked();
 	
 	-- Save new Settings --

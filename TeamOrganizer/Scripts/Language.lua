@@ -122,6 +122,16 @@ translations = {
 		german = "Spieler werden in 2 Reihen aufgeteilt wenn mehr als 12 Spieler in der Gruppe sind",
 		french = "Les joueurs sont séparés en 2 colonnes s'il y a plus de 12 joueurs dans votre groupe"
 	},
+	forceTop = {
+		english = "Force window on top of other elements",
+		german = "Fenster über andere Elemente erzwingen",
+		french = "Forcer la fenêtre au-dessus des autres éléments"
+	},
+	forceTopTooltip = {
+		english = "Team Organizer window will always be on top of other game elements.",
+		german = "Das Teamorganisator Fenster befindet sich immer über anderen Spielelementen.",
+		french = "La fenêtre Team Organizer sera toujours au-dessus des autres éléments du jeu."
+	},
 	goldTheme = {
 		english = "Golden theme",
 		german = "Goldenes Thema",

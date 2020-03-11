@@ -19,11 +19,11 @@ function _G.static_class( ... )
 		
 		if ( type:IsClass() ) then
 			if ( baseClass ~= nil ) then
-				error( "A class can only have a single base class. More than one base class was specified." );
+				error("A class can only have a single base class. More than one base class was specified.");
 			end
 			
 			if ( type:IsFinal() ) then
-				error( "Unable to inherit from final class." );
+				error("Unable to inherit from final class.");
 			end
 			
 			baseClass = object;
@@ -32,7 +32,7 @@ function _G.static_class( ... )
 			table.insert( mixins, object );
 			baseObjects = baseObjects + 1;
 		else
-			error( "Invalid base object specified in class declaration." );
+			error("Invalid base object specified in class declaration.");
 		end
 	end
 
@@ -40,13 +40,13 @@ function _G.static_class( ... )
 	local environmentTable = getfenv( 0 );
 
 	if (
-		( environmentTable ~= nil ) and
-		( environmentTable._ ~= nil ) and
-		( type( environmentTable._ ) == "table" ) and
-		( environmentTable._.Name ~= nil ) and 
-		( type( environmentTable._.Name ) == "string" ) )
+		(environmentTable ~= nil) and
+		(environmentTable._ ~= nil) and
+		(type( environmentTable._) == "table") and
+		(environmentTable._.Name ~= nil) and 
+		(type( environmentTable._.Name) == "string"))
 	then
-		className = getfenv( 0 )._.Name;
+		className = getfenv(0)._.Name;
 	end
 
 	local classTypeInfo = {
@@ -158,16 +158,14 @@ end
 
 function _G.class( ... )
 	local staticClass, staticClassMetaTable, staticClassInfo = static_class( ... );
-
 	local classInstanceMetaTable = {
 		__index = staticClass,
-		__tostring = function( self )
+		__tostring = function(self)
 			return self:ToString();
 		end
 	};
 
 	staticClassInfo.Static = nil;
-
 	staticClassMetaTable.__call = function( classTable, ... )
 		local instance = { };
 		setmetatable( instance, classInstanceMetaTable );
@@ -189,7 +187,7 @@ function _G.abstract_class( ... )
 	staticClassInfo.Abstract = true;
 
 	staticClassMetaTable.__call = function( classTable, ... )
-		error( "Cannot instantiate an abstract class. " );
+		error("Cannot instantiate an abstract class.");
 	end
 
 	return staticClass, staticClassMetaTable, staticClassInfo;
@@ -200,4 +198,3 @@ function _G.final_class( ... )
 	classInfo.Final = true;
 	return classClass, classMetaTable, classInfo, classInstanceMetaTable;
 end
-

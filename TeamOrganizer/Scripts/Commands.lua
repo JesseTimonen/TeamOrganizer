@@ -58,6 +58,12 @@ function saveGroupCommand(name)
 		return false;
 	end
 
+	-- Make sure name is shorter than 50 characters --
+	if (string.len(name) > 50) then
+		notification(rgb["error"] .. translate("saveNameTooLong") .. rgb["clear"]);
+		return false;
+	end
+
 	-- Return error if there is no group to save --
 	if Utility.getLenght(groupMembers) < 1 then
 		notification(rgb["error"] .. translate("nothingToSave") .. rgb["clear"]);

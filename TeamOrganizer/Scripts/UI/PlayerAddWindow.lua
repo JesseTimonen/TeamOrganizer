@@ -6,7 +6,7 @@ function addPlayerWindow:Constructor()
 	self:SetText(Scripts.translate("addPlayer"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
-	self:SetSize(300, 200);
+	self:SetSize(300, 250);
 	self:SetPosition(0, 0);
 	self:SetZOrder(1000);
 	self.KeyDown = function(sender,args)
@@ -25,7 +25,7 @@ function addPlayerWindow:Constructor()
 	-- Name textbox --
 	self.nameInput = Turbine.UI.TextBox();
 	self.nameInput:SetParent(self);
-	self.nameInput:SetSize(130, 20);
+	self.nameInput:SetSize(240, 20);
 	self.nameInput:SetPosition(30, 70);
 	self.nameInput:SetMultiline(false);
 	self.nameInput:SetTextAlignment(Turbine.UI.ContentAlignment.LeftCenter);
@@ -36,9 +36,9 @@ function addPlayerWindow:Constructor()
 	-- Class select drop down list --
 	self.classSelect = TeamOrganizer.Utility.DropDownList();
 	self.classSelect:SetParent(self);
-	self.classSelect:SetDropRows(5);
-	self.classSelect:SetSize(100, 20);
-	self.classSelect:SetPosition(180, 70);
+	self.classSelect:SetDropRows(6);
+	self.classSelect:SetSize(240, 20);
+	self.classSelect:SetPosition(30, 100);
 	self.classSelect:SetZOrder(1001);
 	self.classSelect:SetBackColor(Turbine.UI.Color(0, 0, 0));
 	self.classSelect:SetTextColor(Turbine.UI.Color(1, 1, 1));
@@ -60,7 +60,7 @@ function addPlayerWindow:Constructor()
 	self.errorLabel:SetParent(self);
 	self.errorLabel:SetVisible(false);
 	self.errorLabel:SetSize(200, 30);
-	self.errorLabel:SetPosition(30, 115);
+	self.errorLabel:SetPosition(30, 175);
 	self.errorLabel:SetForeColor(Scripts.color["red"]);
 
 	-- Button to add player --
@@ -68,7 +68,7 @@ function addPlayerWindow:Constructor()
 	self.addPlayerButton:SetParent(self);
 	self.addPlayerButton:SetText(Scripts.translate("addPlayer"));
 	self.addPlayerButton:SetSize(130, 30);
-	self.addPlayerButton:SetPosition(30, 140);
+	self.addPlayerButton:SetPosition(30, 200);
 	self.addPlayerButton.Click = function( sender, args)
 		-- Give error if name is shorter than 2 characters --
 		if (string.len(self.nameInput:GetText()) < 2) then

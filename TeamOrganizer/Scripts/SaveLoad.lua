@@ -16,9 +16,9 @@ function getDataScope(dataScope)
         return Turbine.DataScope.Server;
     elseif (string.lower(dataScope) == "character") then
         return Turbine.DataScope.Character;
-    end
+	end
 
-    return dataScope;
+    return Turbine.DataScope.Server;
 end
 
 

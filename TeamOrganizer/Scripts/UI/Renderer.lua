@@ -10,7 +10,6 @@ mainWindow:SetVisible(true);
 mainWindow:SetWantsKeyEvents(true);
 mainWindow:SetPosition(Scripts.settings["windowPosition"]["xPos"], Scripts.settings["windowPosition"]["yPos"]);
 mainWindow:SetSize(285, 470);
-mainWindow:SetZOrder(1000);
 
 
 -- Button to get players --

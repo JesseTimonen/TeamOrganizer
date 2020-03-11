@@ -306,6 +306,11 @@ translations = {
 		german = "Speichern fehlgeschlagen: Ungültiger Name (es werden nur Buchstaben und Zahlen akzeptiert)!",
 		french = "Sauver échoué: Nom incorrect (seules les lettres et les chiffres sont acceptés)!"
 	},
+	saveNameTooLong = {
+		english = "Save failed: name was too long (name should be 50 characters or less)!",
+		german = "Speichern fehlgeschlagen: Name war zu lang (Der Name sollte maximal 50 Zeichen lang sein)",
+		french = "Échec de la sauvegarde: le nom était trop long (le nom doit comporter 50 caractères ou moins)"
+	},
 	groupSaveFailedError = {
 		english = "Failed to save group!",
 		german = "Speichern der Gruppe fehlgeschlagen!",
@@ -426,6 +431,11 @@ translations = {
 		german = "Name zu kurz!",
 		french = "Nom trop court!"
 	},
+	nameTooLong = {
+		english = "Name too long!",
+		german = "Name zu lang!",
+		french = "Nom trop long!"
+	},
 	addPlayerFailed = {
 		english = "Failed to add player!",
 		german = "Fehler beim Hinzufügen des Players!",
@@ -501,9 +511,9 @@ translations = {
 		french = "aide"
 	},
 	command_arguments = {
-		english = "List of all commands:\n/team toggle or /team - Toggles the Team Organizer window's visibility\n/team show - Shows the Team Organizer window\n/team hide - Hides the Team Organizer window\n/team save <name> - Saves the current group\n/team load <name> - Loads a custom group\n/team add <name> <class> - Adds player into your group setup\n/team change <player> to <name> <class> - Update player from your group setup\n/team remove <name> - Removes player from your group setup\n/team clear - Clears Team Organizer window",
-		german = "Liste aller Befehle:\n/team toggle or /team - Schaltet die Sichtbarkeit des Teamorganisator-Fensters um\n/team show - Zeigt das Teamorganisator-Fenster\n/team hide - Blendet das Teamorganisator-Fenster aus\n/team save <name> - Speichert die aktuelle Gruppe\n/team load <name> - Lädt eine benutzerdefinierte Gruppe\n/team add <name> <class> - Fügt Spieler zu Ihrer Gruppe hinzu\n/team change <player> to <name> <class> - Aktualisieren Sie den Player von Ihrem Gruppen-Setup\n/team remove <name> - Entfernt den Spieler aus Ihrem Gruppen-Setup\n/team clear - Löscht das Teamorganisator-Fenster",
-		french = "Liste de toutes les commandes:\n/team toggle or /team - bascule la visibilité de la fenêtre de l'organisateur d'équipe\n/team show - affiche la fenêtre Team Organizer\n/team hide - masque la fenêtre Team Organizer\n/team save <name> - enregistre le groupe actuel\n/team load <name> - charge un groupe personnalisé\n/team add <name> <class> - ajoute un joueur dans la configuration de votre groupe\n/team change <player> to <name> <class> - Mettre à jour le lecteur depuis votre configuration de groupe\n/team remove <name> - supprime le joueur de la configuration de votre groupe\n/team clear - efface la fenêtre de l'organisateur d'équipe"
+		english = "List of all commands:\n/team toggle or /team - Toggles the plugin's visibility.\n/team show - Makes the plugin window visible.\n/team hide - Makes the plugin window hidden.\n/team save [name] - Save current group.\n/team load [name] - Load group with given name.\n/team add [name] [class] - Add player to your team setup.\n/team change [player] to [name] [class] - Modify player in your team setup.\n/team remove [name] - Remove player from your team setup.\n/team clear - Remove all players from team setup.",
+		german = "Liste aller Befehle:\n/team toggle or /team - Schaltet die Sichtbarkeit des Plugins um.\n/team show - Macht das Plugin-Fenster sichtbar.\n/team hide - Schließt das Plugin-Fenster aus.\n/team save [name] - Aktuelle Gruppe speichern.\n/team load [name] - Gruppe mit Vornamen laden.\n/team add [name] [class] - Fügen Sie Ihrem Team-Setup einen Spieler hinzu.\n/team change [player] to [name] [class] - Ändern Sie den Spieler in Ihrem Team-Setup.\n/team remove [name] - Entfernen Sie den Spieler aus Ihrem Team-Setup.\n/team clear - Entfernen Sie alle Spieler aus dem Team-Setup.",
+		french = "Liste de toutes les commandes:\n/team toggle or /team - Bascule la visibilité du plugin./team show - Rend la fenêtre du plugin visible./team hide - Rend la fenêtre du plugin cachée./team save [name] - Enregistrer le groupe actuel./team load [name] - Charger le groupe avec un prénom./team add [name] [class] - Ajoutez un joueur à la configuration de votre équipe./team change [player] to [name] [class] - Modifiez le joueur dans la configuration de votre équipe./team remove [name] - Supprimez le joueur de la configuration de votre équipe./team clear - Supprimez tous les joueurs de la configuration de l'équipe."
 	},
 	command_unknown_1 = {
 		english = "Unknown command argument, use '/team ",

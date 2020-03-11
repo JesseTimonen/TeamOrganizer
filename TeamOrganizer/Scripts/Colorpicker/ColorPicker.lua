@@ -3,14 +3,14 @@ ColorPicker = class(Turbine.UI.Lotro.Window);
 ColorPicker.settings = {};
 ColorPicker.settings.recentColors = {};
 
-Turbine.PluginData.Load(Turbine.DataScope.Account, "ColorPicker", function(loadStr)
-    if (loadStr) then
-        ColorPicker.settings = ImportTable(loadStr);
-        if (not ColorPicker.settings) then
-            return;
+Turbine.PluginData.Load(Turbine.DataScope.Account, "ColorPicker",
+    function(loadStr)
+        if (loadStr) then
+            ColorPicker.settings = ImportTable(loadStr);
+            if (not ColorPicker.settings) then return; end
         end
     end
-end);
+);
 
 function ColorPicker:Constructor(color, dimension)
     Turbine.UI.Lotro.Window.Constructor(self);
@@ -20,9 +20,8 @@ function ColorPicker:Constructor(color, dimension)
     else
         color = TeamOrganizer.Utils.Color(0.5, 1.0, 1.0);
     end
-    if (not dimension) then
-        dimension = "H";
-    end
+
+    if (not dimension) then dimension = "H"; end
     
     self:SetSize(407, 316);
     self.displayWidth = Turbine.UI.Display:GetWidth();
@@ -65,6 +64,7 @@ function ColorPicker:Constructor(color, dimension)
     self.radioButtons["R"].Clicked = function()
         self:SelectDimension("R");
     end
+
     local top = radioButtonHeight;
 
     self.radioButtons["G"] = TeamOrganizer.Utility.RadioButton(self.radioContainer, L:GetText("Green"), false);
@@ -74,6 +74,7 @@ function ColorPicker:Constructor(color, dimension)
     self.radioButtons["G"].Clicked = function()
         self:SelectDimension("G");
     end
+
     top = top + radioButtonHeight;
 
     self.radioButtons["B"] = TeamOrganizer.Utility.RadioButton(self.radioContainer, L:GetText("Blue"), false);
@@ -83,6 +84,7 @@ function ColorPicker:Constructor(color, dimension)
     self.radioButtons["B"].Clicked = function()
         self:SelectDimension("B");
     end
+
     top = top + 30;
 
     self.radioButtons["H"] = TeamOrganizer.Utility.RadioButton(self.radioContainer, L:GetText("Hue"), false);
@@ -92,6 +94,7 @@ function ColorPicker:Constructor(color, dimension)
     self.radioButtons["H"].Clicked = function()
         self:SelectDimension("H");
     end
+
     top = top + radioButtonHeight;
 
     self.radioButtons["S"] = TeamOrganizer.Utility.RadioButton(self.radioContainer, L:GetText("Saturation"), false);
@@ -101,6 +104,7 @@ function ColorPicker:Constructor(color, dimension)
     self.radioButtons["S"].Clicked = function()
         self:SelectDimension("S");
     end
+
     top = top + radioButtonHeight;
 
     self.radioButtons["V"] = TeamOrganizer.Utility.RadioButton(self.radioContainer, L:GetText("Value"), false);
@@ -110,6 +114,7 @@ function ColorPicker:Constructor(color, dimension)
     self.radioButtons["V"].Clicked = function()
         self:SelectDimension("V");
     end
+
     top = top + 34;
     
     TeamOrganizer.Utility.RadioButton.LinkPeers({self.radioButtons["R"], self.radioButtons["G"], self.radioButtons["B"], self.radioButtons["H"], self.radioButtons["S"], self.radioButtons["V"]});
@@ -137,9 +142,7 @@ function ColorPicker:Constructor(color, dimension)
     self.okButton:SetText(L:GetText("Ok"));
     self.okButton.Click = function()
         self.okButtonClicked = true;
-        if (self.Accepted) then
-            self:Accepted();
-        end
+        if (self.Accepted) then self:Accepted(); end
         self:AddRecentColor(self.color);
         self:Close();
     end
@@ -180,7 +183,6 @@ function ColorPicker:Constructor(color, dimension)
     
     self:SetZOrder(self:GetZOrder());
 
-    -- If the display size changes, images will unstretch, so we need to redraw.
     AddCallback(Turbine.UI.Display, "SizeChanged", function()
         self:DoLayout();
     end);
@@ -188,15 +190,13 @@ end
 
 function ColorPicker:SaveSettings()
     local saveData = ExportTable(ColorPicker.settings);
-    Turbine.PluginData.Save(Turbine.DataScope.Account, "ColorPicker", saveData, function()
-    end);
+    Turbine.PluginData.Save(Turbine.DataScope.Account, "ColorPicker", saveData);
 end
 
 function ColorPicker:AddRecentColor(newColor)
     local recentColors = ColorPicker.settings.recentColors;
-    
-    -- Remove duplicates.
     local oldColorIndex = nil;
+
     for r = 1, #recentColors, 1 do
         local oldColor = recentColors[r];
         oldColor = TeamOrganizer.Utils.Color(oldColor.A, oldColor.R, oldColor.G, oldColor.B);
@@ -205,11 +205,11 @@ function ColorPicker:AddRecentColor(newColor)
             break;
         end
     end
+
     if (oldColorIndex) then
         table.remove(recentColors, oldColorIndex);
     end
             
-    -- Add the new color.
     table.insert(recentColors, 1, newColor);
     self:SaveSettings();
 end
@@ -226,10 +226,12 @@ function ColorPicker:DoLayout()
     local radioContainerWidth, radioContainerHeight = self.radioContainer:GetSize();
     local minPaletteSize = radioContainerHeight + 50;
     local paletteSize = self:GetWidth() - (marginSize * 2) - (spacing * 2) - self.radioContainer:GetWidth() - sliderWidth;
+
     if (paletteSize < minPaletteSize) then
         self:SetWidth(self:GetWidth() + (minPaletteSize - paletteSize));
         paletteSize = minPaletteSize;
     end
+
     self.palette:SetPosition(left, top);
     self.palette:SetSize(paletteSize, paletteSize);
     self.palette:SetStretchMode(1);
@@ -272,8 +274,8 @@ function ColorPicker:DoLayout()
     else
         self.presets:SetSize(width, 40);
     end
-    top = top + 40;
 
+    top = top + 40;
     self:SetHeight(top + marginSize + 2);
 end
 
@@ -281,6 +283,7 @@ function ColorPicker:SetZOrder(z)
     if (z > 2147483647 - 4) then
         z = 2147483647 - 4;
     end
+
     Turbine.UI.Lotro.Window.SetZOrder(self, z);
     self.radioContainer:SetZOrder(z + 2);
     self.palette:SetZOrder(z + 1);
@@ -381,6 +384,7 @@ end
 
 function ColorPicker:Closing()
     self:SaveSettings();
+    
     if (not self.okButtonClicked) then
         self.color = self.originalColor;
         if (self.ColorChanged) then
@@ -390,6 +394,7 @@ function ColorPicker:Closing()
             self:Canceled();
         end
     end
+
     self.palette:Close();
     self.slider:Close();
     self:SetWantsKeyEvents(false);

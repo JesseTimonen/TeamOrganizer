@@ -26,7 +26,7 @@ function RadioButton:Constructor(parent, text, checked, disabled)
     self:SetEnabled(not disabled);
 end
 
--- Static function to link radio buttons to eachother--
+-- Static function to link radio buttons to each other --
 function RadioButton.LinkPeers(peers)
     for p = 1, #peers, 1 do
         peers[p].peerGroup = peers;

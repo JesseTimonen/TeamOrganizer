@@ -96,7 +96,6 @@ function updateUI()
 	UI.deleteGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.deleteGroupButton:GetWidth()/2 + 70, UI.mainWindow:GetHeight() - 40);
 
 
-
 	-- Loop through the party members and add party member's information to placeholder UI elements --
 	for i = 1, groupMembersCount do
 		-- Stop loop if there are too many players --

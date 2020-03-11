@@ -25,9 +25,7 @@ end
 -- Check the size of an array
 function getLenght(array)
 	-- Check is array empty --
-	if array == nil then
-		return 0;
-    end
+	if array == nil then return 0; end
     
     -- Get size --
 	local count = 0;
@@ -39,6 +37,7 @@ function getLenght(array)
 end
 
 
+-- Check if value is in array --
 function inArray(array, value)
 	if (array[value] == value) then
 		return true;
@@ -48,6 +47,7 @@ function inArray(array, value)
 end
 
 
+-- Check if value is in table --
 function inTable(array, value)
 	for index, val in ipairs(array) do
 		if (val == value) then
@@ -59,6 +59,7 @@ function inTable(array, value)
 end
 
 
+-- Remove value from table --
 function table_removeKey(table, key)
     local element = table[key]
     table[key] = nil
@@ -66,6 +67,7 @@ function table_removeKey(table, key)
 end
 
 
+-- Check is player already in group --
 function playerIsInGroup(name)
 	party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
 	if (party == nil) then
@@ -82,7 +84,7 @@ function playerIsInGroup(name)
 end
 
 
--- Return ID of a class --
+-- Return ID of a class (returns 'nil' if no match is found) --
 function getClassID(class)
 	class = string.lower(tostring(class));
 

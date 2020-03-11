@@ -1,13 +1,9 @@
 Locale = class(Turbine.Object);
 
 function Locale:Constructor(language)
-    -- We don't need separate treatment for U.S. and British English.
     if (language == Turbine.Language.EnglishGB) then language = Turbine.Language.English; end
     self.language = language;
-
-    -- Global table for containing localized text strings
     self.text = {};
-
     self.contextDelimiter = "/";
     self:SetContext("/");
 end
@@ -68,16 +64,17 @@ function Locale:GetText(itemName)
     end
     context, remainder = string.match(itemName, "^(.*" .. self.contextDelimiter .. ")([^" .. self.contextDelimiter .. "]+)$");
     if (context) then
-        -- Temporarily change to the new context, get item, then return to previous context
         local prevContext = self:SetContext(context);
         local text = self:GetText(remainder);
         self:SetContext(prevContext);
         return text;
     end
+
     local item = self.context[itemName];
     if (not item) then
         return "(" .. tostring(itemName) .. " not found)";
     end
+
     local value = item[self.language];
     if (not value) then
         value = "(" .. itemName .. " not localized)";
@@ -87,6 +84,7 @@ function Locale:GetText(itemName)
             value = value .. "†";
         end
     end
+
     return value;
 end
 
@@ -132,7 +130,6 @@ function Locale:GetSortedTexts(context)
     return items;
 end
 
--- Create a single instance of this object
 if (not _G.L) then
     if Scripts.settings["language"] == "english" then
         _G.L = Locale(Turbine.Language.English);

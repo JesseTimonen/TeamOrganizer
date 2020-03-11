@@ -81,8 +81,18 @@ function analyzeMessage(args)
 
 
 	-- Update UI when player joins a group --
-	if string.find(message, translate("joinedFellowship", clientLanguage)) then updateUI(); return end
-	if string.find(message, translate("joinedRaid", clientLanguage)) then updateUI(); return end
+	if string.find(message, translate("joinedFellowship", clientLanguage)) then
+		Scripts.settings["loadRequest"] = "previous group";
+		Scripts.saveSettings();
+		reloadPlugin();
+		return
+	end
+	if string.find(message, translate("joinedRaid", clientLanguage)) then
+		Scripts.settings["loadRequest"] = "previous group";
+		Scripts.saveSettings();
+		reloadPlugin();
+		return
+	end
 
 
 	-- Check if player was dismissed --

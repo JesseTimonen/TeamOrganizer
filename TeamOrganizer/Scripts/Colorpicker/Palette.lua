@@ -33,6 +33,7 @@ function Palette:Constructor(parent, dimensionX, dimensionY, color)
         Turbine.UI.Window.SetSize(sender, width, height);
         sender.label:SetSize(width, height);
     end
+
     self.colorName:SetSize(self.width, 20);
     self.pointer = Turbine.UI.Window();
     self.pointer:SetVisible(true);   
@@ -50,30 +51,37 @@ function Palette:Constructor(parent, dimensionX, dimensionY, color)
         self.pointer.mouseDown = true;
         self.pointer:MouseMove();
     end
+
     self.pointer.MouseUp = function()
         self.pointer.mouseDown = false;
     end
+
     self.pointer.MouseMove = function()
         if (self.pointer.mouseDown) then
             local newX, newY = self:PointToClient(Turbine.UI.Display.GetMouseX(), Turbine.UI.Display.GetMouseY());
             self.valueX = newX / self.width;
             self.valueY = 1 - newY / self.height;
+
             if (self.valueX < 0.001) then
                 self.valueX = 0.001;
             elseif (self.valueX > 0.999) then
                 self.valueX = 0.999;
             end
+
             if (self.valueY < 0.001) then
                 self.valueY = 0.001;
             elseif (self.valueY > 0.999) then
                 self.valueY = 0.999;
             end
+
             self:SetPointerPosition();
+
             if (self.ColorChanged) then
                 self:ColorChanged();
             end
         end
     end
+
     self.spot.MouseDown = self.pointer.MouseDown;
     self.spot.MouseUp = self.pointer.MouseUp;
     self.spot.MouseMove = self.pointer.MouseMove;
@@ -122,6 +130,7 @@ function Palette:SetColorNamePosition()
     else
         self.colorName:SetTop(self.pointer:GetTop() + 30);
     end
+
     local center = self.pointer:GetLeft() + 15;
     self.colorName:SetLeft(center - math.floor(0.5 + self.width / 2));
 end
@@ -138,6 +147,7 @@ end
 function Palette:SetGamut(color)
     local sliderDimension = TeamOrganizer.Utils.Color.GetOtherDimensions(self.dimensionY);
     local sliderValue = color:Get(sliderDimension);
+
     if (string.find("RGB", sliderDimension)) then
         local backColor = TeamOrganizer.Utils.Color(sliderValue, 0, 0, 0);
         backColor[sliderDimension] = 1;
@@ -185,6 +195,7 @@ function Palette:SetDimensions(dimensionX, dimensionY)
     self.dimensionX, self.dimensionY = dimensionX, dimensionY
     self.overlay:SetBackground("TeamOrganizer/Images/ColorPicker/" .. dimensionX .. "_x_" .. dimensionY .. ".tga");
     local sliderDimension = TeamOrganizer.Utils.Color.GetOtherDimensions(dimensionY);
+    
     if (string.find("RGB", sliderDimension)) then
         self.overlay:SetBackColorBlendMode(Turbine.UI.BlendMode.Screen);
     elseif (sliderDimension == "S") then

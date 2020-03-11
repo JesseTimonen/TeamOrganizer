@@ -9,18 +9,18 @@
 DESCRIPTION
 ¯¯¯¯¯¯¯¯¯¯¯
 This plugin allows you to save group setups (friends, raiding groups, etc.)
-or meaby you just want to keep track of your previous group members with the ability to invite them quickly with a click of a button.
+or meaby you just want to keep track of your previous group members with the ability to invite them back quickly with a click of a button.
 
 
 
 
 HOW TO USE
 ¯¯¯¯¯¯¯¯¯¯¯
-To start using Team Organizer find yourself a fellowship or a raid and click the 'Get Player' button.
+To start using Team Organizer find yourself a fellowship or a raid and click the 'Get Players' button.
 
 This will display all the current players in the group, clicking the button again will update the players in the group.
 
-If you are the leader of that group, you can invite players by clicking the green area next to the player's name.
+If you are the leader of your group, you can invite players by clicking the green area next to the player's name.
 And if you wish to disband someone from the group, you can click the red area.
 
 
@@ -33,28 +33,28 @@ If you closed the Team Organizer window you can bring it back by creating a shor
 This action will generate a skill to the 1st slot of your skillbar, which allows you to toggle Team Organizer's visibility by using it.
 
 
-If you wish to manually add, remove or change a player you can use the buttons below the 'Get Players' button.
-If you wish to save and load groups, use the buttons at the bottom of the Team Organizer window.
+If you wish to add, remove or change a player you can use the buttons below the 'Get Players' button.
+If you wish to save or load a group you can use the buttons at the bottom of the Team Organizer window.
 
 
 
 
 LIST OF ALL COMMANDS
 ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-/team help                     -  Display list of all available commands
+/team help  -  Display list of all available commands.
 
-/team                           -  Toggle the window's visibility
-/team toggle                  -  Toggle the window's visibility
-/team show                   -  Show the window
-/team hide                     -  Hide the window
+/team  -  Toggles the plugin's visibility.
+/team toggle  -  Toggles the plugin's visibility.
+/team show  -  Makes the plugin window visible.
+/team hide  -  Makes the plugin window hidden.
 
-/team save [name]          -  Save group with name
-/team load [name]           -  Load group with name
+/team save [name]  -  Save current group.
+/team load [name]  -  Load group with given name.
 
-/team clear                     -  Remove all players from group setup
-/team add [name] [class]   -  Add player to your team setup
-/team remove [name]        -  Remove player from your group setup
-/team change [player] to [name] [class]  -  Update player in your group setup
+/team clear  -  Remove all players from team setup.
+/team add [name] [class]  -  Add player to your team setup.
+/team remove [name]  -  Remove player from your team setup.
+/team change [player] to [name] [class]  -  Modify player in your team setup.
 </Description>
 	</Information>
 	<Package>TeamOrganizer.Compiler</Package>

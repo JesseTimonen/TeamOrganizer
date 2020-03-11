@@ -6,7 +6,7 @@ function removePlayerWindow:Constructor()
 	self:SetText(Scripts.translate("removePlayer"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
-	self:SetSize(300, 200);
+	self:SetSize(300, 250);
 	self:SetPosition(0, 0);
 	self:SetZOrder(1000);
 	self.KeyDown = function(sender,args)
@@ -18,7 +18,7 @@ function removePlayerWindow:Constructor()
 	-- Player select drop down list --
 	self.playerSelect = TeamOrganizer.Utility.DropDownList();
 	self.playerSelect:SetParent(self);
-	self.playerSelect:SetDropRows(6);
+	self.playerSelect:SetDropRows(9);
 	self.playerSelect:SetSize(200, 20);
 	self.playerSelect:SetPosition(50, 50);
 	self.playerSelect:SetZOrder(1001);
@@ -41,7 +41,7 @@ function removePlayerWindow:Constructor()
 	self.errorLabel:SetParent(self);
 	self.errorLabel:SetVisible(false);
 	self.errorLabel:SetSize(200, 30);
-	self.errorLabel:SetPosition(50, 85);
+	self.errorLabel:SetPosition(50, 120);
 	self.errorLabel:SetForeColor(Scripts.color["red"]);
 	self.errorLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
 
@@ -50,7 +50,7 @@ function removePlayerWindow:Constructor()
 	self.removePlayerButton:SetParent(self);
 	self.removePlayerButton:SetText(Scripts.translate("removePlayer"));
 	self.removePlayerButton:SetSize(125, 30);
-	self.removePlayerButton:SetPosition(self:GetWidth()/2 - self.removePlayerButton:GetWidth()/2, 120);
+	self.removePlayerButton:SetPosition(self:GetWidth()/2 - self.removePlayerButton:GetWidth()/2, 170);
 	self.removePlayerButton.Click = function( sender, args)
 		if (self.playerSelect:GetValue() == nil) then
 			self.errorLabel:SetText(Scripts.translate("nothingToRemove"));
@@ -65,7 +65,7 @@ function removePlayerWindow:Constructor()
 	self.removeAllPlayersButton:SetParent(self);
 	self.removeAllPlayersButton:SetText(Scripts.translate("removeAll"));
 	self.removeAllPlayersButton:SetSize(125, 30);
-	self.removeAllPlayersButton:SetPosition(self:GetWidth()/2 - self.removeAllPlayersButton:GetWidth()/2, 150);
+	self.removeAllPlayersButton:SetPosition(self:GetWidth()/2 - self.removeAllPlayersButton:GetWidth()/2, 200);
 	self.removeAllPlayersButton.Click = function( sender, args)
 		self.errorLabel:SetVisible(false);
 		self.removePlayerButton:SetVisible(false);

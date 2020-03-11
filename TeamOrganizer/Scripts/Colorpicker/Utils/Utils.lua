@@ -1,7 +1,6 @@
 import "Turbine";
 import "Turbine.UI.Lotro";
 
--- Missing enumeration values
 Turbine.UI.Lotro.Action.EnterKey = 162;
 Turbine.UI.Lotro.Action.ToggleHUD = 268435635;
 Turbine.UI.Lotro.Font.TimesRoman12 = 0x42000021;
@@ -10,7 +9,6 @@ Turbine.UI.Lotro.Font.TimesRoman22 = 0x4200000f;
 Turbine.UI.Lotro.Font.TimesRoman24 = 0x42000010;
 Turbine.Gameplay.EffectCategory.Tactical = 256;
 
--- Add the Turbine.UI.Display.SizeChanged event.
 displaySizeListener = Turbine.UI.Window();
 displaySizeListener:SetVisible(true);
 displaySizeListener:SetStretchMode(0);
@@ -18,6 +16,7 @@ displaySizeListener:SetSize(1, 1);
 displaySizeListener:SetWantsUpdates(true);
 displaySizeListener:SetStretchMode(1);
 displaySizeListener:SetWantsUpdates(true);
+
 function displaySizeListener:Update()
     displaySizeListener:SetSize(2, 2);
     self.ignoreSizeChangedEvents = 0;
@@ -48,9 +47,6 @@ function displaySizeListener:_SizeChanged()
     self:SetWantsUpdates(true);
 end
 
--- Copies the source table into the destination table (or a new table, if 'destTable' is absent).
--- Subtables are duplicated.
--- Returns the destination table.
 function _G.DeepTableCopy(sourceTable, destTable)
     if (destTable == nil) then
         destTable = {};
@@ -71,9 +67,6 @@ function _G.DeepTableCopy(sourceTable, destTable)
     return destTable;
 end
 
--- Copies the source table into the destination table (or a new table, if 'destTable' is absent).
--- Subtables are shared (not duplicated).
--- Returns the destination table.
 function _G.ShallowTableCopy(sourceTable, destTable)
     if (destTable == nil) then
         destTable = {};
@@ -97,7 +90,6 @@ function _G.Puts(str)
     Turbine.Shell.WriteLine(prefix .. tostring(str));
 end
 
--- Returns a compact Lua representation of a table.  Has optional 'maxdepth' arg to prevent runaway recursion.
 function _G.Serialize(obj, maxdepth)
     if (type(maxdepth) == "number") then
         maxdepth = maxdepth - 1;
@@ -110,7 +102,6 @@ function _G.Serialize(obj, maxdepth)
         end
     elseif (type(obj) == "number") then
         local text = tostring(obj);
-        -- Change floating-point numbers to English format
         return string.gsub(text, ",", ".");
     elseif (type(obj) == "string") then
         return string.format("%q", obj);
@@ -142,7 +133,6 @@ function _G.Serialize(obj, maxdepth)
     end
 end
 
--- Returns a multi-line Lua representation of a table.  Has optional 'maxdepth' arg to prevent runaway recursion.
 function _G.PrettyPrint(obj, prefix, maxdepth)
     if (type(maxdepth) == "number") then
         maxdepth = maxdepth - 1;
@@ -155,7 +145,6 @@ function _G.PrettyPrint(obj, prefix, maxdepth)
         end
     elseif (type(obj) == "number") then
         local text = tostring(obj);
-        -- Change floating-point numbers to English format
         return string.gsub(text, ",", ".");
     elseif (type(obj) == "string") then
         return string.format("%q", obj);
@@ -194,11 +183,9 @@ function _G.PrettyPrint(obj, prefix, maxdepth)
     end
 end
 
--- Prepares a table for saving.  Workaround for Turbine.PluginData.Save() bug.
 function _G.ExportTable(obj)
     if (type(obj) == "number") then
         local text = tostring(obj);
-        -- Change floating-point numbers to English format
         return "#" .. string.gsub(text, ",", ".");
     elseif (type(obj) == "string") then
         return "$" .. obj;
@@ -213,14 +200,12 @@ function _G.ExportTable(obj)
     end
 end
 
--- Prepares a loaded table for use.  Workaround for Turbine.PluginData.Save() bug.
 function _G.ImportTable(obj)
     if (type(obj) == "string") then
         local prefix = string.sub(obj, 1, 1);
         if (prefix == "$") then
             return string.sub(obj, 2);
         elseif (prefix == "#") then
-			-- need to run it through interpreter, since tonumber() may only accept ","
 			return loadstring("return " .. string.sub(obj, 2))();
         else
             return obj;
@@ -282,7 +267,6 @@ function _G.DoCallbacks(object, event, args)
     end
 end
 
--- For iterating over the keys of a hash table in a for loop
 function _G.keys(tableVar)
     if (type(tableVar) ~= "table") then
         error("bad argument to 'keys' (table expected, got " .. type(tableVar) .. ")", 2);
@@ -295,7 +279,6 @@ function _G.keys(tableVar)
     return iterator, state, nil;
 end
 
--- For iterating over the values of a hash table in a for loop
 function _G.values(tableVar)
     if (type(tableVar) ~= "table") then
         error("bad argument to 'values' (table expected, got " .. type(tableVar) .. ")", 2);
@@ -308,7 +291,6 @@ function _G.values(tableVar)
     return iterator, state, nil;
 end
 
--- For iterating over the keys of a hash table in a for loop, after sorting the keys
 function _G.sorted_keys(tableVar)
     if (type(tableVar) ~= "table") then
         error("bad argument to 'keys' (table expected, got " .. type(tableVar) .. ")", 2);
@@ -332,7 +314,6 @@ function _G.sorted_keys(tableVar)
     return iterator, state, nil;
 end
 
--- Searches the given table for the specified value, returning the corresponding key
 function _G.Search(tableVar, value)
     if (type(tableVar) ~= "table") then
         error("bad argument to 'Search' (table expected, got " .. type(tableVar) .. ")", 2);
@@ -347,10 +328,6 @@ function _G.Search(tableVar, value)
     return nil;
 end
 
--- Returns true if an item is equipped.
--- If 'itemSlot' is specified, the search is restricted to a single equipment slot.
--- If 'itemName' is not specified, any item will be accepted.
--- Note: There is currently no way to distinguish between items with the same name
 function _G.IsEquipped(itemName, itemSlot)
     local slot, item = Thurallor.Utils.Watcher.GetEquippedItem(itemName, itemSlot);
     return (slot ~= nil);
@@ -397,7 +374,6 @@ function _G.CenterWindow(window)
     window:SetPosition(left, top);
 end
 
--- Creates an alert window with a scrollable text box in it.
 function _G.Alert(title, contents, okButton, font)
     local window = Turbine.UI.Lotro.Window();
     window:SetVisible(true);
@@ -455,8 +431,6 @@ function _G.Alert(title, contents, okButton, font)
     return window;
 end
 
--- Encodes binary into printable characters (using only ASCII codes 46-110).
--- Starting at 46 skips past the hyphen, which causes word-wrapping in TextBoxes.
 function _G.Bin2Text(data)
     data = data .. string.rep(string.char(0), 2);
     local string_byte, string_char = string.byte, string.char;
@@ -474,7 +448,6 @@ function _G.Bin2Text(data)
     return result;
 end
 
--- Decodes a string encoded with Bin2Text() back into binary.
 function _G.Text2Bin(data)
     local string_byte, string_char = string.byte, string.char;
     local minChar = 46;
@@ -488,11 +461,9 @@ function _G.Text2Bin(data)
         result = result .. string_char(Y1, Y2, Y3);
         j = j + 3;
     end
-    -- Remove up to two trailing null characters.
     return string.gsub(result, "%z$", "", 2);
 end
 
--- Decodes a string encoded with Bin2Text() back into binary.
 function _G.Text2Bin_old(data)
     local X = {string.byte(data, 1, -1)};
     local result, j, Y1, Y2, Y3 = "", 1;
@@ -505,6 +476,5 @@ function _G.Text2Bin_old(data)
         result = result .. string.char(Y1, Y2, Y3);
         j = j + 3;
     end
-    -- Remove up to two trailing null characters.
     return string.gsub(result, "%z$", "", 2);
 end

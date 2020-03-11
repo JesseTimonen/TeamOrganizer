@@ -20,8 +20,6 @@ import "TeamOrganizer.Scripts.Utility.Tooltip";
 import "TeamOrganizer.Scripts.Utility.RadioButton";
 import "TeamOrganizer.Scripts.Utility.DropDownList";
 import "TeamOrganizer.Scripts.Utility.Miscellaneous";
-
--- Import color picker --
 import "TeamOrganizer.Scripts.ColorPicker";
 
 -- Import UI components --

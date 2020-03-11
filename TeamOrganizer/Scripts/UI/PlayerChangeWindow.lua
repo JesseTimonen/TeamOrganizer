@@ -6,7 +6,7 @@ function changePlayerWindow:Constructor()
 	self:SetText(Scripts.translate("changePlayer"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
-	self:SetSize(300, 230);
+	self:SetSize(300, 250);
 	self:SetPosition(0, 0);
 	self:SetZOrder(1000);
 	self.KeyDown = function(sender,args)
@@ -26,7 +26,7 @@ function changePlayerWindow:Constructor()
 	self.playerSelect = TeamOrganizer.Utility.DropDownList();
 	self.playerSelect:SetParent(self);
 	self.playerSelect:SetDropRows(5);
-	self.playerSelect:SetSize(200, 20);
+	self.playerSelect:SetSize(240, 20);
 	self.playerSelect:SetPosition(30, 70);
 	self.playerSelect:SetZOrder(1002);
 	self.playerSelect:SetVisible(true);
@@ -47,7 +47,7 @@ function changePlayerWindow:Constructor()
 	-- Name textbox --
 	self.nameInput = Turbine.UI.TextBox();
 	self.nameInput:SetParent(self);
-	self.nameInput:SetSize(130, 20);
+	self.nameInput:SetSize(240, 20);
 	self.nameInput:SetPosition(30, 120);
 	self.nameInput:SetMultiline(false);
 	self.nameInput:SetTextAlignment(Turbine.UI.ContentAlignment.LeftCenter);
@@ -59,8 +59,8 @@ function changePlayerWindow:Constructor()
 	self.classSelect = TeamOrganizer.Utility.DropDownList();
 	self.classSelect:SetParent(self);
 	self.classSelect:SetDropRows(3);
-	self.classSelect:SetSize(100, 20);
-	self.classSelect:SetPosition(180, 120);
+	self.classSelect:SetSize(240, 20);
+	self.classSelect:SetPosition(30, 150);
 	self.classSelect:SetZOrder(1001);
 	self.classSelect:SetBackColor(Turbine.UI.Color(0, 0, 0));
 	self.classSelect:SetTextColor(Turbine.UI.Color(1, 1, 1));
@@ -81,19 +81,26 @@ function changePlayerWindow:Constructor()
 	self.errorLabel:SetParent(self);
 	self.errorLabel:SetVisible(false);
 	self.errorLabel:SetSize(200, 30);
-	self.errorLabel:SetPosition(30, 195);
+	self.errorLabel:SetPosition(30, 180);
 	self.errorLabel:SetForeColor(Scripts.color["red"]);
 
 	-- Button to change player --
-	self.removePlayerButton = Turbine.UI.Lotro.Button();
-	self.removePlayerButton:SetParent(self);
-	self.removePlayerButton:SetText(Scripts.translate("changePlayer"));
-	self.removePlayerButton:SetSize(130, 30);
-	self.removePlayerButton:SetPosition(30, 160);
-	self.removePlayerButton.Click = function( sender, args)
+	self.changePlayerButton = Turbine.UI.Lotro.Button();
+	self.changePlayerButton:SetParent(self);
+	self.changePlayerButton:SetText(Scripts.translate("changePlayer"));
+	self.changePlayerButton:SetSize(130, 30);
+	self.changePlayerButton:SetPosition(30, 200);
+	self.changePlayerButton.Click = function( sender, args)
 		-- Check is there any players to change --
 		if (self.playerSelect:GetValue() == nil) then
 			self.errorLabel:SetText(Scripts.translate("nothingToChange"));
+			self.errorLabel:SetVisible(true);
+			return;
+		end
+
+		-- Check is new name empty --
+		if (self.nameInput:GetText() == "") then
+			self.errorLabel:SetText(Scripts.translate("nameTooShort"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end

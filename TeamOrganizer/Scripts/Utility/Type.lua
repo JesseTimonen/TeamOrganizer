@@ -259,7 +259,7 @@ function Type.StaticIsA( inputType, target )
 			end
 		end
 	else
-		error( "Invalid target type. Target must be a class or mixin." );
+		error("Invalid target type. Target must be a class or mixin.");
 	end
 
 	return false;

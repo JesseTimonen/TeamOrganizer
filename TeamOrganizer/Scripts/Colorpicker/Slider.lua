@@ -25,9 +25,11 @@ function Slider:Constructor(parent, dimension, color)
         self.pointer.mouseDown = true;
         self.pointer:MouseMove();
     end
+    
     self.pointer.MouseUp = function()
         self.pointer.mouseDown = false;
     end
+
     self.pointer.MouseMove = function()
         if (self.pointer.mouseDown) then
             local _, newPosition = self:PointToClient(0, Turbine.UI.Display.GetMouseY());
@@ -43,6 +45,7 @@ function Slider:Constructor(parent, dimension, color)
             end
         end
     end
+
     self.overlay:SetMouseVisible(false);
     self.MouseDown = self.pointer.MouseDown;
     self.MouseUp = self.pointer.MouseUp;
@@ -73,7 +76,7 @@ function Slider:SetPointerPosition()
 end
 
 function Slider:SetGamut(color)
-    -- Edits slider's alpha, which I don't want to happen
+    -- Edits slider's alpha, which I don't want to happen --
     do return end
 
     if (string.find("RGB", self.dimension)) then
@@ -120,6 +123,7 @@ end
 function Slider:SetDimension(dimension)
     self.dimension = dimension;
     self.overlay:SetBackground("TeamOrganizer/Images/ColorPicker/" .. dimension .. "_grad.tga");
+
     if (string.find("RGB", self.dimension)) then
         self.overlay:SetBackColorBlendMode(Turbine.UI.BlendMode.Screen);
     elseif (self.dimension == "H") then

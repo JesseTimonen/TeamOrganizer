@@ -107,7 +107,7 @@ deleteGroupButton = Turbine.UI.Lotro.Button();
 deleteGroupButton:SetText(Scripts.translate("delete"));
 deleteGroupButton:SetParent(mainWindow);
 deleteGroupButton:SetSize(75, 30);
-deleteGroupButton:SetPosition((mainWindow:GetWidth()/2 - deleteGroupButton:GetWidth()/2) + 80, mainWindow:GetHeight() - 80);
+deleteGroupButton:SetPosition((mainWindow:GetWidth()/2 - deleteGroupButton:GetWidth()/2) + 80, mainWindow:GetHeight() - 40);
 deleteGroupButton.Click = function( sender, args)
 	closeSideWindows();
 	TeamOrganizer.UI.deleteGroupWindow:updateGroupList();
@@ -235,8 +235,13 @@ function createUIPlaceholders()
 		table.insert(Scripts.names, nameLabel);
 
 		-- Placeholders for invite buttons --
-		local inviteButton = createButton(mainWindow, xPos + 190, yPos + 5, 30, 15, Scripts.color["green"], "");
-		table.insert(Scripts.inviteButtons, inviteButton);
+		if (Scripts.settings["enableDismiss"]) then
+			local inviteButton = createButton(mainWindow, xPos + 190, yPos + 5, 30, 15, Scripts.color["green"], "");
+			table.insert(Scripts.inviteButtons, inviteButton);
+		else
+			local inviteButton = createButton(mainWindow, xPos + 205, yPos + 5, 30, 15, Scripts.color["green"], "");
+			table.insert(Scripts.inviteButtons, inviteButton);
+		end
 
 		-- Placeholders for dismiss buttons --
 		local dismissButton = createButton(mainWindow, xPos + 230, yPos + 5, 20, 15, Scripts.color["red"], "");

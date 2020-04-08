@@ -112,6 +112,16 @@ translations = {
 		german = "Die Auflösen-Schaltfläche wird in der Benutzeroberfläche angezeigt",
 		french = "Dissoudre bouton sera affiché dans l'interface utilisateur"
 	},
+	enableDismiss = {
+		english = "Display dismiss player button",
+		german = "Anzeige der Schaltfläche zum Entfernen des Spielers",
+		french = "Afficher le bouton de rejet du lecteur"
+	},
+	enableDismissTooltip = {
+		english = "Dismiss player button will be displayed in the UI",
+		german = "Die Schaltfläche Spieler schließen wird in der Benutzeroberfläche angezeigt",
+		french = "Le bouton Ignorer le joueur s'affichera dans l'interface utilisateur"
+	},
 	horizontalUI = {
 		english = "Horizontal UI",
 		german = "Horizontales UI",
@@ -233,7 +243,7 @@ translations = {
 	},
 	save = {
 		english = "Save",
-		german = "Sparen",
+		german = "Speichern",
 		french = "Sauver"
 	},
 	load = {

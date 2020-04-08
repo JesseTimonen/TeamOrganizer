@@ -80,8 +80,8 @@ end
 saveGroupButton = Turbine.UI.Lotro.Button();
 saveGroupButton:SetText(Scripts.translate("save"));
 saveGroupButton:SetParent(mainWindow);
-saveGroupButton:SetSize(65, 30);
-saveGroupButton:SetPosition(mainWindow:GetWidth()/2 - saveGroupButton:GetWidth()/2 - 70, mainWindow:GetHeight() - 40);
+saveGroupButton:SetSize(75, 30);
+saveGroupButton:SetPosition((mainWindow:GetWidth()/2 - saveGroupButton:GetWidth()/2) - 80, mainWindow:GetHeight() - 40);
 saveGroupButton.Click = function( sender, args)
 	closeSideWindows();
 	TeamOrganizer.UI.saveGroupWindow.nameInput:SetText("");
@@ -93,7 +93,7 @@ end
 loadGroupButton = Turbine.UI.Lotro.Button();
 loadGroupButton:SetText(Scripts.translate("load"));
 loadGroupButton:SetParent(mainWindow);
-loadGroupButton:SetSize(65, 30);
+loadGroupButton:SetSize(75, 30);
 loadGroupButton:SetPosition(mainWindow:GetWidth()/2 - loadGroupButton:GetWidth()/2, mainWindow:GetHeight() - 40);
 loadGroupButton.Click = function( sender, args)
 	closeSideWindows();
@@ -106,8 +106,8 @@ end
 deleteGroupButton = Turbine.UI.Lotro.Button();
 deleteGroupButton:SetText(Scripts.translate("delete"));
 deleteGroupButton:SetParent(mainWindow);
-deleteGroupButton:SetSize(65, 30);
-deleteGroupButton:SetPosition(mainWindow:GetWidth()/2 - deleteGroupButton:GetWidth()/2 + 70, mainWindow:GetHeight() - 40);
+deleteGroupButton:SetSize(75, 30);
+deleteGroupButton:SetPosition((mainWindow:GetWidth()/2 - deleteGroupButton:GetWidth()/2) + 80, mainWindow:GetHeight() - 80);
 deleteGroupButton.Click = function( sender, args)
 	closeSideWindows();
 	TeamOrganizer.UI.deleteGroupWindow:updateGroupList();

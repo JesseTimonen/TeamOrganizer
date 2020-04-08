@@ -117,6 +117,7 @@ function saveSettings()
 	settings["windowPosition"]["yPos"] = tostring(UI.mainWindow:GetTop());
 	settings["enableEscape"] = UI.enableEscapeCheckbox:IsChecked();
 	settings["enableDisband"] = UI.enableDisbandCheckbox:IsChecked();
+	settings["enableDismiss"] = UI.enableDismissCheckbox:IsChecked();
 	settings["horizontalWindow"] = UI.horizontalUICheckbox:IsChecked();
 	settings["forceTop"] = UI.forceTopCheckbox:IsChecked();
 	settings["goldenTheme"] = UI.goldenWindowCheckbox:IsChecked();

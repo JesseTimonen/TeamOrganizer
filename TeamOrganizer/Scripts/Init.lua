@@ -39,6 +39,7 @@ settings = {
     windowPosition = defaultWindowPosition,
     enableEscape = false,
     enableDisband = false,
+    enableDismiss = false,
     horizontalWindow = true,
     forceTop = false,
     goldenTheme = true,

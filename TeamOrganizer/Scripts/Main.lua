@@ -91,9 +91,9 @@ function updateUI()
 	-- Update UI dimensions --
 	UI.mainWindow:SetSize(width, height);
 	UI.errorLabel:SetPosition(UI.mainWindow:GetWidth()/2 - UI.errorLabel:GetWidth()/2, UI.mainWindow:GetHeight() - 80);
-	UI.saveGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.saveGroupButton:GetWidth()/2 - 70, UI.mainWindow:GetHeight() - 40);
+	UI.saveGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.saveGroupButton:GetWidth()/2 - 80, UI.mainWindow:GetHeight() - 40);
 	UI.loadGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.loadGroupButton:GetWidth()/2, UI.mainWindow:GetHeight() - 40);
-	UI.deleteGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.deleteGroupButton:GetWidth()/2 + 70, UI.mainWindow:GetHeight() - 40);
+	UI.deleteGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.deleteGroupButton:GetWidth()/2 + 80, UI.mainWindow:GetHeight() - 40);
 
 
 	-- Loop through the party members and add party member's information to placeholder UI elements --
@@ -122,8 +122,11 @@ function updateUI()
 		inviteButtons[i].quickSlot:SetAllowDrop(false);
 
 		-- Dismiss buttons --
-		dismissButtons[i].quickSlot:SetVisible(true);
-		dismissButtons[i].button:SetVisible(true);
+		if (settings["enableDismiss"]) then
+			dismissButtons[i].quickSlot:SetVisible(true);
+			dismissButtons[i].button:SetVisible(true);
+		end
+
 		local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_dismiss", clientLanguage) .. groupMembers[tostring(i)].name);
 		dismissButtons[i].quickSlot:SetShortcut(act);
 		dismissButtons[i].quickSlot:SetAllowDrop(false);

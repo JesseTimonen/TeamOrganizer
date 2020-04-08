@@ -58,17 +58,6 @@ plugin.GetOptionsPanel = function(self)
 	generalSettingLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/optionsTitleBackground.tga"));
 
 
-
-
-
-
-
-
-
-
-
-
-
 	-- Golden window label --
 	goldenWindowLabel = Turbine.UI.Label();
 	goldenWindowLabel:SetParent(optionsPanel);
@@ -105,10 +94,6 @@ plugin.GetOptionsPanel = function(self)
 	Scripts.Utility.TooltipAttach(forceTopCheckbox, Scripts.translate("forceTopTooltip"));
 
 
-
-
-
-
 	-- Enable escape label --
 	enableEscapeLabel = Turbine.UI.Label();
 	enableEscapeLabel:SetParent(optionsPanel);
@@ -125,9 +110,6 @@ plugin.GetOptionsPanel = function(self)
 	enableEscapeCheckbox:SetPosition(50, 259);
 	enableEscapeCheckbox:SetChecked(Scripts.settings["enableEscape"]);
 	Scripts.Utility.TooltipAttach(enableEscapeCheckbox, Scripts.translate("enableEscapeTooltip"));
-
-
-
 
 
 	-- Horizontal UI label --
@@ -148,8 +130,6 @@ plugin.GetOptionsPanel = function(self)
 	Scripts.Utility.TooltipAttach(horizontalUICheckbox, Scripts.translate("horizontalUITooltip"));
 
 
-
-
 	-- Enable disband button Label --
 	enableDisbandLabel = Turbine.UI.Label();
 	enableDisbandLabel:SetParent(optionsPanel);
@@ -168,8 +148,6 @@ plugin.GetOptionsPanel = function(self)
 	Scripts.Utility.TooltipAttach(enableDisbandCheckbox, Scripts.translate("enableDisbandTooltip"));
 
 
-
-
 	-- Enable dismiss button Label --
 	enableDismissLabel = Turbine.UI.Label();
 	enableDismissLabel:SetParent(optionsPanel);
@@ -186,20 +164,6 @@ plugin.GetOptionsPanel = function(self)
 	enableDismissCheckbox:SetPosition(50, 349);
 	enableDismissCheckbox:SetChecked(Scripts.settings["enableDismiss"]);
 	Scripts.Utility.TooltipAttach(enableDismissCheckbox, Scripts.translate("enableDismissTooltip"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	-- Customization Settings --

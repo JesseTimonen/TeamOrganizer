@@ -128,8 +128,10 @@ function updateUI()
 		end
 
 		local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_dismiss", clientLanguage) .. groupMembers[tostring(i)].name);
-		dismissButtons[i].quickSlot:SetShortcut(act);
-		dismissButtons[i].quickSlot:SetAllowDrop(false);
+		if (settings["enableDismiss"]) then
+			dismissButtons[i].quickSlot:SetShortcut(act);
+			dismissButtons[i].quickSlot:SetAllowDrop(false);
+		end
 	end
 end
 
@@ -141,8 +143,10 @@ function clearWindow()
 		names[i]:SetVisible(false);
 		inviteButtons[i].quickSlot:SetVisible(false);
 		inviteButtons[i].button:SetVisible(false);
-		dismissButtons[i].quickSlot:SetVisible(false);
-		dismissButtons[i].button:SetVisible(false);
+		if (settings["enableDismiss"]) then
+			dismissButtons[i].quickSlot:SetVisible(false);
+			dismissButtons[i].button:SetVisible(false);
+		end
 	end
 end
 

@@ -243,9 +243,11 @@ function createUIPlaceholders()
 			table.insert(Scripts.inviteButtons, inviteButton);
 		end
 
-		-- Placeholders for dismiss buttons --
-		local dismissButton = createButton(mainWindow, xPos + 230, yPos + 5, 20, 15, Scripts.color["red"], "");
-		table.insert(Scripts.dismissButtons, dismissButton);
+		-- Dismiss buttons --
+		if (Scripts.settings["enableDismiss"]) then
+			local dismissButton = createButton(mainWindow, xPos + 230, yPos + 5, 20, 15, Scripts.color["red"], "");
+			table.insert(Scripts.dismissButtons, dismissButton);
+		end
 
 		-- Update Y-position --
 		yPos = yPos + 25;

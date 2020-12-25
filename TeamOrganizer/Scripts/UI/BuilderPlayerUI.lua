@@ -26,7 +26,7 @@ function createLabel(parent, xPos, yPos, width, height, color, text)
 end
 
 -- Build layout for buttons --
-function createButton(parent, xPos, yPos, width, height, color, alias)
+function createButton(parent, xPos, yPos, width, height, color, alias, action)
 	local quickSlot = Turbine.UI.Lotro.Quickslot();
 	quickSlot:SetParent(parent);
 	quickSlot:SetSize(width,height);

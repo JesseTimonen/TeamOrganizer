@@ -9,7 +9,7 @@ savedGroupNamesFileName = "TeamOrganizer_SavedGroups";
 groupMembersFileName = "TeamOrganizer_GroupMembers";
 customGroupFileName = "TeamOrganizer_CustomData_";
 
--- Get player name --
+-- Get player's name --
 playerName = Turbine.Gameplay.LocalPlayer.GetInstance():GetName();
 
 -- Get client's language --
@@ -40,6 +40,7 @@ settings = {
     enableEscape = false,
     enableDisband = false,
     enableDismiss = false,
+    enablePromote = false,
     horizontalWindow = true,
     forceTop = false,
     goldenTheme = true,
@@ -62,11 +63,13 @@ color = {
     white = Turbine.UI.Color(1, 1, 1),
     golden = Turbine.UI.Color(242/255, 217/255, 140/255),
     yellow = Turbine.UI.Color(244/255, 255/255, 51/255),
+    orange = Turbine.UI.Color(1, 0.5, 0),
     red = Turbine.UI.Color(1, 0, 0),
     darkRed = Turbine.UI.Color(0.7, 0, 0),
     green = Turbine.UI.Color(0, 1, 0),
     darkGreen = Turbine.UI.Color(0, 0.5, 0),
     blue = Turbine.UI.Color(0, 0, 1),
+    lightBlue = Turbine.UI.Color(0, 1, 1),
     darkBlue = Turbine.UI.Color(0, 0.25, 0.5)
 };
 
@@ -76,6 +79,8 @@ icons = {};
 names = {};
 inviteButtons = {};
 dismissButtons = {};
+promoteButtons = {};
+demoteButtons = {};
 
 -- Load settings --
 loadSettings();

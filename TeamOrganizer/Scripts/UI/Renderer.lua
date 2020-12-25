@@ -9,7 +9,7 @@ mainWindow:SetText(Scripts.translate("pluginName"));
 mainWindow:SetVisible(true);
 mainWindow:SetWantsKeyEvents(true);
 mainWindow:SetPosition(Scripts.settings["windowPosition"]["xPos"], Scripts.settings["windowPosition"]["yPos"]);
-mainWindow:SetSize(285, 470);
+mainWindow:SetSize(300, 470);
 if Scripts.settings["forceTop"] then
 	mainWindow:SetZOrder(1000);
 end
@@ -103,7 +103,7 @@ end
 
 
 -- Button to Deleting group --
-deleteGroupButton = Turbine.UI.Lotro.Button();
+deleteGroupButton = Turbine.UI.Lotro.GoldButton();
 deleteGroupButton:SetText(Scripts.translate("delete"));
 deleteGroupButton:SetParent(mainWindow);
 deleteGroupButton:SetSize(75, 30);
@@ -127,16 +127,8 @@ errorLabel:SetForeColor(Scripts.color["red"]);
 
 
 -- Convert to raid button --
-if Scripts.settings["language"] == "german" then
-	createRaidButton = createButton(mainWindow, 165, 40, 90, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));
-	createRaidLabel = createLabel(mainWindow, 160, 38, 100, 20, Scripts.color["white"], Scripts.translate("raid"));
-elseif Scripts.settings["language"] == "french" then
-	createRaidButton = createButton(mainWindow, 180, 40, 70, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));
-	createRaidLabel = createLabel(mainWindow, 165, 38, 100, 20, Scripts.color["white"], Scripts.translate("raid"));
-else
-	createRaidButton = createButton(mainWindow, 190, 40, 60, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));
-	createRaidLabel = createLabel(mainWindow, 170, 38, 100, 20, Scripts.color["white"], Scripts.translate("raid"));
-end
+createRaidButton = createButton(mainWindow, 180, 40, 90, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));
+createRaidLabel = createLabel(mainWindow, 175, 38, 100, 20, Scripts.color["white"], Scripts.translate("raid"));
 createRaidLabel:SetMouseVisible(false);
 createRaidLabel:SetVisible(true);
 createRaidLabel:SetZOrder(3);
@@ -147,16 +139,8 @@ createRaidButton.button:SetVisible(true);
 
 
 -- Readycheck button --
-if Scripts.settings["language"] == "german" then
-	readycheckButton = createButton(mainWindow, 165, 65, 90, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", Scripts.clientLanguage));
-	readycheckLabel = createLabel(mainWindow, 160, 63, 100, 20, Scripts.color["white"], Scripts.translate("readycheck"));
-elseif Scripts.settings["language"] == "french" then
-	readycheckButton = createButton(mainWindow, 180, 65, 70, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", Scripts.clientLanguage));
-	readycheckLabel = createLabel(mainWindow, 165, 63, 100, 20, Scripts.color["white"], Scripts.translate("readycheck"));
-else
-	readycheckButton = createButton(mainWindow, 190, 65, 60, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", Scripts.clientLanguage));
-	readycheckLabel = createLabel(mainWindow, 170, 63, 100, 20, Scripts.color["white"], Scripts.translate("readycheck"));
-end
+readycheckButton = createButton(mainWindow, 180, 65, 90, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", Scripts.clientLanguage));
+readycheckLabel = createLabel(mainWindow, 175, 63, 100, 20, Scripts.color["white"], Scripts.translate("readycheck"));
 readycheckLabel:SetMouseVisible(false);
 readycheckLabel:SetVisible(true);
 readycheckLabel:SetZOrder(3);
@@ -168,16 +152,8 @@ readycheckButton.button:SetVisible(true);
 
 if Scripts.settings["enableDisband"] then
 	-- Disband button --
-	if Scripts.settings["language"] == "german" then
-		disbandButton = createButton(mainWindow, 165, 90, 90, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
-		disbandLabel = createLabel(mainWindow, 160, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
-	elseif Scripts.settings["language"] == "french" then
-		disbandButton = createButton(mainWindow, 180, 90, 70, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
-		disbandLabel = createLabel(mainWindow, 165, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
-	else
-		disbandButton = createButton(mainWindow, 190, 90, 60, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
-		disbandLabel = createLabel(mainWindow, 170, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
-	end
+	disbandButton = createButton(mainWindow, 180, 90, 90, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
+	disbandLabel = createLabel(mainWindow, 175, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
 	disbandLabel:SetMouseVisible(false);
 	disbandLabel:SetVisible(true);
 	disbandLabel:SetZOrder(3);
@@ -205,24 +181,14 @@ function createUIPlaceholders()
 	for i = 1, 23 do
 		-- Create 2nd column if party has more than 12 players and horizontal option is enabled --
 		if i == 12 and Scripts.settings["horizontalWindow"] then
-			xPos = 240;
+			xPos = 260;
 			yPos = 100;
 
 			-- Move disband button to the side of create raid button --
 			if (Scripts.Utility.getLenght(Scripts.groupMembers) > 11 and Scripts.settings["enableDisband"]) then
-				if Scripts.settings["language"] == "german" then
-					disbandLabel:SetPosition(260, 38);
-					disbandButton.quickSlot:SetPosition(265, 40);
-					disbandButton.button:SetPosition(265, 40);
-				elseif Scripts.settings["language"] == "french" then
-					disbandLabel:SetPosition(240, 38);
-					disbandButton.quickSlot:SetPosition(255, 40);
-					disbandButton.button:SetPosition(255, 40);
-				else
-					disbandLabel:SetPosition(235, 38);
-					disbandButton.quickSlot:SetPosition(255, 40);
-					disbandButton.button:SetPosition(255, 40);
-				end
+				disbandLabel:SetPosition(275, 38);
+				disbandButton.quickSlot:SetPosition(280, 40);
+				disbandButton.button:SetPosition(280, 40);
 			end
 		end
 
@@ -234,19 +200,45 @@ function createUIPlaceholders()
 		local nameLabel = createLabel(mainWindow, xPos + 60, yPos + 2, 120, 19, Scripts.playerNameColor["notInParty"], "");
 		table.insert(Scripts.names, nameLabel);
 
-		-- Placeholders for invite buttons --
+		-- Placeholders for buttons --
 		if (Scripts.settings["enableDismiss"]) then
-			local inviteButton = createButton(mainWindow, xPos + 190, yPos + 5, 30, 15, Scripts.color["green"], "");
-			table.insert(Scripts.inviteButtons, inviteButton);
+			if (Scripts.settings["enablePromote"]) then
+				-- Invite buttons --
+				local inviteButton = createButton(mainWindow, xPos + 180, yPos + 5, 30, 15, Scripts.color["green"], "");
+				table.insert(Scripts.inviteButtons, inviteButton);
+				-- Dismiss buttons --
+				local dismissButton = createButton(mainWindow, xPos + 255, yPos + 5, 15, 15, Scripts.color["red"], "");
+				table.insert(Scripts.dismissButtons, dismissButton);
+				-- Promote buttons --
+				local promoteButton = createButton(mainWindow, xPos + 215, yPos + 5, 15, 15, Scripts.color["lightBlue"], "");
+				table.insert(Scripts.promoteButtons, promoteButton);
+				-- Demote buttons --
+				local demoteButton = createButton(mainWindow, xPos + 235, yPos + 5, 15, 15, Scripts.color["orange"], "");
+				table.insert(Scripts.demoteButtons, demoteButton);
+			else
+				-- Invite buttons --
+				local inviteButton = createButton(mainWindow, xPos + 195, yPos + 5, 30, 15, Scripts.color["green"], "");
+				table.insert(Scripts.inviteButtons, inviteButton);
+				-- Dismiss buttons --
+				local dismissButton = createButton(mainWindow, xPos + 235, yPos + 5, 20, 15, Scripts.color["red"], "");
+				table.insert(Scripts.dismissButtons, dismissButton);
+			end
 		else
-			local inviteButton = createButton(mainWindow, xPos + 205, yPos + 5, 30, 15, Scripts.color["green"], "");
-			table.insert(Scripts.inviteButtons, inviteButton);
-		end
-
-		-- Dismiss buttons --
-		if (Scripts.settings["enableDismiss"]) then
-			local dismissButton = createButton(mainWindow, xPos + 230, yPos + 5, 20, 15, Scripts.color["red"], "");
-			table.insert(Scripts.dismissButtons, dismissButton);
+			if (Scripts.settings["enablePromote"]) then
+				-- Invite buttons --
+				local inviteButton = createButton(mainWindow, xPos + 190, yPos + 5, 30, 15, Scripts.color["green"], "");
+				table.insert(Scripts.inviteButtons, inviteButton);
+				-- Promote buttons --
+				local promoteButton = createButton(mainWindow, xPos + 225, yPos + 5, 15, 15, Scripts.color["lightBlue"], "");
+				table.insert(Scripts.promoteButtons, promoteButton);
+				-- Demote buttons --
+				local demoteButton = createButton(mainWindow, xPos + 245, yPos + 5, 15, 15, Scripts.color["orange"], "");
+				table.insert(Scripts.demoteButtons, demoteButton);
+			else
+				-- Invite buttons --
+				local inviteButton = createButton(mainWindow, xPos + 210, yPos + 5, 30, 15, Scripts.color["green"], "");
+				table.insert(Scripts.inviteButtons, inviteButton);
+			end
 		end
 
 		-- Update Y-position --

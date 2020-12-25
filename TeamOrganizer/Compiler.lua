@@ -1,10 +1,10 @@
--- Import Lotro librarys --
+-- Import Lotro libraries --
 import "Turbine";
 import "Turbine.UI";
 import "Turbine.UI.Lotro";
 import "Turbine.Gameplay";
 
--- Import scripts that needs to be loaded first --
+-- Import essential scripts --
 import "TeamOrganizer.Scripts.Language";
 import "TeamOrganizer.Scripts.Notification";
 import "TeamOrganizer.Scripts.SaveLoad";

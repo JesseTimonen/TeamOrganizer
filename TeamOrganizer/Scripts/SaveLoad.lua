@@ -30,12 +30,12 @@ function loadGroup()
 	-- Reset load Request --
 	settings["loadRequest"] = nil;
 
-	-- Return the previous group player played with --
+	-- Check if load request is previous group --
 	if loadRequest == "previous group" then
 		return load("server", groupMembersFileName);
 	end
 
-	-- Return nothing since we want to clear the window --
+	-- Return an empty group if load request was to clear the group --
 	if loadRequest == "clear group" then
 		return nil;
 	end
@@ -60,12 +60,12 @@ function loadGroup()
 		end
 	end
 
-	-- If load request is empty get previous group player played with --
+	-- If load request is empty then get the previous group the player played with --
 	if loadRequest == nil then
 		return load("server", groupMembersFileName);
 	end
 
-	-- If all fails return nothing --
+	-- If all fails return an empty group --
 	return nil;
 end
 
@@ -95,9 +95,10 @@ function loadSettings()
 	end
 end
 
--- Turn RGB value to turbine color object --
+
+-- Turns RGB values to turbine color objects --
 function toColor(r, g, b)
-	-- Fix german/french clients using "," instead of "." in decimals --
+	-- Fix for german/french clients using "," instead of "." in decimals --
 	if clientLanguage == "german" or clientLanguage == "french" then
 		r = r:gsub("%.", ",");
 		g = g:gsub("%.", ",");
@@ -109,7 +110,7 @@ end
 
 
 function saveSettings()
-	-- Return if plugin settings don't exist --
+	-- Return if setting elements don't exist (tested with one of the checkboxes) --
 	if (UI.enableEscapeCheckbox == nil) then return end
 
 	-- Get settings --
@@ -118,6 +119,7 @@ function saveSettings()
 	settings["enableEscape"] = UI.enableEscapeCheckbox:IsChecked();
 	settings["enableDisband"] = UI.enableDisbandCheckbox:IsChecked();
 	settings["enableDismiss"] = UI.enableDismissCheckbox:IsChecked();
+	settings["enablePromote"] = UI.enablePromoteCheckbox:IsChecked();
 	settings["horizontalWindow"] = UI.horizontalUICheckbox:IsChecked();
 	settings["forceTop"] = UI.forceTopCheckbox:IsChecked();
 	settings["goldenTheme"] = UI.goldenWindowCheckbox:IsChecked();
@@ -166,7 +168,8 @@ function saveCustomization()
 	save("server", customizationFileName, _customization);
 end
 
--- Turn string to number between min and max value --
+
+-- Turns strings to numbers between min and max value --
 function numberToStringMinMax(value, min, max)
 	if value == nil then return tostring(min); end
 	if value < min then return tostring(min); end

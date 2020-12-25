@@ -3,8 +3,8 @@
     <Information>
         <Name>Team Organizer Reloader</Name>
         <Author>Henna</Author>
-        <Version>1.4.4</Version>
-        <Description>Internal Plugin for Team Orginizer to reload itself.</Description>
+        <Version>1.4.5</Version>
+        <Description>This plugin is required for Team Organizer to work properly. No actions from the user are needed.</Description>
         <Image>TeamOrganizer/Images/icon.tga</Image>
     </Information>
     <Package>TeamOrganizer.Scripts.Reloader</Package>

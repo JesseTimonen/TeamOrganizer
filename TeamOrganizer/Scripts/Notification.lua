@@ -10,7 +10,7 @@ function notification(message)
 end
 
 
--- Sends error message to main window --
+-- Sends error message to main plugin window --
 function errorMessage(message)
 	if (message == nil) then message = translate("unknownError"); end
 	UI.errorLabel:SetText(message);

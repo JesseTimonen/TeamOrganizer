@@ -122,6 +122,16 @@ translations = {
 		german = "Die Schaltfläche Spieler schließen wird in der Benutzeroberfläche angezeigt",
 		french = "Le bouton Ignorer le joueur s'affichera dans l'interface utilisateur"
 	},
+	enablePromote = {
+		english = "Display promote player button",
+		german = "Anzeige der Schaltfläche 'Spieler fördern'",
+		french = "Afficher le bouton de promotion du joueur"
+	},
+	enablePromoteTooltip = {
+		english = "Promote player button will be displayed in the UI",
+		german = "Die Schaltfläche 'Spieler hochstufen' wird in der Benutzeroberfläche angezeigt",
+		french = "Le bouton de promotion du joueur sera affiché dans l'interface utilisateur"
+	},
 	horizontalUI = {
 		english = "Horizontal UI",
 		german = "Horizontales UI",
@@ -558,6 +568,16 @@ translations = {
 		german = "/schlachtzug ausschlie" .. string.char(223) .. "en ",
 		french = "/raid renvoyer "
 	},
+	action_promote = {
+		english = "/raid promote ",
+		german = "/schlachtzug bef" .. string.char(246) .. "rdern ",
+		french = "/raid promouvoir "
+	},
+	action_demote = {
+		english = "/raid demote ",
+		german = "/schlachtzug degradieren ",
+		french = "/raid r" .. string.char(233) .. "trograder "
+	},
 	action_raidCreate = {
 		english = "/Raid create",
 		german = "/schlachtzug erstellen",
@@ -645,5 +665,5 @@ translations = {
 		english = "Your .+ has been disbanded",
 		german = "wurde aufgelöst",
 		french = "Votre raid a été dissout"
-	}
+	},
 };

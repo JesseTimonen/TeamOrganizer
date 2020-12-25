@@ -20,7 +20,7 @@ function analyzeMessage(args)
 	-- Check if the player has pending invitation --
 	name = string.match(message, translate("invited", clientLanguage));
 	if name ~= nil then
-		-- Make sure the player is the leader of the party if player is in party --
+		-- Make sure the player is the leader of the party --
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
 		if (party ~= nil and party:GetLeader():GetName() ~= playerName) then return end
 
@@ -50,7 +50,7 @@ function analyzeMessage(args)
 			return;
 		end
 
-		-- Check if invited player is in players party --
+		-- Check if invited player is already in the group --
 		if (Utility.playerIsInGroup(invitedPlayerName)) then
 			updateNameLabels(invitedPlayerName, "alreadyInMyParty");
 			return;
@@ -61,17 +61,17 @@ function analyzeMessage(args)
 	end
 
 	
-	-- Check is character online --
+	-- Check is the character online --
 	name = string.match(message, translate("unknownCharacter", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "unknownCharacter"); return end
 
 
-	-- Check if character leaves the party --
+	-- Check if the character leaves the party --
 	name = string.match(message, translate("hasLeft", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "left/dismiss"); return end
 
 
-	-- Check if character is dismissed from the raid --
+	-- Check if the character is dismissed from the raid --
 	name = string.match(message, translate("personDismissed", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "left/dismiss"); return end
 
@@ -110,7 +110,7 @@ end
 -- Update players' names when certain actions happen --
 function updateNameLabels(name, action)
 
-	-- Update player's color if player received invitation --
+	-- Update player's color if the player received party invitation --
 	if (action == "invited") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -121,7 +121,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Update player's color if player joins the group --
+	-- Update player's color if the player joins the group --
 	if (action == "joined") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -132,7 +132,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Update player's color if player declines to join the group --
+	-- Update player's color if the player declines to join the group --
 	if (action == "declined") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -143,7 +143,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Update player's color if player is already in party --
+	-- Update player's color if the player is already in a party --
 	if (action == "alreadyInMyParty") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -155,7 +155,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Update player's color if player is already in another group --
+	-- Update player's color if the player is already in another group --
 	if (action == "alreadyInAnotherParty") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -167,7 +167,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Update player's color if player doesn't exist --
+	-- Update player's color if the player doesn't exist --
 	if (action == "unknownCharacter") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -178,7 +178,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Update player's color if player leaves the group --
+	-- Update player's color if the player leaves the group --
 	if (action == "left/dismiss") then
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
@@ -189,7 +189,7 @@ function updateNameLabels(name, action)
 	end
 
 
-	-- Update every players' color if group gets disbanded or user leave the group --
+	-- Update every players' color if the group gets disbanded or user leaves the group --
 	if (action == "disband") then
 		for i = 1, table.getn(names) do
 			names[i]:SetForeColor(playerNameColor["notInParty"]);

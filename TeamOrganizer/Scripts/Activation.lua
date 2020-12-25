@@ -36,7 +36,7 @@ Plugins[pluginName].Unload = function()
 	end
 
 	if (not internalReload) then
-		-- Save the previous group player played with --
+		-- Save the previous group the player played with --
 		settings["loadRequest"] = "previous group";
 
 		-- Display plugin unloaded message --

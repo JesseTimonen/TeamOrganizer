@@ -1,10 +1,6 @@
 -- Sends notifications to chat --
 function notification(message)
-	if (message == nil) then message = "nil"; end
-
-	if (type(message) ~= "string") then
-		debug(message);
-	else
+	if (type(message) == "string") then
 		Turbine.Shell.WriteLine(rgb["pluginName"] .. translate("pluginName") .. rgb["clear"] .. ": " .. message);
 	end
 end
@@ -12,39 +8,9 @@ end
 
 -- Sends error message to main plugin window --
 function errorMessage(message)
-	if (message == nil) then message = translate("unknownError"); end
-	UI.errorLabel:SetText(message);
-end
-
-
--- Debugging variables --
-local function string(o)
-	return '"' .. tostring(o) .. '"';
-end
-
-local function recurse(o, indent)
-	if indent == nil then indent = "" end
-	local indent2 = indent .. '  '
-	if type(o) == "table" then
-		local s = indent .. 'array {' .. '\n';
-		local first = true;
-		for k,v in pairs(o) do
-			if first == false then s = s .. ', \n' end
-			if type(k) ~= 'number' then k = string(k) end
-			s = s .. indent2 .. '[' .. k .. '] = ' .. recurse(v, indent2);
-			first = false;
-		end
-		return s .. '\n' .. indent .. '}';
+	if (type(message) == "string") then
+		UI.errorLabel:SetText(message);
 	else
-		return string(o)
-	end
-end
-
-function debug(...)
-	local args = {...}
-	if #args > 1 then
-		debug(args)
-	else
-		notification(recurse(args[1]))
+		UI.errorLabel:SetText(translate("unknownError"));
 	end
 end

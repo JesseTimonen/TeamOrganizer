@@ -2,9 +2,7 @@ RadioButton = class(Turbine.UI.Control);
 
 function RadioButton:Constructor(parent, text, checked, disabled)
     Turbine.UI.Control.Constructor(self);
-
     self:SetParent(parent);
-
     self.icon = Turbine.UI.Control();
     self.icon:SetParent(self);
     self.icon:SetSize(10, 10);
@@ -12,7 +10,6 @@ function RadioButton:Constructor(parent, text, checked, disabled)
     self.icon.MouseClick = function()
         self:MouseClick();
     end
-
     self.text = Turbine.UI.Label();
     self.text:SetParent(self);
     self.text:SetText(text);
@@ -20,7 +17,6 @@ function RadioButton:Constructor(parent, text, checked, disabled)
     self.text.MouseClick = function()
         self:MouseClick();
     end
-
     self:SetForeColor(Turbine.UI.Color(1, 1, 1, 1));
     self:SetChecked(checked);
     self:SetEnabled(not disabled);

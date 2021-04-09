@@ -1,10 +1,10 @@
 <?xml version = "1.0"?>
 <Plugin> 
-	<Information>
-		<Name>Team Organizer</Name>
-		<Author>Henna</Author>
-		<Version>1.4.5</Version>
-		<Image>TeamOrganizer/Images/icon.tga</Image>
+    <Information>
+        <Name>Team Organizer</Name>
+        <Author>Henna</Author>
+        <Version>1.4.6</Version>
+        <Image>TeamOrganizer/Images/icon.tga</Image>
 <Description>
 DESCRIPTION
 ¯¯¯¯¯¯¯¯¯¯¯
@@ -34,7 +34,7 @@ or by creating a shortcut which toggles the plugin window's visibility by typing
 (German) :  /kurztext 1 /team
 (French)  :  /raccourci 1 /team
 
-This command will generate a skill to the 1st slot of your skillbar, which allows you to toggle plugin window's visibility by using it.
+This command will generate a hotkey to the 1st slot of your skillbar, which allows you to toggle plugin window's visibility by using it.
 
 
 If you wish to add, remove or change players you can use the buttons below the 'Get Players' button.
@@ -67,7 +67,7 @@ Add, remove and change player in your team setup
  - /team remove [name]
  - /team change [player] to [name] [class]
 </Description>
-	</Information>
-	<Package>TeamOrganizer.Compiler</Package>
-	<Configuration Apartment = "Team Organizer" />
+    </Information>
+    <Package>TeamOrganizer.Compiler</Package>
+    <Configuration Apartment = "Team Organizer" />
 </Plugin>

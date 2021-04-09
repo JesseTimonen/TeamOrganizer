@@ -2,7 +2,7 @@ teamCommand = Turbine.ShellCommand();
 
 -- Execute command --
 function teamCommand:Execute(command, args)
-	-- Check if command has arguments --
+	-- Check if command has no arguments --
 	if string.len(args) < 1 then toggleVisibility(not UI.mainWindow:IsVisible()); return; end
 
 	-- Turn arguments to lower case characters --
@@ -79,7 +79,7 @@ function saveGroupCommand(name)
 
 	-- Save group --
 	if (not Utility.inArray(savedGroupNames, name)) then savedGroupNames[name] = name; end
-	save("server", customGroupFileName .. name, groupMembers);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, customGroupFileName .. name, groupMembers);
 	notification(translate("groupSaved") .. name);
 	return true;
 end
@@ -164,7 +164,7 @@ function addPlayerCommand(player, class, changePlayer)
 
 	-- Save new player --
 	settings["loadRequest"] = "previous group";
-	save("server", groupMembersFileName, groupMembers);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, groupMembers);
 	reloadPlugin();
 end
 
@@ -241,7 +241,7 @@ function changePlayerCommand(args)
 	-- Change player --
 	addPlayerCommand(player, class, true);
 	settings["loadRequest"] = "previous group";
-	save("server", groupMembersFileName, groupMembers);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, groupMembers);
 	reloadPlugin();
 end
 
@@ -285,7 +285,7 @@ function removePlayerCommand(player, changePlayer)
 
 	-- Save updated group --
 	settings["loadRequest"] = "previous group";
-	save("server", groupMembersFileName, groupMembers);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, groupMembers);
 	reloadPlugin();
 end
 
@@ -293,7 +293,7 @@ end
 -- Clear Team Organizer window --
 function clearWindowCommand()
 	settings["loadRequest"] = "clear group"
-	save("server", groupMembersFileName, nil);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, nil);
 	reloadPlugin();
 end
 

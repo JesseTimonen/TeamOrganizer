@@ -1,27 +1,3 @@
--- Save Data --
-function save(dataScope, key, value)
-    Turbine.PluginData.Save(getDataScope(dataScope), key, value);
-end
-
-
--- Load data --
-function load(dataScope, key)
-    return Turbine.PluginData.Load(getDataScope(dataScope), key);
-end
-
-
--- Parse datascope from string --
-function getDataScope(dataScope)
-    if (string.lower(dataScope) == "server") then
-        return Turbine.DataScope.Server;
-    elseif (string.lower(dataScope) == "character") then
-        return Turbine.DataScope.Character;
-	end
-
-    return Turbine.DataScope.Server;
-end
-
-
 -- Load group information --
 function loadGroup()
 	-- Check if player have given a load request --
@@ -32,7 +8,7 @@ function loadGroup()
 
 	-- Check if load request is previous group --
 	if loadRequest == "previous group" then
-		return load("server", groupMembersFileName);
+		return Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
 	end
 
 	-- Return an empty group if load request was to clear the group --
@@ -43,26 +19,26 @@ function loadGroup()
 	-- If load request was found load the team being requested --
 	if loadRequest ~= nil then
 		-- Load the requested group --
-		local _groupMembers = load("server", customGroupFileName .. loadRequest);
+		local _groupMembers = Turbine.PluginData.Load(Turbine.DataScope.Server, customGroupFileName .. loadRequest);
 
 		-- See if requested group exists --
 		if _groupMembers ~= nil then
 			-- Group loaded successfully --
 			notification(translate("groupLoaded") .. loadRequest);
-			save("server", groupMembersFileName, _groupMembers);
+			Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, _groupMembers);
 			return _groupMembers;
 		else
 			-- Failed to load group --
 			notification(rgb["error"] .. translate("groupLoadFailed") .. loadRequest .. rgb["clear"]);
 			errorMessage(translate("groupLoadFailedError"));
 			Utility.table_removeKey(savedGroupNames, loadRequest);
-			return load("server", groupMembersFileName);
+			return Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
 		end
 	end
 
 	-- If load request is empty then get the previous group the player played with --
 	if loadRequest == nil then
-		return load("server", groupMembersFileName);
+		return Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
 	end
 
 	-- If all fails return an empty group --
@@ -72,9 +48,9 @@ end
 
 function loadSettings()
 	-- Load Settings and customization --
-	local _settings = load("server", settingsFileName);
-	local _customization = load("server", customizationFileName);
-	local _savedGroupNames = load("server", savedGroupNamesFileName);
+	local _settings = Turbine.PluginData.Load(Turbine.DataScope.Server, settingsFileName);
+	local _customization = Turbine.PluginData.Load(Turbine.DataScope.Server, customizationFileName);
+	local _savedGroupNames = Turbine.PluginData.Load(Turbine.DataScope.Server, savedGroupNamesFileName);
 
 	-- Apply settings --
 	if _settings ~= nil then settings = _settings; end
@@ -92,14 +68,17 @@ function loadSettings()
 			anotherGroup = toColor(_customization["anotherGroup"]["red"], _customization["anotherGroup"]["green"], _customization["anotherGroup"]["blue"]),
 			offline = toColor(_customization["offline"]["red"], _customization["offline"]["green"], _customization["offline"]["blue"])
 		};
+	else
+		playerNameColor = defaultPlayerNameColor;
 	end
 end
 
 
 -- Turns RGB values to turbine color objects --
 function toColor(r, g, b)
-	-- Fix for german/french clients using "," instead of "." in decimals --
-	if clientLanguage == "german" or clientLanguage == "french" then
+
+	if (tonumber(r) == nil) or (tonumber(g) == nil) or (tonumber(b) == nil) then
+		-- Try to fix numbers by chaning "," to "." --
 		r = r:gsub("%.", ",");
 		g = g:gsub("%.", ",");
 		b = b:gsub("%.", ",");
@@ -114,8 +93,18 @@ function saveSettings()
 	if (UI.enableEscapeCheckbox == nil) then return end
 
 	-- Get settings --
-	settings["windowPosition"]["xPos"] = tostring(UI.mainWindow:GetLeft());
-	settings["windowPosition"]["yPos"] = tostring(UI.mainWindow:GetTop());
+	if (UI.mainWindow:GetLeft() < 0) then
+        settings["windowPosition"]["xPos"] = "0";
+    else
+        settings["windowPosition"]["xPos"] = tostring(UI.mainWindow:GetLeft());
+    end
+
+    if (UI.mainWindow:GetTop() < 0) then
+        settings["windowPosition"]["yPos"] = "0";
+    else
+        settings["windowPosition"]["yPos"] = tostring(UI.mainWindow:GetTop());
+    end
+
 	settings["enableEscape"] = UI.enableEscapeCheckbox:IsChecked();
 	settings["enableDisband"] = UI.enableDisbandCheckbox:IsChecked();
 	settings["enableDismiss"] = UI.enableDismissCheckbox:IsChecked();
@@ -125,8 +114,8 @@ function saveSettings()
 	settings["goldenTheme"] = UI.goldenWindowCheckbox:IsChecked();
 	
 	-- Save new Settings --
-	save("server", settingsFileName, settings);
-	save("server", savedGroupNamesFileName, savedGroupNames);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, settingsFileName, settings);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, savedGroupNamesFileName, savedGroupNames);
 end
 
 
@@ -165,7 +154,7 @@ function saveCustomization()
 	};
 
 	-- Save new customization options --
-	save("server", customizationFileName, _customization);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, customizationFileName, _customization);
 end
 
 

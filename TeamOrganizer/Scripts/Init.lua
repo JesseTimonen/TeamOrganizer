@@ -17,16 +17,6 @@ clientLanguage = "english";
 if Turbine.Shell.IsCommand("hilfe") then clientLanguage = "german"; end
 if Turbine.Shell.IsCommand("aide") then clientLanguage = "french"; end
 
--- Default player name color codes --
-defaultPlayerNameColor = {
-    inParty = Turbine.UI.Color(0, 1, 0),            -- Green
-    notInParty = Turbine.UI.Color(0.7, 0.7, 0.7),   -- Gray
-    invited  = Turbine.UI.Color(0, 1, 1),           -- lightblue
-    declined = Turbine.UI.Color(1, 0, 0),           -- red
-    anotherGroup = Turbine.UI.Color(1, 0.5, 0),     -- orange
-    offline = Turbine.UI.Color(0.7, 0.2, 0.7)       -- purple
-};
-
 -- Default window position --
 defaultWindowPosition = {
     xPos = 0,
@@ -47,14 +37,14 @@ settings = {
     loadRequest = nil
 };
 
-savedGroupNames = {};
-playerNameColor = defaultPlayerNameColor;
-
--- RGB color codes --
-rgb = {
-    pluginName = "<rgb=#DAA520>",
-    error = "<rgb=#FF0000>",
-    clear = "</rgb>"
+-- Default player name color codes --
+defaultPlayerNameColor = {
+    inParty = Turbine.UI.Color(0, 1, 0),            -- Green
+    notInParty = Turbine.UI.Color(0.7, 0.7, 0.7),   -- Gray
+    invited  = Turbine.UI.Color(0, 1, 1),           -- lightblue
+    declined = Turbine.UI.Color(1, 0, 0),           -- red
+    anotherGroup = Turbine.UI.Color(1, 0.5, 0),     -- orange
+    offline = Turbine.UI.Color(0.7, 0.2, 0.7)       -- purple
 };
 
 -- UI color codes --
@@ -73,7 +63,15 @@ color = {
     darkBlue = Turbine.UI.Color(0, 0.25, 0.5)
 };
 
+-- RGB color codes --
+rgb = {
+    pluginName = "<rgb=#DAA520>",
+    error = "<rgb=#FF0000>",
+    clear = "</rgb>"
+};
+
 -- Initializing tables --
+savedGroupNames = {};
 groupMembers = {};
 icons = {};
 names = {};
@@ -81,6 +79,3 @@ inviteButtons = {};
 dismissButtons = {};
 promoteButtons = {};
 demoteButtons = {};
-
--- Load settings --
-loadSettings();

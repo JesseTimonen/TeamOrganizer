@@ -13,12 +13,10 @@ function DropDownList:Constructor()
 	self.CurrentValue.DataValue = nil;
 	self.DropButtonBack = Turbine.UI.Control();
 	self.RowHeight = 18;
-
 	self.DropButtonBack:SetParent(self);
 	self.DropButtonBack:SetPosition(0, 1);
 	self.DropButtonBack:SetSize(15, 18);
 	self.DropButtonBack:SetBackColor(Turbine.UI.Color(0.1, 0.1, 0.1));
-
 	self.DropButton = Turbine.UI.Button();
 	self.DropButton:SetParent(self.DropButtonBack);
 	self.DropButton:SetPosition(0, 0);
@@ -44,7 +42,6 @@ function DropDownList:Constructor()
 	self.ListData.VScrollBar:SetWidth(10);
 	self.ListData.VScrollBar:SetHeight(0);
 	self.DropRows = 5;
-
 	self.ListData.FocusLost = function(sender, args)
 		self:HideList();
 	end
@@ -65,7 +62,6 @@ function DropDownList:Constructor()
 		end
 	end
 
-	-- placeholder for the event handler --
 	self.SelectedIndexChanged = function() end
 end
 
@@ -99,7 +95,6 @@ function DropDownList:SetSize(width,height)
 	self.CurrentValue:SetWidth(width - 18);
 	self.DropButtonBack:SetLeft(width - 16);
 	self.ListData:SetWidth(width - 2);
-
 	if (self.ListData:GetItemCount() > 0) then
 		for i = 1, self.ListData:GetItemCount() do
 			self.ListData:GetItem(i):SetWidth(width - 17);
@@ -113,7 +108,6 @@ function DropDownList:SetWidth(width)
 	self.CurrentValue:SetWidth(width - 18);
 	self.DropButton:SetLeft(width - 16);
 	self.ListData:SetWidth(width - 2);
-
 	if (self.ListData:GetItemCount() > 0) then
 		for i = 1, self.ListData:GetItemCount() do
 			self.ListData:GetItem(i):SetWidth(width - 17);
@@ -273,6 +267,10 @@ function DropDownList:HideList()
 	self.ListData:SetWantsKeyEvents(false);
 	self.ListData:SetWantsUpdates(false);
 	self.ListData:SetVerticalScrollBar();
+end
+
+function DropDownList:getIndexFromValue(value)
+	return 1;
 end
 
 if (not TeamOrganizer.Utility) then TeamOrganizer.Utility = {}; end

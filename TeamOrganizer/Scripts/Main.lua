@@ -55,7 +55,7 @@ function getPlayers()
 	end
 
 	-- Save party members to prevent losing data when disconnecting or switching characters --
-	save("server", groupMembersFileName, groupMembers);
+	Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, groupMembers);
 end
 
 
@@ -129,17 +129,15 @@ function updateUI()
 			dismissButtons[i].quickSlot:SetAllowDrop(false);
 		end
 
-		-- Promote buttons --
 		if (settings["enablePromote"]) then
+			-- Promote buttons --
 			local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_promote", clientLanguage) .. groupMembers[tostring(i)].name);
 			promoteButtons[i].quickSlot:SetVisible(true);
 			promoteButtons[i].button:SetVisible(true);
 			promoteButtons[i].quickSlot:SetShortcut(act);
 			promoteButtons[i].quickSlot:SetAllowDrop(false);
-		end
 
-		-- Demote buttons --
-		if (settings["enablePromote"]) then
+			-- Demote buttons --
 			local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_demote", clientLanguage) .. groupMembers[tostring(i)].name);
 			demoteButtons[i].quickSlot:SetVisible(true);
 			demoteButtons[i].button:SetVisible(true);

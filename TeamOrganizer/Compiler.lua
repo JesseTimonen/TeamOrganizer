@@ -34,7 +34,7 @@ import "TeamOrganizer.Scripts.UI.PlayerChangeWindow";
 import "TeamOrganizer.Scripts.UI.Renderer";
 import "TeamOrganizer.Scripts.UI.Settings";
 
--- Import main scripts --
+-- Import main functionality --
 import "TeamOrganizer.Scripts.Main";
 import "TeamOrganizer.Scripts.ChatListener";
 

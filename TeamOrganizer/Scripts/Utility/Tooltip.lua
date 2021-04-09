@@ -1,14 +1,12 @@
 Tooltip = class(Turbine.UI.Window);
 
 function Tooltip:Constructor()
-
 	local xSize = 400;
 	local ySize = 36;
 	local cornerSize = 18;
 	local sidebarSize = 3;
 	local backgroundColor = Turbine.UI.Color(0.9, 0, 0, 0);
 	local textColor = Turbine.UI.Color(0.82, 0.74, 0.55);
-
 	Turbine.UI.Window.Constructor(self);
 	self:SetMouseVisible(false);
 	self:SetSize(xSize, ySize);
@@ -22,8 +20,6 @@ function Tooltip:Constructor()
     self.label:SetFont(Turbine.UI.Lotro.Font.TrajanPro15);
 	self.label:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleLeft);
 	self.label:SetForeColor(textColor);
-	
-
 	self.topLeft = Turbine.UI.Control();
 	self.topLeft:SetParent(self);
 	self.topLeft:SetSize(cornerSize, cornerSize);
@@ -31,7 +27,6 @@ function Tooltip:Constructor()
     self.topLeft:SetMouseVisible(false);
     self.topLeft:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	self.topLeft:SetBackground("TeamOrganizer/Images/TooltipBorders/top_left.tga");
-	
     self.topRight = Turbine.UI.Control();
 	self.topRight:SetParent(self);
 	self.topRight:SetSize(cornerSize, cornerSize);
@@ -39,7 +34,6 @@ function Tooltip:Constructor()
     self.topRight:SetMouseVisible(false);
     self.topRight:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	self.topRight:SetBackground("TeamOrganizer/Images/TooltipBorders/top_right.tga");
-	
     self.bottomLeft = Turbine.UI.Control();
 	self.bottomLeft:SetParent(self);
 	self.bottomLeft:SetSize(cornerSize, cornerSize);
@@ -47,7 +41,6 @@ function Tooltip:Constructor()
     self.bottomLeft:SetMouseVisible(false);
     self.bottomLeft:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	self.bottomLeft:SetBackground("TeamOrganizer/Images/TooltipBorders/bottom_left.tga");
-
     self.bottomRight = Turbine.UI.Control();
 	self.bottomRight:SetParent(self);
 	self.bottomRight:SetSize(cornerSize, cornerSize);
@@ -55,7 +48,6 @@ function Tooltip:Constructor()
     self.bottomRight:SetMouseVisible(false);
     self.bottomRight:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	self.bottomRight:SetBackground("TeamOrganizer/Images/TooltipBorders/bottom_right.tga");
-
 	self.top = Turbine.UI.Control();
     self.top:SetParent(self);
 	self.top:SetSize(xSize - 2*cornerSize, sidebarSize);
@@ -63,7 +55,6 @@ function Tooltip:Constructor()
     self.top:SetMouseVisible(false);
     self.top:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	self.top:SetBackground("TeamOrganizer/Images/TooltipBorders/top.tga");
-
 	self.bottom = Turbine.UI.Control();
 	self.bottom:SetParent(self);
 	self.bottom:SetSize(xSize - 2*cornerSize, sidebarSize);
@@ -71,7 +62,6 @@ function Tooltip:Constructor()
     self.bottom:SetMouseVisible(false);
     self.bottom:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	self.bottom:SetBackground("TeamOrganizer/Images/TooltipBorders/bottom.tga");
-
     self.left = Turbine.UI.Control();
     self.left:SetParent(self);
 	self.left:SetSize(sidebarSize, ySize - 2*cornerSize);
@@ -79,7 +69,6 @@ function Tooltip:Constructor()
     self.left:SetMouseVisible(false);
     self.left:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	self.left:SetBackground("TeamOrganizer/Images/TooltipBorders/left.tga");
-
 	self.right = Turbine.UI.Control();
     self.right:SetParent(self);
 	self.right:SetSize(sidebarSize, ySize - 2*cornerSize);
@@ -87,8 +76,6 @@ function Tooltip:Constructor()
     self.right:SetMouseVisible(false);
     self.right:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
 	self.right:SetBackground("TeamOrganizer/Images/TooltipBorders/right.tga");
-
-
 	self.label:SetMultiline(true);
 	self.Show = function(x, y, text)
 		self:SetPosition(x, y);

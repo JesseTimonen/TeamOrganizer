@@ -124,7 +124,6 @@ function Palette:SetPointerPosition()
 end
 
 function Palette:SetColorNamePosition()
-    -- Move color name to a good position within the overlay which is near the spot but not overlapping it.
     if (self.valueY < 0.5) then
         self.colorName:SetTop(self.pointer:GetTop() - 20);
     else

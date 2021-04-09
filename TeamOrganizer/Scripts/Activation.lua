@@ -26,7 +26,7 @@ Plugins[pluginName].Unload = function()
 		colorPicker:Close();
 	end
 	
-	-- Prevent plugin from activating code below if it was internally reloaded --
+	-- Check was plugin unactivated because it was reloaded --
 	local loadedPlugins = Turbine.PluginManager:GetLoadedPlugins();
 	local internalReload = false;
 	for i = 1, #loadedPlugins do
@@ -46,3 +46,6 @@ Plugins[pluginName].Unload = function()
 	-- Save settings --
 	saveSettings();
 end
+
+-- Load settings --
+loadSettings();

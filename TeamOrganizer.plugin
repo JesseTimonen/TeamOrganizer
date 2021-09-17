@@ -1,0 +1,73 @@
+<?xml version = "1.0"?>
+<Plugin> 
+    <Information>
+        <Name>Team Organizer</Name>
+        <Author>Henna</Author>
+        <Version>1.4.6</Version>
+        <Image>TeamOrganizer/Images/icon.tga</Image>
+<Description>
+DESCRIPTION
+¯¯¯¯¯¯¯¯¯¯¯
+This plugin allows you to save group setups (friends, raiding groups, etc.)
+and keep track of your previous group members with the ability to invite them back quickly with a click of a button.
+
+
+
+
+HOW TO USE
+¯¯¯¯¯¯¯¯¯¯¯
+To start using Team Organizer find yourself a fellowship or a raid and click the 'Get Players' button.
+This action will display all the current players in the group, clicking the button again will update the players in the group.
+
+
+If you are the leader of your group, you can invite players by clicking the green area next to the player's name.
+
+If you wish to disband a player from the group, you can click the red button next to the players name (requires "enable dismiss button" from settings).
+
+If you wish to promote a player to raid assistant, you can click the blue button next to the players name (requires "enable promote button" from settings).
+
+
+If you closed the plugin window you can bring it back by typing command "/team" into chat
+or by creating a shortcut which toggles the plugin window's visibility by typing the following command into the chat.
+
+(English)  :  /shortcut 1 /team
+(German) :  /kurztext 1 /team
+(French)  :  /raccourci 1 /team
+
+This command will generate a hotkey to the 1st slot of your skillbar, which allows you to toggle plugin window's visibility by using it.
+
+
+If you wish to add, remove or change players you can use the buttons below the 'Get Players' button.
+If you wish to save or load a group you can use the buttons at the bottom of the plugin window.
+
+
+
+
+LIST OF ALL COMMANDS
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Display list of all available commands
+ - /team help
+
+
+Toggles the plugin's visibility
+ - /team
+ - /team toggle
+ - /team show
+ - /team hide
+
+
+Save and load team setups
+ - /team save [name]
+ - /team load [name]
+
+
+Add, remove and change player in your team setup
+ - /team clear
+ - /team add [name] [class]
+ - /team remove [name]
+ - /team change [player] to [name] [class]
+</Description>
+    </Information>
+    <Package>TeamOrganizer.Compiler</Package>
+    <Configuration Apartment = "Team Organizer" />
+</Plugin>

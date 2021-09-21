@@ -1,13 +1,12 @@
 function sortPartyMembers(array)
-	-- Return if array is empty --
-	if array == nil then return end
+	if array == nil then return; end
 
-	local length = getLenght(array);
+	local tableSize = getTableSize(array);
 	
-	for i = 1, length do
+	for i = 1, tableSize do
 		swapped = false;
 
-		for j = 1, length - 1  do
+		for j = 1, tableSize - 1  do
 			if (tonumber(array[tostring(j)].class) > tonumber(array[tostring(j + 1)].class)) then
 				local temp = array[tostring(j)];
 				array[tostring(j)] = array[tostring(j + 1)];
@@ -16,20 +15,19 @@ function sortPartyMembers(array)
 			end	
 		end
 
-		length = length - 1;
+		tableSize = tableSize - 1;
 		if not swapped then break end
 	end
 end
 
 
--- Check the size of an array
-function getLenght(array)
-	-- Check is array empty --
-	if array == nil then return 0; end
+-- Check the size of a table
+function getTableSize(table)
+	
+	if table == nil then return 0; end
     
-    -- Get size --
 	local count = 0;
-	for a, b in pairs(array) do
+	for a, b in pairs(table) do
 		count = count + 1;
     end
     
@@ -37,9 +35,9 @@ function getLenght(array)
 end
 
 
--- Check if value is in array --
-function inArray(array, value)
-	if (array[value] == value) then
+-- Check if value is in table --
+function inTable(table, value)
+	if (table[value] == value) then
 		return true;
 	end
 
@@ -47,29 +45,16 @@ function inArray(array, value)
 end
 
 
--- Check if value is in table --
-function inTable(array, value)
-	for index, val in ipairs(array) do
-		if (val == value) then
-			return true;
-		end
-	end
-
-    return false;
-end
-
-
 -- Remove value from table --
-function table_removeKey(table, key)
-    local element = table[key]
-    table[key] = nil
-    return element
+function tableRemoveKey(table, key)
+	table[key] = nil;
 end
 
 
--- Check is player already in group --
-function playerIsInGroup(name)
+-- Check is player already in your group --
+function isPlayerAlreadyInYourGroup(name)
 	party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
+
 	if (party == nil) then
 		return false;
 	end
@@ -84,8 +69,8 @@ function playerIsInGroup(name)
 end
 
 
--- Return ID of a class (returns 'nil' if no match is found) --
-function getClassID(class)
+-- Get class ID from class name (returns 'nil' if no match is found) --
+function getClassIDFromName(class)
 	class = string.lower(tostring(class));
 
 	classes = {
@@ -98,8 +83,33 @@ function getClassID(class)
 		["lore-master"] = 185, ["loremaster"] = 185, ["lm"] = 185, ["185"] = 185, ["kundiger"] = 185, ["maîtres-du-savoir"] = 185, ["maîtres_du_savoir"] = 185,
 		["minstrel"] = 31, ["minny"] = 31, ["mini"] = 31, ["healer"] = 31, ["heal"] = 31, ["31"] = 31, ["barde"] = 31, ["ménestrel"] = 31,
 		["rune-keeper"] = 193, ["runekeeper"] = 193, ["rk"] = 193, ["193"] = 193, ["runenbewahrer"] = 193, ["gardien-des-runes"] = 193, ["gardien_des_runes"] = 193,
-		["warden"] = 194, ["ward"] = 194, ["194"] = 194, ["hüter"] = 194, ["sentinelle"] = 194
+		["warden"] = 194, ["ward"] = 194, ["194"] = 194, ["hüter"] = 194, ["sentinelle"] = 194,
 	};
 
 	return classes[class];
+end
+
+
+-- Get class name from class ID (returns 'unknown' if no match is found) --
+function getClassNameFromID(id)
+	id = tostring(id);
+
+	IDs = {
+		["214"] = "beorning",
+		["40"] = "burglar",
+		["24"] = "captain",
+		["172"] = "champion",
+		["23"] = "guardian",
+		["162"] = "hunter",
+		["185"] = "lore-master",
+		["31"] = "minstrel",
+		["193"] = "rune-keeper",
+		["194"] = "warden",
+	};
+
+	if (IDs[id] == nil) then
+		return "unknown";
+	end
+
+	return IDs[id];
 end

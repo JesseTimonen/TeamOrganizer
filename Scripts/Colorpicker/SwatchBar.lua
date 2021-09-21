@@ -27,6 +27,7 @@ function SwatchBar:Constructor(parent, label)
     self.label:SetSize(80, 30);
     self.label:SetPosition(0, 3);
     self.label:SetText(label);
+
     self.nextSwatchLeft = self.label:GetWidth() + 2;
 
     self.scrollBar = Turbine.UI.Lotro.ScrollBar();
@@ -35,6 +36,7 @@ function SwatchBar:Constructor(parent, label)
     self.scrollBar:SetOrientation(Turbine.UI.Orientation.Horizontal);
     self:SetHorizontalScrollBar(self.scrollBar);
 end
+
 
 function SwatchBar:AddSwatch(color)
     local swatchSpacing = 2;
@@ -49,9 +51,11 @@ function SwatchBar:AddSwatch(color)
     self.interior:SetSize(self.nextSwatchLeft, 30);
     swatch.color = color;
     swatch.colorName = colorName;
+
     swatch.MouseClick = function(sender, args)
         self:GetParent():SetColor(sender.color);
     end
+
     swatch.MouseEnter = function(sender)
         local cursor = Turbine.UI.Control();
         cursor:SetParent(sender:GetParent());
@@ -63,6 +67,7 @@ function SwatchBar:AddSwatch(color)
         cursor:SetMouseVisible(false);
         sender.cursor = cursor;
     end
+
     swatch.MouseLeave = function(sender)
         if (sender.cursor) then
             sender.cursor:SetVisible(false);
@@ -71,19 +76,18 @@ function SwatchBar:AddSwatch(color)
     end
 end
 
+
 function SwatchBar:SetPosition(left, top)
     Turbine.UI.ListBox.SetPosition(self, left, top);
-    local borderSize = 3;
-    self.borderOutside:SetPosition(left - borderSize, top - borderSize);
-    self.borderInside:SetPosition(left - borderSize + 1, top - borderSize + 1);
+    self.borderOutside:SetPosition(left - 3, top - 3);
+    self.borderInside:SetPosition(left - 4, top - 4);
     self.scrollBar:SetPosition(left, top + 31);
 end
 
+
 function SwatchBar:SetSize(width, height)
-    local borderSize = 3;
-    local scrollBarSize = 10;
-    Turbine.UI.ListBox.SetSize(self, width, height - scrollBarSize);
+    Turbine.UI.ListBox.SetSize(self, width, height - 10);
     self.scrollBar:SetSize(width, 10);
-    self.borderOutside:SetSize(width + (2 * borderSize), height + (2 * borderSize));
+    self.borderOutside:SetSize(width + 6, height + 6);
     self.borderInside:SetSize(self.borderOutside:GetWidth() - 2, self.borderOutside:GetHeight() - 2);
 end

@@ -31,7 +31,7 @@ function loadGroup()
 			-- Failed to load group --
 			notification(rgb["error"] .. translate("groupLoadFailed") .. loadRequest .. rgb["clear"]);
 			errorMessage(translate("groupLoadFailedError"));
-			Utility.table_removeKey(savedGroupNames, loadRequest);
+			Utility.tableRemoveKey(savedGroupNames, loadRequest);
 			return Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
 		end
 	end
@@ -90,7 +90,7 @@ end
 
 function saveSettings()
 	-- Return if setting elements don't exist (tested with one of the checkboxes) --
-	if (UI.enableEscapeCheckbox == nil) then return end
+	if (UI.enableEscapeCheckbox == nil) then return; end
 
 	-- Get settings --
 	if (UI.mainWindow:GetLeft() < 0) then

@@ -188,10 +188,12 @@ function ColorPicker:Constructor(color, dimension)
     end);
 end
 
+
 function ColorPicker:SaveSettings()
     local saveData = ExportTable(ColorPicker.settings);
     Turbine.PluginData.Save(Turbine.DataScope.Account, "ColorPicker", saveData);
 end
+
 
 function ColorPicker:AddRecentColor(newColor)
     local recentColors = ColorPicker.settings.recentColors;
@@ -213,6 +215,7 @@ function ColorPicker:AddRecentColor(newColor)
     table.insert(recentColors, 1, newColor);
     self:SaveSettings();
 end
+
 
 function ColorPicker:DoLayout()
     local titleHeight = 16;
@@ -279,6 +282,7 @@ function ColorPicker:DoLayout()
     self:SetHeight(top + marginSize + 2);
 end
 
+
 function ColorPicker:SetZOrder(z)
     if (z > 2147483647 - 4) then
         z = 2147483647 - 4;
@@ -290,6 +294,7 @@ function ColorPicker:SetZOrder(z)
     self.slider:SetZOrder(z + 1);
 end
 
+
 function ColorPicker:SelectDimension(sliderDimension)
     local paletteXDimension, paletteYDimension = TeamOrganizer.Utils.Color.GetOtherDimensions(sliderDimension);
     self.slider:SetDimension(sliderDimension);
@@ -297,13 +302,17 @@ function ColorPicker:SelectDimension(sliderDimension)
     self:SetColor(self.color);
 end
 
+
 function ColorPicker:HexChanged()
     local R, G, B = string.match(self.hex:GetText(), "^(%x%x)(%x%x)(%x%x)$");
+    
     if (R and G and B) then
         self.hex:SetBackColor(TeamOrganizer.Utils.Color(1, 1, 1, 1));
+
         if (not self.updatingHex) then
             self.color:SetHex(self.hex:GetText());
             self:SetColor(self.color);
+
             if (self.ColorChanged) then
                 self:ColorChanged();
             end
@@ -313,6 +322,7 @@ function ColorPicker:HexChanged()
     end
 end
 
+
 function ColorPicker:SetColor(color)
     self.slider:SetColor(color);
     self.palette:SetColor(color);
@@ -320,9 +330,11 @@ function ColorPicker:SetColor(color)
     self:SliderChanged();
 end
 
+
 function ColorPicker:GetColor()
     return self.color;
 end
+
 
 function ColorPicker:UpdateHex()
     local R, G, B, H, S, V;
@@ -350,25 +362,30 @@ function ColorPicker:UpdateHex()
     self.palette:ShowColorName(colorName);
 end
 
+
 function ColorPicker:SliderChanged()
     self.slider:GetColor(self.color);
     self:UpdateHex();
     self.palette:SetGamut(self.color);
     self.palette:SetSpotColor(self.color);
+
     if (self.ColorChanged) then
         self:ColorChanged();
     end
 end
+
 
 function ColorPicker:PaletteChanged()
     self.palette:GetColor(self.color);
     self:UpdateHex();
     self.palette:SetSpotColor(self.color);
     self.slider:SetGamut(self.color);
+
     if (self.ColorChanged) then
         self:ColorChanged();
     end
 end
+
 
 function ColorPicker:SizeChanged()
     if (not self.changingSize) then
@@ -378,18 +395,22 @@ function ColorPicker:SizeChanged()
     end
 end
 
+
 function ColorPicker:PositionChanged()
     self:DoLayout();
 end
+
 
 function ColorPicker:Closing()
     self:SaveSettings();
     
     if (not self.okButtonClicked) then
         self.color = self.originalColor;
+
         if (self.ColorChanged) then
             self:ColorChanged();
         end
+
         if (self.Canceled) then
             self:Canceled();
         end

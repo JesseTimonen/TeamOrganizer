@@ -11,7 +11,7 @@ invitedPlayerName = "";
 
 -- Analyze info about party actions in the chat --
 function analyzeMessage(args)
-	if (args.Message == nil or args.Message == "") then return end
+	if (args.Message == nil or args.Message == "") then return; end
 
 	-- Variables --
 	local message = args.Message;
@@ -22,7 +22,7 @@ function analyzeMessage(args)
 	if name ~= nil then
 		-- Make sure the player is the leader of the party --
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
-		if (party ~= nil and party:GetLeader():GetName() ~= playerName) then return end
+		if (party ~= nil and party:GetLeader():GetName() ~= playerName) then return; end
 
 		invitedPlayerName = name;
 		updateNameLabels(name, "invited");
@@ -51,7 +51,7 @@ function analyzeMessage(args)
 		end
 
 		-- Check if invited player is already in the group --
-		if (Utility.playerIsInGroup(invitedPlayerName)) then
+		if (Utility.isPlayerAlreadyInYourGroup(invitedPlayerName)) then
 			updateNameLabels(invitedPlayerName, "alreadyInMyParty");
 			return;
 		end

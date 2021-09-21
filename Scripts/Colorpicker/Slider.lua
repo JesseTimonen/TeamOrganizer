@@ -2,7 +2,6 @@ Slider = class(Turbine.UI.Control);
 
 function Slider:Constructor(parent, dimension, color)
     Turbine.UI.Control.Constructor(self);
-
     self:SetParent(parent);
     self:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
     self:SetBackground("TeamOrganizer/Images/ColorPicker/B_grad.tga");
@@ -14,7 +13,8 @@ function Slider:Constructor(parent, dimension, color)
     self.overlay:SetStretchMode(2);
     self.overlay:SetVisible(true);
     self.overlay:SetSize(self.width, self.height);
-   
+    self.overlay:SetMouseVisible(false);
+
     self.pointer = Turbine.UI.Window();
     self.pointer:SetVisible(true);    
     self.pointer:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
@@ -34,19 +34,21 @@ function Slider:Constructor(parent, dimension, color)
         if (self.pointer.mouseDown) then
             local _, newPosition = self:PointToClient(0, Turbine.UI.Display.GetMouseY());
             self.value = 1 - newPosition / self.height;
+
             if (self.value < 0.001) then
                 self.value = 0.001;
             elseif (self.value > 0.999) then
                 self.value = 0.999;
             end
+
             self:SetPointerPosition();
+
             if (self.ColorChanged) then
                 self:ColorChanged();
             end
         end
     end
 
-    self.overlay:SetMouseVisible(false);
     self.MouseDown = self.pointer.MouseDown;
     self.MouseUp = self.pointer.MouseUp;
     self.MouseMove = self.pointer.MouseMove;
@@ -56,11 +58,13 @@ function Slider:Constructor(parent, dimension, color)
     self:SetColor(color);
 end
 
+
 function Slider:SetZOrder(z)
     Turbine.UI.Control.SetZOrder(self, z);
     self.overlay:SetZOrder(z + 1);
     self.pointer:SetZOrder(z + 2);
 end
+
 
 function Slider:SetPosition(left, top)
     Turbine.UI.Control.SetPosition(self, left, top);
@@ -76,8 +80,8 @@ function Slider:SetPointerPosition()
 end
 
 function Slider:SetGamut(color)
-    -- Edits slider's alpha, which I don't want to happen --
-    do return end
+    -- this function edits slider's alpha, which I don't want to happen --
+    do return; end
 
     if (string.find("RGB", self.dimension)) then
         local backColor = TeamOrganizer.Utils.Color(1, color.R, color.G, color.B);
@@ -98,6 +102,7 @@ function Slider:SetGamut(color)
     end
 end
 
+
 function Slider:SetSize(width, height)
     self.width, self.height = width, height;
     Turbine.UI.Control.SetSize(self, width, height);
@@ -107,18 +112,22 @@ function Slider:SetSize(width, height)
     self:SetPointerPosition();
 end
 
+
 function Slider:SetColor(color)
     self.value = color:Get(self.dimension);
     self:SetPointerPosition();
 end
 
+
 function Slider:GetColor(color)
     color:Set(self.dimension, self.value);
 end
 
+
 function Slider:GetValue()
     return self.value;
 end
+
 
 function Slider:SetDimension(dimension)
     self.dimension = dimension;
@@ -141,9 +150,11 @@ function Slider:SetDimension(dimension)
     end
 end
 
+
 function Slider:GetDimension(dimension)
     return self.dimension;
 end
+
 
 function Slider:Close()
     self.overlay:Close();

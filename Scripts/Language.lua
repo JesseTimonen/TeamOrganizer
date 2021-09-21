@@ -402,14 +402,14 @@ translations = {
 		french = "Version activée"
 	},
 	unloaded = {
-		english = "Unactivated",
-		german = "Nicht aktiviert",
-		french = "Non activé"
+		english = "Deactivated.",
+		german = "Deaktiviert.",
+		french = "Désactivé"
 	},
 	credits = {
-		english = "by Henna",
-		german = "von Henna",
-		french = "par le Henna"
+		english = "by Henna.",
+		german = "von Henna.",
+		french = "par le Henna."
 	},
 	username = {
 		english = "Username",

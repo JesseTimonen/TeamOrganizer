@@ -123,7 +123,7 @@ end
 -- Update player dropdown list --
 function changePlayerWindow:UpdatePlayersList()
 	self.playerSelect:ClearList();
-	for i = 1, Scripts.Utility.getLenght(Scripts.groupMembers) do
+	for i = 1, Scripts.Utility.getTableSize(Scripts.groupMembers) do
 		self.playerSelect:AddItem(Scripts.groupMembers[tostring(i)].name, Scripts.groupMembers[tostring(i)].name);
 	end
 end

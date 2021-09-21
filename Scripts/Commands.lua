@@ -64,7 +64,7 @@ function saveGroupCommand(name)
 	end
 
 	-- Return error if there is no group to save --
-	if Utility.getLenght(groupMembers) < 1 then
+	if Utility.getTableSize(groupMembers) < 1 then
 		notification(rgb["error"] .. translate("nothingToSave") .. rgb["clear"]);
 		errorMessage(translate("nothingToSave"))
 		return false;
@@ -78,7 +78,7 @@ function saveGroupCommand(name)
 	end
 
 	-- Save group --
-	if (not Utility.inArray(savedGroupNames, name)) then savedGroupNames[name] = name; end
+	if (not Utility.inTable(savedGroupNames, name)) then savedGroupNames[name] = name; end
 	Turbine.PluginData.Save(Turbine.DataScope.Server, customGroupFileName .. name, groupMembers);
 	notification(translate("groupSaved") .. name);
 	return true;
@@ -106,7 +106,7 @@ end
 -- Add player into a group --
 function addPlayerCommand(player, class, changePlayer)
 	-- Check if group is already full --
-	if (Utility.getLenght(groupMembers) > 23) then
+	if (Utility.getTableSize(groupMembers) > 23) then
 		notification(rgb["error"] .. translate("groupFullError") .. rgb["clear"]);
 		return false;
 	end
@@ -120,7 +120,7 @@ function addPlayerCommand(player, class, changePlayer)
 	end
 	
 	-- Get ID of the class --
-	classID = Utility.getClassID(class);
+	classID = Utility.getClassIDFromName(class);
 
 	-- Make sure player gave a valid class --
 	if (classID == nil) then
@@ -151,7 +151,7 @@ function addPlayerCommand(player, class, changePlayer)
 
 		-- Check if player is already in the group setup --
 		if (playerFound == false) then
-			groupMembers[tostring(Utility.getLenght(groupMembers) + 1)] = member;
+			groupMembers[tostring(Utility.getTableSize(groupMembers) + 1)] = member;
 		else
 			notification(rgb["error"] .. "'" .. player .. "'" .. translate("playerAlreadyInGroupSetup") .. rgb["clear"]);
 			return false;
@@ -182,12 +182,12 @@ function changePlayerCommand(args)
 	local class = "";
 
 	-- Return if not enough arguments were passed to change command --
-	if (Utility.getLenght(command) < 4) then
+	if (Utility.getTableSize(command) < 4) then
 		return false;
 	end
 
 	-- Parse player name and class from arguments --
-	if (Utility.getLenght(command) > 4) then
+	if (Utility.getTableSize(command) > 4) then
 		-- /team change <player> to <player> <class> --
 		original = command[2];
 		player = command[4];
@@ -205,7 +205,7 @@ function changePlayerCommand(args)
 
 	-- Make sure new name and class are valid --
 	if (player == playerName) then return false; end	
-	if (Utility.getClassID(class) == nil) then
+	if (Utility.getClassIDFromName(class) == nil) then
 		notification(rgb["error"] .. class .. translate("invalidClass") .. rgb["clear"]);
 		return false;
 	end;

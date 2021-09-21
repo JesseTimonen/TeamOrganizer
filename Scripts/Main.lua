@@ -64,13 +64,13 @@ function updateUI()
 	clearWindow();
 
 	-- Return if group is empty --
-	if groupMembers == nil then return end
+	if groupMembers == nil then return; end
 
 	-- Sort party members --
 	Utility.sortPartyMembers(groupMembers);
 
 	-- Count party members --
-	groupMembersCount = Utility.getLenght(groupMembers);
+	groupMembersCount = Utility.getTableSize(groupMembers);
 
 	-- Update the size of the main window depending on how many members were found --
 	local height;
@@ -102,12 +102,12 @@ function updateUI()
 
 		-- Class icons --
 		icons[i]:SetVisible(true);
-		icons[i]:SetBackground("TeamOrganizer/Images/Classes/" .. groupMembers[tostring(i)].class .. ".tga");
+		icons[i]:SetBackground("TeamOrganizer/Images/Classes/" .. Utility.getClassNameFromID(groupMembers[tostring(i)].class) .. ".tga");
 
 		-- Party members' names
 		names[i]:SetVisible(true);
 		names[i]:SetText(groupMembers[tostring(i)].name);
-		if (Utility.playerIsInGroup(groupMembers[tostring(i)].name)) then
+		if (Utility.isPlayerAlreadyInYourGroup(groupMembers[tostring(i)].name)) then
 			names[i]:SetForeColor(playerNameColor["inParty"]);
 		else
 			names[i]:SetForeColor(playerNameColor["notInParty"]);

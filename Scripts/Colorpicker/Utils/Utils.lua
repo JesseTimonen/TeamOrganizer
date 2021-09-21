@@ -17,6 +17,7 @@ displaySizeListener:SetWantsUpdates(true);
 displaySizeListener:SetStretchMode(1);
 displaySizeListener:SetWantsUpdates(true);
 
+
 function displaySizeListener:Update()
     displaySizeListener:SetSize(2, 2);
     self.ignoreSizeChangedEvents = 0;
@@ -25,9 +26,11 @@ function displaySizeListener:Update()
     self.SizeChanged = self._SizeChanged;
 end
 
+
 function displaySizeListener:_Update()
     self:SetWantsUpdates(false);
     local sizeChangedFunc = Turbine.UI.Display.SizeChanged;
+
     if (type(sizeChangedFunc) == "function") then
         sizeChangedFunc(Turbine.UI.Display);
     elseif (type(sizeChangedFunc) == "table") then
@@ -37,25 +40,30 @@ function displaySizeListener:_Update()
     end
 end
 
+
 function displaySizeListener:_SizeChanged()
     if (self.ignoreSizeChangedEvents > 0) then
         self.ignoreSizeChangedEvents = self.ignoreSizeChangedEvents - 1;
         return;
     end
+
     self:SetSize(2, 2);
     self.ignoreSizeChangedEvents = 1;
     self:SetWantsUpdates(true);
 end
 
+
 function _G.DeepTableCopy(sourceTable, destTable)
     if (destTable == nil) then
         destTable = {};
     end
+
     if (type(sourceTable) ~= "table") then
         return error("DeepTableCopy(): sourceTable is " .. type(sourceTable), 2);
     elseif (type(destTable) ~= "table") then
         return error("DeepTableCopy(): destTable is " .. type(destTable), 2);
     end
+
     for k, v in pairs(sourceTable) do
         if (type(v) == "table") then
             destTable[k] = { };
@@ -64,36 +72,46 @@ function _G.DeepTableCopy(sourceTable, destTable)
             destTable[k] = v;
         end
     end
+
     return destTable;
 end
+
 
 function _G.ShallowTableCopy(sourceTable, destTable)
     if (destTable == nil) then
         destTable = {};
     end
+
     if (type(sourceTable) ~= "table") then
         return error("ShallowTableCopy(): sourceTable is " .. type(sourceTable), 2);
     elseif (type(destTable) ~= "table") then
         return error("ShallowTableCopy(): destTable is " .. type(destTable), 2);
     end
+
     for k, v in pairs(sourceTable) do
         destTable[k] = v;
     end
+
     return destTable;
 end
 
+
 function _G.Puts(str)
     local prefix = "";
+
     if (_G.PutsPrefix) then
         prefix = _G.PutsPrefix;
     end
+
     Turbine.Shell.WriteLine(prefix .. tostring(str));
 end
+
 
 function _G.Serialize(obj, maxdepth)
     if (type(maxdepth) == "number") then
         maxdepth = maxdepth - 1;
     end
+
     if (type(obj) == "boolean") then
         if (obj) then
             return "true";
@@ -133,10 +151,12 @@ function _G.Serialize(obj, maxdepth)
     end
 end
 
+
 function _G.PrettyPrint(obj, prefix, maxdepth)
     if (type(maxdepth) == "number") then
         maxdepth = maxdepth - 1;
     end
+
     if (type(obj) == "boolean") then
         if (obj) then
             return "true";
@@ -183,6 +203,7 @@ function _G.PrettyPrint(obj, prefix, maxdepth)
     end
 end
 
+
 function _G.ExportTable(obj)
     if (type(obj) == "number") then
         local text = tostring(obj);
@@ -199,6 +220,7 @@ function _G.ExportTable(obj)
         return obj;
     end
 end
+
 
 function _G.ImportTable(obj)
     if (type(obj) == "string") then
@@ -221,12 +243,14 @@ function _G.ImportTable(obj)
     end
 end
 
+
 function _G.GetAssetSize(id)
     local temp = Turbine.UI.Control();
     temp:SetBackground(id);
     temp:SetStretchMode(2);
     return temp:GetWidth(), temp:GetHeight();
 end
+
 
 function _G.AddCallback(object, event, callback)
     if (object[event] == nil) then
@@ -240,6 +264,7 @@ function _G.AddCallback(object, event, callback)
     end
     return callback;
 end
+
 
 function _G.RemoveCallback(object, event, callback)
     if (object[event] == callback) then
@@ -257,6 +282,7 @@ function _G.RemoveCallback(object, event, callback)
     end
 end
 
+
 function _G.DoCallbacks(object, event, args)
     if (type(object[event]) == "table") then
         for i = 1, #object[event] do
@@ -266,6 +292,7 @@ function _G.DoCallbacks(object, event, args)
         object[event](object, args);
     end
 end
+
 
 function _G.keys(tableVar)
     if (type(tableVar) ~= "table") then
@@ -279,26 +306,34 @@ function _G.keys(tableVar)
     return iterator, state, nil;
 end
 
+
 function _G.values(tableVar)
     if (type(tableVar) ~= "table") then
         error("bad argument to 'values' (table expected, got " .. type(tableVar) .. ")", 2);
     end
+
     local state = { ["tableVar"] = tableVar, ["index"] = nil };
+
     local function iterator(state)
         state.index, value = next(state.tableVar, state.index);
         return value;
     end
+
     return iterator, state, nil;
 end
+
 
 function _G.sorted_keys(tableVar)
     if (type(tableVar) ~= "table") then
         error("bad argument to 'keys' (table expected, got " .. type(tableVar) .. ")", 2);
     end
+
     local state = { ["sortedKeys"] = {}, ["index"] = nil };
+
     for key in keys(tableVar) do
         table.insert(state.sortedKeys, key);
     end
+
     local sortFunc = function(a, b)
         if ((type(a) == type(b)) and ((type(a) == "number") or (type(a) == "string"))) then
             return a < b;
@@ -306,11 +341,14 @@ function _G.sorted_keys(tableVar)
             return tostring(a) < tostring(b);
         end
     end
+
     table.sort(state.sortedKeys, sortFunc);
+
     local function iterator(state)
         state.index, value = next(state.sortedKeys, state.index);
         return value;
     end
+
     return iterator, state, nil;
 end
 
@@ -318,38 +356,47 @@ function _G.Search(tableVar, value)
     if (type(tableVar) ~= "table") then
         error("bad argument to 'Search' (table expected, got " .. type(tableVar) .. ")", 2);
     end
+
     local i = nil;
+
     repeat
         i, v = next(tableVar, i);
         if (v == value) then
             return i;
         end
     until (not i);
+
     return nil;
 end
+
 
 function _G.IsEquipped(itemName, itemSlot)
     local slot, item = Thurallor.Utils.Watcher.GetEquippedItem(itemName, itemSlot);
     return (slot ~= nil);
 end
 
+
 function _G.Unequip(itemSlot, itemSlotName, targetBagSlot)
     if (not targetBagSlot) then
         targetBagSlot = 1;
     end
+
     local lp = Turbine.Gameplay.LocalPlayer:GetInstance();
     local bags = lp:GetBackpack();
     local equippedItems = lp:GetEquipment();
     local item = equippedItems:GetItem(itemSlot);
+
     if (item == nil) then
         return false;
     end
+
     for index = targetBagSlot, bags:GetSize() do
         if (bags:GetItem(index) == nil) then
             bagSlot = index;
             break;
         end
     end
+
     if (not bagSlot) then
         for index = 1, (targetBagSlot - 1) do
             if (bags:GetItem(index) == nil) then
@@ -358,6 +405,7 @@ function _G.Unequip(itemSlot, itemSlotName, targetBagSlot)
             end
         end
     end
+
     if (not bagSlot) then
         return false;
     else
@@ -366,6 +414,7 @@ function _G.Unequip(itemSlot, itemSlotName, targetBagSlot)
     end
 end
 
+
 function _G.CenterWindow(window)
     local displayWidth, displayHeight = Turbine.UI.Display.GetSize();
     local windowWidth, windowHeight = window:GetSize();
@@ -373,6 +422,7 @@ function _G.CenterWindow(window)
     local top = math.floor((displayHeight - windowHeight) / 2);
     window:SetPosition(left, top);
 end
+
 
 function _G.Alert(title, contents, okButton, font)
     local window = Turbine.UI.Lotro.Window();
@@ -417,6 +467,7 @@ function _G.Alert(title, contents, okButton, font)
             button:SetPosition(center + button.leftOffset, height - 30);
         end
     end
+
     window:SizeChanged();
     
     if (not _G.alertWindows) then _G.alertWindows = {} end
@@ -431,11 +482,13 @@ function _G.Alert(title, contents, okButton, font)
     return window;
 end
 
+
 function _G.Bin2Text(data)
     data = data .. string.rep(string.char(0), 2);
     local string_byte, string_char = string.byte, string.char;
     local minChar = 46;
     local result, j, X1, X2, X3, Y1, Y2, Y3, Y4 = "", 1;
+
     for i = 1, #data - 2, 3 do
         X1, X2, X3 = string_byte(data, i, i + 2);
         Y1 = bit.brshift(X1, 2) + minChar;
@@ -445,13 +498,16 @@ function _G.Bin2Text(data)
         result = result .. string_char(Y1, Y2, Y3, Y4);
         j = j + 4;
     end
+
     return result;
 end
+
 
 function _G.Text2Bin(data)
     local string_byte, string_char = string.byte, string.char;
     local minChar = 46;
     local result, j, X1, X2, X3, X4, Y1, Y2, Y3 = "", 1;
+
     for i = 1, #data - 3, 4 do
         X1, X2, X3, X4 = string_byte(data, i, i + 3);
         X1, X2, X3, X4 = X1 - minChar, X2 - minChar, X3 - minChar, X4 - minChar;
@@ -461,13 +517,16 @@ function _G.Text2Bin(data)
         result = result .. string_char(Y1, Y2, Y3);
         j = j + 3;
     end
+
     return string.gsub(result, "%z$", "", 2);
 end
+
 
 function _G.Text2Bin_old(data)
     local X = {string.byte(data, 1, -1)};
     local result, j, Y1, Y2, Y3 = "", 1;
     local minChar = 46;
+
     for i = 1, #X - 3, 4 do
         local X1, X2, X3, X4 = X[i] - minChar, X[i + 1] - minChar, X[i + 2] - minChar, X[i + 3] - minChar;
         Y1 = bit.blshift(X1, 2) + bit.brshift(X2, 4);
@@ -476,5 +535,6 @@ function _G.Text2Bin_old(data)
         result = result .. string.char(Y1, Y2, Y3);
         j = j + 3;
     end
+    
     return string.gsub(result, "%z$", "", 2);
 end

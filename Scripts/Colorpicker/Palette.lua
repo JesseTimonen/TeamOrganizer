@@ -4,7 +4,8 @@ function Palette:Constructor(parent, dimensionX, dimensionY, color)
     Turbine.UI.Control.Constructor(self);
 
     self:SetParent(parent);
-    self.valueX, self.valueY = 0.5, 0.5;
+    self.valueX = 0.5;
+    self.valueY = 0.5;
 
     self:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
     self:SetBackground("TeamOrganizer/Images/ColorPicker/V_x_H.tga");
@@ -33,14 +34,15 @@ function Palette:Constructor(parent, dimensionX, dimensionY, color)
         Turbine.UI.Window.SetSize(sender, width, height);
         sender.label:SetSize(width, height);
     end
-
     self.colorName:SetSize(self.width, 20);
+
     self.pointer = Turbine.UI.Window();
     self.pointer:SetVisible(true);   
     self.pointer:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
     self.pointer:SetBackground(0x4112E573);
     self.pointer:SetSize(30, 30);
     self.pointer:SetStretchMode(2);
+
     self.spot = Turbine.UI.Window();
     self.spot:SetVisible(true); 
     self.spot:SetBackground("TeamOrganizer/Images/ColorPicker/spot.tga");
@@ -97,6 +99,7 @@ function Palette:Constructor(parent, dimensionX, dimensionY, color)
     self:SetColor(color);
 end
 
+
 function Palette:SetZOrder(z)
     Turbine.UI.Control.SetZOrder(self, z);
     self.overlay:SetZOrder(z + 1);
@@ -105,6 +108,7 @@ function Palette:SetZOrder(z)
     self.spot:SetZOrder(z + 3);
 end
 
+
 function Palette:SetPosition(left, top)
     Turbine.UI.Control.SetPosition(self, left, top);
     local screen_left, screen_top = self:PointToScreen(0, 0);
@@ -112,6 +116,7 @@ function Palette:SetPosition(left, top)
     self.colorName:SetLeft(screen_left);
     self:SetColorNamePosition();
 end
+
 
 function Palette:SetPointerPosition()
     local left = math.floor(self.width * self.valueX + 0.5) - 15;
@@ -122,6 +127,7 @@ function Palette:SetPointerPosition()
     self.spot:SetPosition(l, t);
     self:SetColorNamePosition();
 end
+
 
 function Palette:SetColorNamePosition()
     if (self.valueY < 0.5) then
@@ -134,6 +140,7 @@ function Palette:SetColorNamePosition()
     self.colorName:SetLeft(center - math.floor(0.5 + self.width / 2));
 end
 
+
 function Palette:ShowColorName(nameStr)
     if (nameStr) then
         self.colorName:SetVisible(true);
@@ -142,6 +149,7 @@ function Palette:ShowColorName(nameStr)
         self.colorName:SetVisible(false);
     end
 end
+
 
 function Palette:SetGamut(color)
     local sliderDimension = TeamOrganizer.Utils.Color.GetOtherDimensions(self.dimensionY);
@@ -164,10 +172,12 @@ function Palette:SetGamut(color)
     end
 end
 
+
 function Palette:SetSpotColor(color)
     color.A = 1;
     self.spot:SetBackColor(color);
 end
+
 
 function Palette:SetSize(width, height)
     self.width, self.height = width, height;
@@ -179,16 +189,19 @@ function Palette:SetSize(width, height)
     self:SetPointerPosition();
 end
 
+
 function Palette:SetColor(color)
     self.valueX = color:Get(self.dimensionX);
     self.valueY = color:Get(self.dimensionY);
     self:SetPointerPosition();
 end
 
+
 function Palette:GetColor(color)
     color:Set(self.dimensionX, self.valueX);
     color:Set(self.dimensionY, self.valueY);
 end
+
 
 function Palette:SetDimensions(dimensionX, dimensionY)
     self.dimensionX, self.dimensionY = dimensionX, dimensionY
@@ -209,9 +222,11 @@ function Palette:SetDimensions(dimensionX, dimensionY)
     end
 end
 
+
 function Palette:GetDimensions()
     return self.dimensionX, self.dimensionY;
 end
+
 
 function Palette:Close()
     self.overlay:Close();

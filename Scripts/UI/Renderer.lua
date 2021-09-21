@@ -172,7 +172,7 @@ function createUIPlaceholders()
 	local xPos = 0;
 	local yPos = 100;
 	if Scripts.settings["enableDisband"] then
-		if not Scripts.settings["horizontalWindow"] or Scripts.Utility.getLenght(Scripts.groupMembers) < 12 then
+		if not Scripts.settings["horizontalWindow"] or Scripts.Utility.getTableSize(Scripts.groupMembers) < 12 then
 			yPos = 120;
 		end
 	end
@@ -185,7 +185,7 @@ function createUIPlaceholders()
 			yPos = 100;
 
 			-- Move disband button to the side of create raid button --
-			if (Scripts.Utility.getLenght(Scripts.groupMembers) > 11 and Scripts.settings["enableDisband"]) then
+			if (Scripts.Utility.getTableSize(Scripts.groupMembers) > 11 and Scripts.settings["enableDisband"]) then
 				disbandLabel:SetPosition(275, 38);
 				disbandButton.quickSlot:SetPosition(280, 40);
 				disbandButton.button:SetPosition(280, 40);

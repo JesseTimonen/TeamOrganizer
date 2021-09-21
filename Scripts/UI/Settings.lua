@@ -16,7 +16,7 @@ plugin.GetOptionsPanel = function(self)
 	languageLabel:SetForeColor(Scripts.color["yellow"]);
 	languageLabel:SetFontStyle(Turbine.UI.FontStyle.Outline);
 	languageLabel:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
-	languageLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/optionsTitleBackground.tga"));
+	languageLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/options_title_background.tga"));
 
 
 	-- Language Selection --
@@ -55,7 +55,7 @@ plugin.GetOptionsPanel = function(self)
 	generalSettingLabel:SetForeColor(Scripts.color["yellow"]);
 	generalSettingLabel:SetFontStyle(Turbine.UI.FontStyle.Outline);
 	generalSettingLabel:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
-	generalSettingLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/optionsTitleBackground.tga"));
+	generalSettingLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/options_title_background.tga"));
 
 
 	-- Golden window label --
@@ -194,7 +194,7 @@ plugin.GetOptionsPanel = function(self)
 	customizationLabel:SetForeColor(Scripts.color["yellow"]);
 	customizationLabel:SetFontStyle(Turbine.UI.FontStyle.Outline);
 	customizationLabel:SetBlendMode(Turbine.UI.BlendMode.AlphaBlend);
-	customizationLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/optionsTitleBackground.tga"));
+	customizationLabel:SetBackground(Turbine.UI.Graphic("TeamOrganizer/Images/options_title_background.tga"));
 
 
 	customization1 = createCustomizationOption(optionsPanel, 50, 480, Scripts.translate("customizationLabelInParty", Scripts.settings["language"]),  Scripts.translate("customizationLabelInPartyTooltip", Scripts.settings["language"]), "inParty");

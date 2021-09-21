@@ -51,7 +51,7 @@ function deleteGroupWindow:Constructor()
 		self.errorLabel:SetText(Scripts.translate("deletedGroup") .. self.groupSelect:GetValue() .. "!");
 		self.errorLabel:SetForeColor(Scripts.color["white"]);
 
-		Scripts.Utility.table_removeKey(Scripts.savedGroupNames, self.groupSelect:GetValue());
+		Scripts.Utility.tableRemoveKey(Scripts.savedGroupNames, self.groupSelect:GetValue());
 		TeamOrganizer.UI.deleteGroupWindow:updateGroupList();
 	end
 end

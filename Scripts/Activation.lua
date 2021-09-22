@@ -21,11 +21,6 @@ end
 
 -- Unload Plugin --
 Plugins[pluginName].Unload = function()
-	-- Close color picker --
-	if colorPicker ~= nil then
-		colorPicker:Close();
-	end
-	
 	-- Check was plugin unactivated because it was reloaded --
 	local loadedPlugins = Turbine.PluginManager:GetLoadedPlugins();
 	local internalReload = false;

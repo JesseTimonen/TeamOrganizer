@@ -23,6 +23,10 @@ defaultWindowPosition = {
     yPos = 0
 };
 
+-- Color Picker position --
+colorPickerLastPositionX = nil;
+colorPickerLastPositionY = nil;
+
 -- Default settings --
 settings = {
     language = clientLanguage,

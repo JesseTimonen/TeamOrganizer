@@ -6,7 +6,7 @@ function saveGroupWindow:Constructor()
 	self:SetText(Scripts.translate("saveGroup"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
-	self:SetSize(300, 200);
+	self:SetSize(300, 240);
 	self:SetPosition(0, 0);
 	self:SetZOrder(1000);
 	self.KeyDown = function(sender,args)
@@ -25,7 +25,7 @@ function saveGroupWindow:Constructor()
 	-- Name textbox --
 	self.nameInput = Turbine.UI.TextBox();
 	self.nameInput:SetParent(self);
-	self.nameInput:SetSize(130, 20);
+	self.nameInput:SetSize(240, 20);
 	self.nameInput:SetPosition(30, 70);
 	self.nameInput:SetMultiline(false);
 	self.nameInput:SetTextAlignment(Turbine.UI.ContentAlignment.LeftCenter);
@@ -37,18 +37,20 @@ function saveGroupWindow:Constructor()
 	self.errorLabel = Turbine.UI.Label();
 	self.errorLabel:SetParent(self);
 	self.errorLabel:SetVisible(false);
+	self.errorLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
 	self.errorLabel:SetSize(200, 30);
-	self.errorLabel:SetPosition(30, 110);
-	self.errorLabel:SetText(Scripts.translate("groupSaveFailedError"));
+	self.errorLabel:SetPosition(50, 160);
 	self.errorLabel:SetForeColor(Scripts.color["red"]);
+	self.errorLabel:SetText(Scripts.translate("groupSaveFailedError"));
 
 	-- Button to save group --
 	self.saveGroupButton = Turbine.UI.Lotro.Button();
 	self.saveGroupButton:SetParent(self);
 	self.saveGroupButton:SetText(Scripts.translate("saveGroup"));
-	self.saveGroupButton:SetSize(120, 30);
-	self.saveGroupButton:SetPosition(30, 140);
+	self.saveGroupButton:SetSize(130, 30);
+	self.saveGroupButton:SetPosition(self:GetWidth()/2 - self.saveGroupButton:GetWidth()/2, 195);
 	self.saveGroupButton.Click = function( sender, args)
+
 		-- Check if saving file was successful --
 		if (not Scripts.saveGroupCommand(self.nameInput:GetText())) then
 			self.errorLabel:SetVisible(true);
@@ -62,6 +64,8 @@ end
 -- Set Visibility --
 function saveGroupWindow:SetVisibility(state)
 	if (state == true) then
+		self.errorLabel:SetVisible(false);
+
 		if (mainWindow:GetLeft() - self:GetWidth() < 0) then
 			self:SetPosition(mainWindow:GetLeft()  +  mainWindow:GetWidth(), mainWindow:GetTop());
 		else

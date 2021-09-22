@@ -25,15 +25,6 @@ getPlayersButton.Click = function( sender, args)
 	Scripts.reloadPlugin();
 end
 
-function closeSideWindows()
-	TeamOrganizer.UI.addPlayerWindow:SetVisibility(false);
-	TeamOrganizer.UI.removePlayerWindow:SetVisibility(false);
-	TeamOrganizer.UI.changePlayerWindow:SetVisibility(false);
-	TeamOrganizer.UI.saveGroupWindow:SetVisibility(false);
-	TeamOrganizer.UI.loadGroupWindow:SetVisibility(false);
-	TeamOrganizer.UI.deleteGroupWindow:SetVisibility(false);
-end
-
 
 -- Button to add players --
 addPlayerButton = Turbine.UI.Lotro.Button();
@@ -80,8 +71,8 @@ end
 saveGroupButton = Turbine.UI.Lotro.Button();
 saveGroupButton:SetText(Scripts.translate("save"));
 saveGroupButton:SetParent(mainWindow);
-saveGroupButton:SetSize(75, 30);
-saveGroupButton:SetPosition((mainWindow:GetWidth()/2 - saveGroupButton:GetWidth()/2) - 80, mainWindow:GetHeight() - 40);
+saveGroupButton:SetSize(85, 30);
+saveGroupButton:SetPosition(mainWindow:GetWidth()/2 - saveGroupButton:GetWidth()/2 - 90, mainWindow:GetHeight() - 40);
 saveGroupButton.Click = function( sender, args)
 	closeSideWindows();
 	TeamOrganizer.UI.saveGroupWindow.nameInput:SetText("");
@@ -93,7 +84,7 @@ end
 loadGroupButton = Turbine.UI.Lotro.Button();
 loadGroupButton:SetText(Scripts.translate("load"));
 loadGroupButton:SetParent(mainWindow);
-loadGroupButton:SetSize(75, 30);
+loadGroupButton:SetSize(85, 30);
 loadGroupButton:SetPosition(mainWindow:GetWidth()/2 - loadGroupButton:GetWidth()/2, mainWindow:GetHeight() - 40);
 loadGroupButton.Click = function( sender, args)
 	closeSideWindows();
@@ -106,8 +97,8 @@ end
 deleteGroupButton = Turbine.UI.Lotro.GoldButton();
 deleteGroupButton:SetText(Scripts.translate("delete"));
 deleteGroupButton:SetParent(mainWindow);
-deleteGroupButton:SetSize(75, 30);
-deleteGroupButton:SetPosition((mainWindow:GetWidth()/2 - deleteGroupButton:GetWidth()/2) + 80, mainWindow:GetHeight() - 40);
+deleteGroupButton:SetSize(85, 30);
+deleteGroupButton:SetPosition(mainWindow:GetWidth()/2 - deleteGroupButton:GetWidth()/2 + 90, mainWindow:GetHeight() - 40);
 deleteGroupButton.Click = function( sender, args)
 	closeSideWindows();
 	TeamOrganizer.UI.deleteGroupWindow:updateGroupList();
@@ -150,8 +141,8 @@ readycheckButton.quickSlot:SetAllowDrop(false);
 readycheckButton.button:SetVisible(true);
 
 
+-- Disband button --
 if Scripts.settings["enableDisband"] then
-	-- Disband button --
 	disbandButton = createButton(mainWindow, 180, 90, 90, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
 	disbandLabel = createLabel(mainWindow, 175, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
 	disbandLabel:SetMouseVisible(false);
@@ -164,7 +155,14 @@ if Scripts.settings["enableDisband"] then
 end
 
 
-----------------------------------------------------------------------------------------------------
+function closeSideWindows()
+	TeamOrganizer.UI.addPlayerWindow:SetVisibility(false);
+	TeamOrganizer.UI.removePlayerWindow:SetVisibility(false);
+	TeamOrganizer.UI.changePlayerWindow:SetVisibility(false);
+	TeamOrganizer.UI.saveGroupWindow:SetVisibility(false);
+	TeamOrganizer.UI.loadGroupWindow:SetVisibility(false);
+	TeamOrganizer.UI.deleteGroupWindow:SetVisibility(false);
+end
 
 
 -- Create UI placeholders --

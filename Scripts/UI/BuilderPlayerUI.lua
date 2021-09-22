@@ -6,9 +6,9 @@ function createClassIcon(parent, xPos, yPos, width, height, iconPath)
 	icon:SetPosition(xPos, yPos);
 	icon:SetBackground(iconPath);
 	icon:SetVisible(false);
-
 	return icon;
 end
+
 
 -- Build layout for labels --
 function createLabel(parent, xPos, yPos, width, height, color, text)
@@ -21,9 +21,9 @@ function createLabel(parent, xPos, yPos, width, height, color, text)
 	label:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	label:SetForeColor(color);
 	label:SetVisible(false);
-
 	return label;
 end
+
 
 -- Build layout for buttons --
 function createButton(parent, xPos, yPos, width, height, color, alias, action)

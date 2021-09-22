@@ -1,16 +1,17 @@
-function sortPartyMembers(array)
-	if array == nil then return; end
+-- Sort party members using their class ID --
+function sortPartyMembers(table)
+	if table == nil then return; end
 
-	local tableSize = getTableSize(array);
+	local tableSize = getTableSize(table);
 	
 	for i = 1, tableSize do
 		swapped = false;
 
 		for j = 1, tableSize - 1  do
-			if (tonumber(array[tostring(j)].class) > tonumber(array[tostring(j + 1)].class)) then
-				local temp = array[tostring(j)];
-				array[tostring(j)] = array[tostring(j + 1)];
-				array[tostring(j + 1)] = temp;
+			if (tonumber(table[tostring(j)].class) > tonumber(table[tostring(j + 1)].class)) then
+				local temp = table[tostring(j)];
+				table[tostring(j)] = table[tostring(j + 1)];
+				table[tostring(j + 1)] = temp;
 				swapped = true;
 			end	
 		end
@@ -21,7 +22,7 @@ function sortPartyMembers(array)
 end
 
 
--- Check the size of a table
+-- Check the size of a table --
 function getTableSize(table)
 	
 	if table == nil then return 0; end

@@ -6,7 +6,7 @@ function deleteGroupWindow:Constructor()
 	self:SetText(Scripts.translate("deleteGroup"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
-	self:SetSize(300, 200);
+	self:SetSize(300, 240);
 	self:SetPosition(0, 0);
 	self:SetZOrder(1000);
 	self.KeyDown = function(sender,args)
@@ -15,41 +15,54 @@ function deleteGroupWindow:Constructor()
 		end
 	end
 
+	-- Select group label --
+	self.groupSelectLabel = Turbine.UI.Label();
+	self.groupSelectLabel:SetParent(self);
+	self.groupSelectLabel:SetVisible(true);
+	self.groupSelectLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
+	self.groupSelectLabel:SetSize(200, 30);
+	self.groupSelectLabel:SetPosition(50, 40);
+	self.groupSelectLabel:SetText(Scripts.translate("selectGroup"));
+
 	-- Group select drop down list --
 	self.groupSelect = TeamOrganizer.Utility.DropDownList();
 	self.groupSelect:SetParent(self);
-	self.groupSelect:SetDropRows(6);
+	self.groupSelect:SetDropRows(5);
 	self.groupSelect:SetSize(200, 20);
-	self.groupSelect:SetPosition(50, 50);
+	self.groupSelect:SetPosition(50, 70);
 	self.groupSelect:SetZOrder(1001);
 	self.groupSelect:SetVisible(true);
-	self.groupSelect:SetBackColor(Turbine.UI.Color(0, 0, 0));
-	self.groupSelect:SetTextColor(Turbine.UI.Color(1, 1, 1));
-	self.groupSelect:SetCurrentBackColor(Turbine.UI.Color(0, 0, 0));
+	self.groupSelect:SetBackColor(Scripts.color["black"]);
+	self.groupSelect:SetTextColor(Scripts.color["white"]);
+	self.groupSelect:SetCurrentBackColor(Scripts.color["black"]);
 
 	-- Error label --
 	self.errorLabel = Turbine.UI.Label();
 	self.errorLabel:SetParent(self);
-	self.errorLabel:SetVisible(true);
 	self.errorLabel:SetSize(200, 30);
-	self.errorLabel:SetPosition(50, 85);
+	self.errorLabel:SetPosition(50, 160);
 	self.errorLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
 
 	-- Button to delete group --
 	self.deleteGroupButton = Turbine.UI.Lotro.Button();
 	self.deleteGroupButton:SetParent(self);
 	self.deleteGroupButton:SetText(Scripts.translate("deleteGroup"));
-	self.deleteGroupButton:SetSize(120, 30);
-	self.deleteGroupButton:SetPosition(self:GetWidth()/2 - self.deleteGroupButton:GetWidth()/2, 120);
+	self.deleteGroupButton:SetSize(130, 30);
+	self.deleteGroupButton:SetPosition(self:GetWidth()/2 - self.deleteGroupButton:GetWidth()/2, 195);
 	self.deleteGroupButton.Click = function( sender, args)
+
+		-- Check are there any groups to delete --
 		if (self.groupSelect:GetValue() == nil) then
 			self.errorLabel:SetText(Scripts.translate("nothingToDelete"));
 			self.errorLabel:SetForeColor(Scripts.color["red"]);
+			self.errorLabel:SetVisible(true);
 			return;
 		end
 
+		-- Notify user that group has been deleted --
 		self.errorLabel:SetText(Scripts.translate("deletedGroup") .. self.groupSelect:GetValue() .. "!");
 		self.errorLabel:SetForeColor(Scripts.color["white"]);
+		self.errorLabel:SetVisible(true);
 
 		Scripts.Utility.tableRemoveKey(Scripts.savedGroupNames, self.groupSelect:GetValue());
 		TeamOrganizer.UI.deleteGroupWindow:updateGroupList();
@@ -69,6 +82,8 @@ end
 -- Set Visibility --
 function deleteGroupWindow:SetVisibility(state)
 	if (state == true) then
+		self.errorLabel:SetVisible(false);
+		
 		if (mainWindow:GetLeft() - self:GetWidth() < 0) then
 			self:SetPosition(mainWindow:GetLeft()  +  mainWindow:GetWidth(), mainWindow:GetTop());
 		else

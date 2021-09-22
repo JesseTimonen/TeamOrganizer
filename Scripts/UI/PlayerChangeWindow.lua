@@ -6,7 +6,7 @@ function changePlayerWindow:Constructor()
 	self:SetText(Scripts.translate("changePlayer"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
-	self:SetSize(300, 250);
+	self:SetSize(300, 310);
 	self:SetPosition(0, 0);
 	self:SetZOrder(1000);
 	self.KeyDown = function(sender,args)
@@ -25,14 +25,14 @@ function changePlayerWindow:Constructor()
 	-- Player select drop down list --
 	self.playerSelect = TeamOrganizer.Utility.DropDownList();
 	self.playerSelect:SetParent(self);
-	self.playerSelect:SetDropRows(5);
+	self.playerSelect:SetDropRows(9);
 	self.playerSelect:SetSize(240, 20);
 	self.playerSelect:SetPosition(30, 70);
 	self.playerSelect:SetZOrder(1002);
 	self.playerSelect:SetVisible(true);
-	self.playerSelect:SetBackColor(Turbine.UI.Color(0, 0, 0));
-	self.playerSelect:SetTextColor(Turbine.UI.Color(1, 1, 1));
-	self.playerSelect:SetCurrentBackColor(Turbine.UI.Color(0, 0, 0));
+	self.playerSelect:SetBackColor(Scripts.color["black"]);
+	self.playerSelect:SetTextColor(Scripts.color["white"]);
+	self.playerSelect:SetCurrentBackColor(Scripts.color["black"]);
 	self.playerSelect.SelectedIndexChanged = function()
 		self.nameInput:SetText(self.playerSelect:GetValue());
 	end
@@ -58,13 +58,13 @@ function changePlayerWindow:Constructor()
 	-- Class select drop down list --
 	self.classSelect = TeamOrganizer.Utility.DropDownList();
 	self.classSelect:SetParent(self);
-	self.classSelect:SetDropRows(3);
+	self.classSelect:SetDropRows(5);
 	self.classSelect:SetSize(240, 20);
 	self.classSelect:SetPosition(30, 150);
 	self.classSelect:SetZOrder(1001);
-	self.classSelect:SetBackColor(Turbine.UI.Color(0, 0, 0));
-	self.classSelect:SetTextColor(Turbine.UI.Color(1, 1, 1));
-	self.classSelect:SetCurrentBackColor(Turbine.UI.Color(0, 0, 0));
+	self.classSelect:SetBackColor(Scripts.color["black"]);
+	self.classSelect:SetTextColor(Scripts.color["white"]);
+	self.classSelect:SetCurrentBackColor(Scripts.color["black"]);
 	self.classSelect:AddItem(Scripts.translate("beorning"), 214);
 	self.classSelect:AddItem(Scripts.translate("burglar"), 40);
 	self.classSelect:AddItem(Scripts.translate("captain"), 24);
@@ -80,8 +80,9 @@ function changePlayerWindow:Constructor()
 	self.errorLabel = Turbine.UI.Label();
 	self.errorLabel:SetParent(self);
 	self.errorLabel:SetVisible(false);
+	self.errorLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
 	self.errorLabel:SetSize(200, 30);
-	self.errorLabel:SetPosition(30, 180);
+	self.errorLabel:SetPosition(50, 240);
 	self.errorLabel:SetForeColor(Scripts.color["red"]);
 
 	-- Button to change player --
@@ -89,32 +90,25 @@ function changePlayerWindow:Constructor()
 	self.changePlayerButton:SetParent(self);
 	self.changePlayerButton:SetText(Scripts.translate("changePlayer"));
 	self.changePlayerButton:SetSize(130, 30);
-	self.changePlayerButton:SetPosition(30, 200);
+	self.changePlayerButton:SetPosition(self:GetWidth()/2 - self.changePlayerButton:GetWidth()/2, 270);
 	self.changePlayerButton.Click = function( sender, args)
+
 		-- Check is there any players to change --
 		if (self.playerSelect:GetValue() == nil) then
 			self.errorLabel:SetText(Scripts.translate("nothingToChange"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end
-
-		-- Check is new name empty --
-		if (self.nameInput:GetText() == "") then
-			self.errorLabel:SetText(Scripts.translate("nameTooShort"));
-			self.errorLabel:SetVisible(true);
-			return;
-		end
-
-		-- Create change command --
-		args = "change " .. self.playerSelect:GetValue() .. " to " .. string.match(self.nameInput:GetText(), "(%S+)")  .. " " .. self.classSelect:GetValue();
-
-		-- Give error if name is shorter than 2 characters --
+		
+		-- Make sure username is not too short --
 		if (string.len(self.nameInput:GetText()) < 2) then
 			self.errorLabel:SetText(Scripts.translate("nameTooShort"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end
 
+		-- Create change player command --
+		args = "change " .. self.playerSelect:GetValue() .. " to " .. string.match(self.nameInput:GetText(), "(%S+)")  .. " " .. self.classSelect:GetValue();
 		Scripts.changePlayerCommand(args:gmatch("%S+"));
 	end
 end
@@ -132,6 +126,8 @@ end
 -- Set Visibility --
 function changePlayerWindow:SetVisibility(state)
 	if (state == true) then
+		self.errorLabel:SetVisible(false);
+		
 		if (mainWindow:GetLeft() - self:GetWidth() < 0) then
 			self:SetPosition(mainWindow:GetLeft()  +  mainWindow:GetWidth(), mainWindow:GetTop());
 		else

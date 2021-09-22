@@ -1,6 +1,6 @@
 plugin.GetOptionsPanel = function(self)
 
-	-- Create Options Panel --
+	-- Create options panel --
 	optionsPanel = Turbine.UI.Control();
 	optionsPanel:SetSize(500, 910);
 
@@ -28,7 +28,7 @@ plugin.GetOptionsPanel = function(self)
 		radioButton = TeamOrganizer.Utility.RadioButton();
 		radioButton:SetParent(optionsPanel);
 		radioButton:SetPosition(50, top);
-		radioButton:SetSize(300, 20);
+		radioButton:SetSize(80, 20);
 		radioButton:SetFont(Turbine.UI.Lotro.Font.TrajanPro15);
 		radioButton:SetForeColor(Scripts.color["golden"]);
 		radioButton:SetText(languages[i]);
@@ -61,7 +61,7 @@ plugin.GetOptionsPanel = function(self)
 	-- Golden window label --
 	goldenWindowLabel = Turbine.UI.Label();
 	goldenWindowLabel:SetParent(optionsPanel);
-	goldenWindowLabel:SetSize(300, 30);
+	goldenWindowLabel:SetSize(400, 30);
 	goldenWindowLabel:SetPosition(80, 200);
 	goldenWindowLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	goldenWindowLabel:SetText(Scripts.translate("goldTheme"));
@@ -70,16 +70,17 @@ plugin.GetOptionsPanel = function(self)
 	-- Checkbox for golden window setting --
 	goldenWindowCheckbox = Turbine.UI.Lotro.CheckBox();
 	goldenWindowCheckbox:SetParent(optionsPanel);
-	goldenWindowCheckbox:SetSize(20, 20);
+	goldenWindowCheckbox:SetSize(400, 20);
 	goldenWindowCheckbox:SetPosition(50, 199);
 	goldenWindowCheckbox:SetChecked(Scripts.settings["goldenTheme"]);
+	goldenWindowCheckbox:SetText("");
 	Scripts.Utility.TooltipAttach(goldenWindowCheckbox, Scripts.translate("goldThemeTooltip"));
 
 
 	-- Force top label --
 	forceTopLabel = Turbine.UI.Label();
 	forceTopLabel:SetParent(optionsPanel);
-	forceTopLabel:SetSize(300, 30);
+	forceTopLabel:SetSize(400, 30);
 	forceTopLabel:SetPosition(80, 230);
 	forceTopLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	forceTopLabel:SetText(Scripts.translate("forceTop"));
@@ -88,16 +89,17 @@ plugin.GetOptionsPanel = function(self)
 	-- Checkbox for force top setting --
 	forceTopCheckbox = Turbine.UI.Lotro.CheckBox();
 	forceTopCheckbox:SetParent(optionsPanel);
-	forceTopCheckbox:SetSize(20, 20);
+	forceTopCheckbox:SetSize(400, 20);
 	forceTopCheckbox:SetPosition(50, 229);
 	forceTopCheckbox:SetChecked(Scripts.settings["forceTop"]);
+	forceTopCheckbox:SetText("");
 	Scripts.Utility.TooltipAttach(forceTopCheckbox, Scripts.translate("forceTopTooltip"));
 
 
 	-- Enable escape label --
 	enableEscapeLabel = Turbine.UI.Label();
 	enableEscapeLabel:SetParent(optionsPanel);
-	enableEscapeLabel:SetSize(300, 30);
+	enableEscapeLabel:SetSize(400, 30);
 	enableEscapeLabel:SetPosition(80, 260);
 	enableEscapeLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	enableEscapeLabel:SetText(Scripts.translate("enableEscape"));
@@ -106,16 +108,17 @@ plugin.GetOptionsPanel = function(self)
 	-- Checkbox for enable escape setting --
 	enableEscapeCheckbox = Turbine.UI.Lotro.CheckBox();
 	enableEscapeCheckbox:SetParent(optionsPanel);
-	enableEscapeCheckbox:SetSize(20, 20);
+	enableEscapeCheckbox:SetSize(400, 20);
 	enableEscapeCheckbox:SetPosition(50, 259);
 	enableEscapeCheckbox:SetChecked(Scripts.settings["enableEscape"]);
+	enableEscapeCheckbox:SetText("");
 	Scripts.Utility.TooltipAttach(enableEscapeCheckbox, Scripts.translate("enableEscapeTooltip"));
 
 
 	-- Horizontal UI label --
 	horizontalUILabel = Turbine.UI.Label();
 	horizontalUILabel:SetParent(optionsPanel);
-	horizontalUILabel:SetSize(300, 30);
+	horizontalUILabel:SetSize(400, 30);
 	horizontalUILabel:SetPosition(80, 290);
 	horizontalUILabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	horizontalUILabel:SetText(Scripts.translate("horizontalUI"));
@@ -124,16 +127,17 @@ plugin.GetOptionsPanel = function(self)
 	-- Checkbox for horizontal UI setting --
 	horizontalUICheckbox = Turbine.UI.Lotro.CheckBox();
 	horizontalUICheckbox:SetParent(optionsPanel);
-	horizontalUICheckbox:SetSize(20, 20);
+	horizontalUICheckbox:SetSize(400, 20);
 	horizontalUICheckbox:SetPosition(50, 289);
 	horizontalUICheckbox:SetChecked(Scripts.settings["horizontalWindow"]);
+	horizontalUICheckbox:SetText("");
 	Scripts.Utility.TooltipAttach(horizontalUICheckbox, Scripts.translate("horizontalUITooltip"));
 
 
 	-- Enable disband button Label --
 	enableDisbandLabel = Turbine.UI.Label();
 	enableDisbandLabel:SetParent(optionsPanel);
-	enableDisbandLabel:SetSize(300, 30);
+	enableDisbandLabel:SetSize(400, 30);
 	enableDisbandLabel:SetPosition(80, 320);
 	enableDisbandLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	enableDisbandLabel:SetText(Scripts.translate("enableDisband"));
@@ -142,16 +146,17 @@ plugin.GetOptionsPanel = function(self)
 	-- Checkbox for enable disband setting --
 	enableDisbandCheckbox = Turbine.UI.Lotro.CheckBox();
 	enableDisbandCheckbox:SetParent(optionsPanel);
-	enableDisbandCheckbox:SetSize(20, 20);
+	enableDisbandCheckbox:SetSize(400, 20);
 	enableDisbandCheckbox:SetPosition(50, 319);
 	enableDisbandCheckbox:SetChecked(Scripts.settings["enableDisband"]);
+	enableDisbandCheckbox:SetText("");
 	Scripts.Utility.TooltipAttach(enableDisbandCheckbox, Scripts.translate("enableDisbandTooltip"));
 
 
 	-- Enable dismiss button Label --
 	enableDismissLabel = Turbine.UI.Label();
 	enableDismissLabel:SetParent(optionsPanel);
-	enableDismissLabel:SetSize(300, 30);
+	enableDismissLabel:SetSize(400, 30);
 	enableDismissLabel:SetPosition(80, 350);
 	enableDismissLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	enableDismissLabel:SetText(Scripts.translate("enableDismiss"));
@@ -160,26 +165,29 @@ plugin.GetOptionsPanel = function(self)
 	-- Checkbox for enable dismiss setting --
 	enableDismissCheckbox = Turbine.UI.Lotro.CheckBox();
 	enableDismissCheckbox:SetParent(optionsPanel);
-	enableDismissCheckbox:SetSize(20, 20);
+	enableDismissCheckbox:SetSize(400, 20);
 	enableDismissCheckbox:SetPosition(50, 349);
 	enableDismissCheckbox:SetChecked(Scripts.settings["enableDismiss"]);
+	enableDismissCheckbox:SetText("");
 	Scripts.Utility.TooltipAttach(enableDismissCheckbox, Scripts.translate("enableDismissTooltip"));
+
 
 	-- Enable promote button Label --
 	enablePromoteLabel = Turbine.UI.Label();
 	enablePromoteLabel:SetParent(optionsPanel);
-	enablePromoteLabel:SetSize(300, 30);
+	enablePromoteLabel:SetSize(400, 30);
 	enablePromoteLabel:SetPosition(80, 380);
 	enablePromoteLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	enablePromoteLabel:SetText(Scripts.translate("enablePromote"));
 	enablePromoteLabel:SetForeColor(Scripts.color["golden"]);
-
+	
 	-- Checkbox for enable promote setting --
 	enablePromoteCheckbox = Turbine.UI.Lotro.CheckBox();
 	enablePromoteCheckbox:SetParent(optionsPanel);
-	enablePromoteCheckbox:SetSize(20, 20);
+	enablePromoteCheckbox:SetSize(400, 20);
 	enablePromoteCheckbox:SetPosition(50, 379);
 	enablePromoteCheckbox:SetChecked(Scripts.settings["enablePromote"]);
+	enablePromoteCheckbox:SetText("");
 	Scripts.Utility.TooltipAttach(enablePromoteCheckbox, Scripts.translate("enablePromoteTooltip"));
 
 

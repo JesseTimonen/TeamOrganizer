@@ -281,6 +281,16 @@ translations = {
 		german = "Gruppe Löschen",
 		french = "Effacer Groupe"
 	},
+	selectPlayer = {
+		english = "Select player",
+		german = "Spieler auswählen",
+		french = "Sélectionner un joueur"
+	},
+	selectGroup = {
+		english = "Select group",
+		german = "Wähle die Gruppe",
+		french = "Sélectionner un groupe"
+	},
 	addPlayer = {
 		english = "Add Player",
 		german = "Spieler Addieren",
@@ -436,6 +446,11 @@ translations = {
 		german = "Name",
 		french = "Nom"
 	},
+	class = {
+		english = "Class",
+		german = "Klasse",
+		french = "Classer"
+	},
 	nothingToDelete = {
 		english = "Nothing to delete!",
 		german = "Nichts zu löschen!",
@@ -457,9 +472,9 @@ translations = {
 		french = "Groupe supprimé "
 	},
 	nameTooShort = {
-		english = "Name too short!",
-		german = "Name zu kurz!",
-		french = "Nom trop court!"
+		english = "Username was too short!",
+		german = "Benutzername war zu kurz!",
+		french = "Le nom d'utilisateur était trop court!"
 	},
 	nameTooLong = {
 		english = "Name too long!",

@@ -1,5 +1,6 @@
 -- Build layout for customization options --
 function createCustomizationOption(parent, xPos, yPos, text, tooltipText, keyValue)
+
 	local label = Turbine.UI.Label();
 	label:SetParent(parent);
 	label:SetForeColor(Scripts.color["golden"]);
@@ -7,13 +8,15 @@ function createCustomizationOption(parent, xPos, yPos, text, tooltipText, keyVal
 	label:SetText(text);
 	label:SetSize(240, 30);
 	label:SetPosition(xPos, yPos);
+
+
 	local labelTooltipHolder = Turbine.UI.Label();
 	labelTooltipHolder:SetParent(parent);
 	labelTooltipHolder:SetSize(60, 30);
 	labelTooltipHolder:SetPosition(xPos, yPos);
 	Scripts.Utility.TooltipAttach(labelTooltipHolder, tooltipText);
 
-	
+
 	local name = Turbine.UI.Label();
 	name:SetParent(parent);
 	name:SetSize(100, 30);
@@ -30,13 +33,21 @@ function createCustomizationOption(parent, xPos, yPos, text, tooltipText, keyVal
 	editButton:SetPosition(xPos + 100, yPos + 20);
 	editButton.Click = function( sender, args)
 		if colorPicker ~= nil then
+			colorPickerLastPositionX, colorPickerLastPositionY = colorPicker:GetPosition();
 			colorPicker:Close();
 		end
+
 		colorPicker = TeamOrganizer.Utility.ColorPicker(name:GetForeColor(), "H");
 		colorPicker:SetZOrder(9999);
-		colorPicker.ColorChanged  = function(picker)
+
+		if (colorPickerLastPositionX ~= nil) then
+			colorPicker:SetPosition(colorPickerLastPositionX, colorPickerLastPositionY);
+		end
+
+		colorPicker.ColorChanged = function(picker)
 			name:SetForeColor(picker:GetColor());
 		end
+
 		colorPicker.Accepted = function(picker)
 			name:SetForeColor(picker:GetColor());
 			colorPicker:Close();
@@ -64,6 +75,7 @@ function createCustomizationOption(parent, xPos, yPos, text, tooltipText, keyVal
 		-- Reset color to default settings --
 		name:SetForeColor(Scripts.defaultPlayerNameColor[keyValue]);
 	end
+
 
 	-- Return created objects --
 	data = {}

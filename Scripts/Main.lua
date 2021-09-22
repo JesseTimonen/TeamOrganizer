@@ -44,7 +44,7 @@ function getPlayers()
 		member.name = party:GetMember(i):GetName();
 		member.class = tostring(party:GetMember(i):GetClass());
 
-		-- Avoid adding plugin owner into the array --
+		-- Avoid adding plugin owner into the table --
 		if (member.name ~= playerName) then
 			-- We have to save index as a string, since some clients turn "." into "," which causes errors when loading data --
 			groupMembers[tostring(i - offset)] = member;
@@ -81,7 +81,7 @@ function updateUI()
 	else
 		if (groupMembersCount > 11 and not settings["horizontalWindow"]) then
 			width = 300;
-			height = 750;
+			height = 770;
 		else
 			width = 300;
 			height = 470;
@@ -91,9 +91,9 @@ function updateUI()
 	-- Update UI size and element positions --
 	UI.mainWindow:SetSize(width, height);
 	UI.errorLabel:SetPosition(UI.mainWindow:GetWidth()/2 - UI.errorLabel:GetWidth()/2, UI.mainWindow:GetHeight() - 80);
-	UI.saveGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.saveGroupButton:GetWidth()/2 - 80, UI.mainWindow:GetHeight() - 40);
+	UI.saveGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.saveGroupButton:GetWidth()/2 - 90, UI.mainWindow:GetHeight() - 40);
 	UI.loadGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.loadGroupButton:GetWidth()/2, UI.mainWindow:GetHeight() - 40);
-	UI.deleteGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.deleteGroupButton:GetWidth()/2 + 80, UI.mainWindow:GetHeight() - 40);
+	UI.deleteGroupButton:SetPosition(UI.mainWindow:GetWidth()/2 - UI.deleteGroupButton:GetWidth()/2 + 90, UI.mainWindow:GetHeight() - 40);
 
 	-- Loop through party members and add party member's information to placeholder UI elements --
 	for i = 1, groupMembersCount do

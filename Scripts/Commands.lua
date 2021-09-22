@@ -106,7 +106,7 @@ end
 -- Add player into a group --
 function addPlayerCommand(player, class, changePlayer)
 	-- Check if group is already full --
-	if (Utility.getTableSize(groupMembers) > 23) then
+	if (Utility.getTableSize(groupMembers) >= 23) then
 		notification(rgb["error"] .. translate("groupFullError") .. rgb["clear"]);
 		return false;
 	end

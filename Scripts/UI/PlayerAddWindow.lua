@@ -85,7 +85,7 @@ function addPlayerWindow:Constructor(windowType)
 			return;
 		end
 
-		-- Check if removing player was successful --
+		-- Check if adding player was successful --
 		if (not Scripts.addPlayerCommand(string.match(self.nameInput:GetText(), "(%S+)"), self.classSelect:GetValue())) then
 			self.errorLabel:SetText(Scripts.translate("addPlayerFailed"));
 			self.errorLabel:SetVisible(true);

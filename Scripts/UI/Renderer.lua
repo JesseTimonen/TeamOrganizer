@@ -22,6 +22,7 @@ getPlayersButton:SetParent(mainWindow);
 getPlayersButton:SetSize(120, 40);
 getPlayersButton:SetPosition(35, 38);
 getPlayersButton.Click = function( sender, args)
+	Scripts.settings["loadRequest"] = "current group";
 	Scripts.reloadPlugin();
 end
 
@@ -115,6 +116,7 @@ errorLabel:SetTextAlignment(Turbine.UI.ContentAlignment.BottomCenter);
 errorLabel:SetText("");
 errorLabel:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 errorLabel:SetForeColor(Scripts.color["red"]);
+errorLabel:SetVisible(false);
 
 
 -- Convert to raid button --

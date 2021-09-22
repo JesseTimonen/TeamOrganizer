@@ -3,74 +3,37 @@ function reloadPlugin()
 	Turbine.PluginManager.LoadPlugin(pluginReloaderName);
 end
 
--- Update method to see if plugin was reloaded --
+
+
+-- Update method called once everytime plugin is reloaded --
 UI.mainWindow.Update = function()
+	UI.mainWindow:SetWantsUpdates(false);
 
 	-- Unload reloader plugin --
 	Turbine.PluginManager.UnloadScriptState(pluginReloaderName);
-	UI.mainWindow:SetWantsUpdates(false);
 
-	-- Get players and update UI if load request to clear groups was not called --
-	if loadRequest ~= "Clear Groups" then
+	-- Create UI placeholders for party members --
+	Scripts.UI.createUIPlaceholders();
 
-		-- Check if player is in party --
-		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
-		if loadRequest == nil then
-			if party == nil then
-				errorMessage(translate("noParty"));
-				loadRequest = "Previous Group";
-			else
-				getPlayers();
-			end
-		end
-	
-		-- Create UI placeholders for party members --
-		Scripts.UI.createUIPlaceholders();
-		-- Update UI with found party members --
-		updateUI();
-	end
+	-- Update UI with party members --
+	updateUI();
 end
 UI.mainWindow:SetWantsUpdates(true);
 
-
-function getPlayers()
-	-- Reset previous party members --
-	groupMembers = {};
-	offset = 0;
-
-	-- Get players --
-	for i = 1, party:GetMemberCount() do
-		local member = Turbine.Object();
-		member.name = party:GetMember(i):GetName();
-		member.class = tostring(party:GetMember(i):GetClass());
-
-		-- Avoid adding plugin owner into the table --
-		if (member.name ~= playerName) then
-			-- We have to save index as a string, since some clients turn "." into "," which causes errors when loading data --
-			groupMembers[tostring(i - offset)] = member;
-		else
-			-- Offset players when plugin owner is found --
-			offset = 1;
-		end
-	end
-
-	-- Save party members to prevent losing data when disconnecting or switching characters --
-	Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, groupMembers);
-end
 
 
 function updateUI()
 	-- Hide previous party members --
 	clearWindow();
 
+	-- Count party members --
+	groupMembersCount = Utility.getTableSize(groupMembers);
+
 	-- Return if group is empty --
-	if groupMembers == nil then return; end
+	if (groupMembersCount == 0) then return; end
 
 	-- Sort party members --
 	Utility.sortPartyMembers(groupMembers);
-
-	-- Count party members --
-	groupMembersCount = Utility.getTableSize(groupMembers);
 
 	-- Update the size of the main window depending on how many members were found --
 	local height;
@@ -148,6 +111,7 @@ function updateUI()
 end
 
 
+
 function clearWindow()
 	-- Hide previous party members --
 	for i = 1, 23 do
@@ -167,6 +131,7 @@ function clearWindow()
 		end
 	end
 end
+
 
 
 -- Hide main window if escape is pressed and escape setting is enabled --

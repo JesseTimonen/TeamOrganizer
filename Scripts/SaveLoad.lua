@@ -1,19 +1,57 @@
 -- Load group information --
 function loadGroup()
-	-- Check if player have given a load request --
-	loadRequest = settings["loadRequest"];
+	-- Check if player has given a load request --
+	local loadRequest = settings["loadRequest"];
 
-	-- Reset load Request --
-	settings["loadRequest"] = nil;
+	-- Reset settings load Request to default --
+	settings["loadRequest"] = "previous group";
 
-	-- Check if load request is previous group --
+	-- Get Player's party --
+	party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
+
+	-- Return previous saved group if load request was "previous group" --
 	if loadRequest == "previous group" then
-		return Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
+		groupMembers = Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
+		return;
 	end
 
-	-- Return an empty group if load request was to clear the group --
+	-- Return an empty group if load request was "clear group" --
 	if loadRequest == "clear group" then
-		return nil;
+		groupMembers = {};
+		return;
+	end
+
+	-- Return current party if load request was "current group" --
+	if loadRequest == "current group" then
+		if party == nil then
+			-- No party found, return previous group --
+			errorMessage(translate("noParty"));
+			groupMembers = Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
+			return;
+		else
+			-- Load current party memebers --
+			local offset = 0;
+
+			-- Get players --
+			for i = 1, party:GetMemberCount() do
+				local member = Turbine.Object();
+				member.name = party:GetMember(i):GetName();
+				member.class = tostring(party:GetMember(i):GetClass());
+
+				-- Avoid adding plugin owner into the table --
+				if (member.name ~= playerName) then
+					-- We have to save index as a string, since some clients turn "." into "," which causes errors when loading data --
+					groupMembers[tostring(i - offset)] = member;
+				else
+					-- Offset players when plugin owner is found --
+					offset = 1;
+				end
+			end
+
+			-- Save party members to prevent losing data when disconnecting or switching characters --
+			Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, groupMembers);
+			return;
+		end
 	end
 
 	-- If load request was found load the team being requested --
@@ -26,24 +64,23 @@ function loadGroup()
 			-- Group loaded successfully --
 			notification(translate("groupLoaded") .. loadRequest);
 			Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, _groupMembers);
-			return _groupMembers;
+			groupMembers = _groupMembers;
+			return;
 		else
-			-- Failed to load group --
+			-- Failed to load group, return previous group --
 			notification(rgb["error"] .. translate("groupLoadFailed") .. loadRequest .. rgb["clear"]);
 			errorMessage(translate("groupLoadFailedError"));
 			Utility.tableRemoveKey(savedGroupNames, loadRequest);
-			return Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
+			groupMembers = Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
+			return;
 		end
 	end
 
-	-- If load request is empty then get the previous group the player played with --
-	if loadRequest == nil then
-		return Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
-	end
+	-- If all fails return previous group --
 
-	-- If all fails return an empty group --
-	return nil;
+	groupMembers = Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
 end
+
 
 
 function loadSettings()
@@ -78,7 +115,7 @@ end
 function toColor(r, g, b)
 
 	if (tonumber(r) == nil) or (tonumber(g) == nil) or (tonumber(b) == nil) then
-		-- Try to fix numbers by chaning "," to "." --
+		-- Try to fix numbers by chaning "." to "," --
 		r = r:gsub("%.", ",");
 		g = g:gsub("%.", ",");
 		b = b:gsub("%.", ",");

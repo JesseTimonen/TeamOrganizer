@@ -38,7 +38,7 @@ settings = {
     horizontalWindow = true,
     forceTop = false,
     goldenTheme = true,
-    loadRequest = nil
+    loadRequest = "previous group"
 };
 
 -- Default player name color codes --

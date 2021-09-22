@@ -7,7 +7,7 @@ end
 
 -- Track the player's name who was last invited to the party --
 -- Because "Target is already in a fellowship" doesn't tell us who the target is --
-invitedPlayerName = "";
+lastInvitedPlayerName = "";
 
 -- Analyze info about party actions in the chat --
 function analyzeMessage(args)
@@ -17,6 +17,7 @@ function analyzeMessage(args)
 	local message = args.Message;
 	local name = "";
 
+	
 	-- Check if the player has pending invitation --
 	name = string.match(message, translate("invited", clientLanguage));
 	if name ~= nil then
@@ -24,7 +25,7 @@ function analyzeMessage(args)
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
 		if (party ~= nil and party:GetLeader():GetName() ~= playerName) then return; end
 
-		invitedPlayerName = name;
+		lastInvitedPlayerName = name;
 		updateNameLabels(name, "invited");
 		return;
 	end
@@ -41,22 +42,22 @@ function analyzeMessage(args)
 
 
 	-- Check if player is already in party --
-	if (string.find(message, translate("alreadyInParty", clientLanguage)) and invitedPlayerName ~= "") then
+	if (string.find(message, translate("alreadyInParty", clientLanguage)) and lastInvitedPlayerName ~= "") then
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
 
 		-- If player doesn't have a party then invited player must be in another party --
 		if party == nil then
-			updateNameLabels(invitedPlayerName, "alreadyInAnotherParty");
+			updateNameLabels(lastInvitedPlayerName, "alreadyInAnotherParty");
 			return;
 		end
 
 		-- Check if invited player is already in the group --
-		if (Utility.isPlayerAlreadyInYourGroup(invitedPlayerName)) then
-			updateNameLabels(invitedPlayerName, "alreadyInMyParty");
+		if (Utility.isPlayerAlreadyInYourGroup(lastInvitedPlayerName)) then
+			updateNameLabels(lastInvitedPlayerName, "alreadyInMyParty");
 			return;
 		end
 
-		updateNameLabels(invitedPlayerName, "alreadyInAnotherParty");
+		updateNameLabels(lastInvitedPlayerName, "alreadyInAnotherParty");
 		return;
 	end
 
@@ -148,7 +149,7 @@ function updateNameLabels(name, action)
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["inParty"]);
-				invitedPlayerName = "";
+				lastInvitedPlayerName = "";
 				return;
 			end
 		end
@@ -160,7 +161,7 @@ function updateNameLabels(name, action)
 		for i = 1, table.getn(names) do
 			if (names[i]:GetText() == name) then
 				names[i]:SetForeColor(playerNameColor["anotherGroup"]);
-				invitedPlayerName = "";
+				lastInvitedPlayerName = "";
 				return;
 			end
 		end

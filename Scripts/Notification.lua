@@ -8,6 +8,8 @@ end
 
 -- Sends error message to main plugin window --
 function errorMessage(message)
+	UI.errorLabel:SetVisible(true);
+
 	if (type(message) == "string") then
 		UI.errorLabel:SetText(message);
 	else

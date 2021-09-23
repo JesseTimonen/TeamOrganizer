@@ -1,7 +1,7 @@
 -- Sends notifications to chat --
 function notification(message)
 	if (type(message) == "string") then
-		Turbine.Shell.WriteLine(rgb["pluginName"] .. translate("pluginName") .. rgb["clear"] .. ": " .. message);
+		Turbine.Shell.WriteLine(rgb["pluginName"] .. translate("TEXT_PLUGIN_NAME") .. rgb["clear"] .. ": " .. message);
 	end
 end
 
@@ -13,6 +13,6 @@ function errorMessage(message)
 	if (type(message) == "string") then
 		UI.errorLabel:SetText(message);
 	else
-		UI.errorLabel:SetText(translate("unknownError"));
+		UI.errorLabel:SetText(translate("TEXT_UNKNOWN_ERROR"));
 	end
 end

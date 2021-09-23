@@ -3,7 +3,7 @@ if Scripts.settings["goldenTheme"] then addPlayerWindow = class(Turbine.UI.Lotro
 -- Constructor --
 function addPlayerWindow:Constructor(windowType)
 	if Scripts.settings["goldenTheme"] then Turbine.UI.Lotro.GoldWindow.Constructor(self); else Turbine.UI.Lotro.Window.Constructor(self); end
-	self:SetText(Scripts.translate("addPlayer"));
+	self:SetText(Scripts.translate("TEXT_ADD_PLAYER"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
 	self:SetSize(300, 310);
@@ -18,7 +18,7 @@ function addPlayerWindow:Constructor(windowType)
 	-- Name label --
 	self.nameLabel = Turbine.UI.Label();
 	self.nameLabel:SetParent(self);
-	self.nameLabel:SetText(Scripts.translate("username"));
+	self.nameLabel:SetText(Scripts.translate("TEXT_USERNAME"));
 	self.nameLabel:SetSize(200, 30);
 	self.nameLabel:SetPosition(30, 60);
 
@@ -36,7 +36,7 @@ function addPlayerWindow:Constructor(windowType)
 	-- Class label --
 	self.classLabel = Turbine.UI.Label();
 	self.classLabel:SetParent(self);
-	self.classLabel:SetText(Scripts.translate("class"));
+	self.classLabel:SetText(Scripts.translate("TEXT_CLASS"));
 	self.classLabel:SetSize(200, 30);
 	self.classLabel:SetPosition(30, 115);
 
@@ -50,16 +50,16 @@ function addPlayerWindow:Constructor(windowType)
 	self.classSelect:SetBackColor(Scripts.color["black"]);
 	self.classSelect:SetTextColor(Scripts.color["white"]);
 	self.classSelect:SetCurrentBackColor(Scripts.color["black"]);
-	self.classSelect:AddItem(Scripts.translate("beorning"), 214);
-	self.classSelect:AddItem(Scripts.translate("burglar"), 40);
-	self.classSelect:AddItem(Scripts.translate("captain"), 24);
-	self.classSelect:AddItem(Scripts.translate("champion"), 172);
-	self.classSelect:AddItem(Scripts.translate("guardian"), 23);
-	self.classSelect:AddItem(Scripts.translate("hunter"), 162);
-	self.classSelect:AddItem(Scripts.translate("lore_master"), 185);
-	self.classSelect:AddItem(Scripts.translate("minstrel"), 31);
-	self.classSelect:AddItem(Scripts.translate("rune_keeper"), 193);
-	self.classSelect:AddItem(Scripts.translate("warden"), 194);
+	self.classSelect:AddItem(Scripts.translate("TEXT_BEORNING"), 214);
+	self.classSelect:AddItem(Scripts.translate("TEXT_BURGLAR"), 40);
+	self.classSelect:AddItem(Scripts.translate("TEXT_CAPTAIN"), 24);
+	self.classSelect:AddItem(Scripts.translate("TEXT_CHAMPION"), 172);
+	self.classSelect:AddItem(Scripts.translate("TEXT_GUARDIAN"), 23);
+	self.classSelect:AddItem(Scripts.translate("TEXT_HUNTER"), 162);
+	self.classSelect:AddItem(Scripts.translate("TEXT_LORE_MASTER"), 185);
+	self.classSelect:AddItem(Scripts.translate("TEXT_MINSTREL"), 31);
+	self.classSelect:AddItem(Scripts.translate("TEXT_RUNE_KEEPER"), 193);
+	self.classSelect:AddItem(Scripts.translate("TEXT_WARDEN"), 194);
 
 	-- Error label --
 	self.errorLabel = Turbine.UI.Label();
@@ -73,21 +73,21 @@ function addPlayerWindow:Constructor(windowType)
 	-- Button to add player --
 	self.addPlayerButton = Turbine.UI.Lotro.Button();
 	self.addPlayerButton:SetParent(self);
-	self.addPlayerButton:SetText(Scripts.translate("addPlayer"));
+	self.addPlayerButton:SetText(Scripts.translate("TEXT_ADD_PLAYER"));
 	self.addPlayerButton:SetSize(130, 30);
 	self.addPlayerButton:SetPosition(self:GetWidth()/2 - self.addPlayerButton:GetWidth()/2, 270);
 	self.addPlayerButton.Click = function( sender, args)
 
 		-- Make sure username is not too short --
 		if (string.len(self.nameInput:GetText()) < 2) then
-			self.errorLabel:SetText(Scripts.translate("nameTooShort"));
+			self.errorLabel:SetText(Scripts.translate("TEXT_NAME_TOO_SHORT"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end
 
 		-- Check if adding player was successful --
 		if (not Scripts.addPlayerCommand(string.match(self.nameInput:GetText(), "(%S+)"), self.classSelect:GetValue())) then
-			self.errorLabel:SetText(Scripts.translate("addPlayerFailed"));
+			self.errorLabel:SetText(Scripts.translate("TEXT_FAILED_TO_ADD_PLAYER"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end

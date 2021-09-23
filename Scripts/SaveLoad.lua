@@ -25,7 +25,7 @@ function loadGroup()
 	if loadRequest == "current group" then
 		if party == nil then
 			-- No party found, return previous group --
-			errorMessage(translate("noParty"));
+			errorMessage(translate("TEXT_NO_PARTY"));
 			groupMembers = Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
 			return;
 		else
@@ -62,14 +62,14 @@ function loadGroup()
 		-- See if requested group exists --
 		if _groupMembers ~= nil then
 			-- Group loaded successfully --
-			notification(translate("groupLoaded") .. loadRequest);
+			notification(translate("TEXT_GROUP_LOADED") .. loadRequest);
 			Turbine.PluginData.Save(Turbine.DataScope.Server, groupMembersFileName, _groupMembers);
 			groupMembers = _groupMembers;
 			return;
 		else
 			-- Failed to load group, return previous group --
-			notification(rgb["error"] .. translate("groupLoadFailed") .. loadRequest .. rgb["clear"]);
-			errorMessage(translate("groupLoadFailedError"));
+			notification(rgb["error"] .. translate("TEXT_FAILED_TO_LOAD_GROUP_DETAILED") .. loadRequest .. rgb["clear"]);
+			errorMessage(translate("TEXT_FAILED_TO_LOAD_GROUP"));
 			Utility.tableRemoveKey(savedGroupNames, loadRequest);
 			groupMembers = Turbine.PluginData.Load(Turbine.DataScope.Server, groupMembersFileName);
 			return;

@@ -3,7 +3,7 @@ if Scripts.settings["goldenTheme"] then loadGroupWindow = class(Turbine.UI.Lotro
 -- Constructor --
 function loadGroupWindow:Constructor()
 	if Scripts.settings["goldenTheme"] then Turbine.UI.Lotro.GoldWindow.Constructor(self); else Turbine.UI.Lotro.Window.Constructor(self); end
-	self:SetText(Scripts.translate("loadGroup"));
+	self:SetText(Scripts.translate("TEXT_LOAD_GROUP"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
 	self:SetSize(300, 240);
@@ -22,7 +22,7 @@ function loadGroupWindow:Constructor()
 	self.groupSelectLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
 	self.groupSelectLabel:SetSize(200, 30);
 	self.groupSelectLabel:SetPosition(50, 40);
-	self.groupSelectLabel:SetText(Scripts.translate("selectGroup"));
+	self.groupSelectLabel:SetText(Scripts.translate("TEXT_SELECT_GROUP"));
 
 	-- Group select drop down list --
 	self.groupSelect = TeamOrganizer.Utility.DropDownList();
@@ -48,14 +48,14 @@ function loadGroupWindow:Constructor()
 	-- Button to remove player --
 	self.loadGroupButton = Turbine.UI.Lotro.Button();
 	self.loadGroupButton:SetParent(self);
-	self.loadGroupButton:SetText(Scripts.translate("loadGroup"));
+	self.loadGroupButton:SetText(Scripts.translate("TEXT_LOAD_GROUP"));
 	self.loadGroupButton:SetSize(130, 30);
 	self.loadGroupButton:SetPosition(self:GetWidth()/2 - self.loadGroupButton:GetWidth()/2, 195);
 	self.loadGroupButton.Click = function( sender, args)
 
 		-- Make sure there are groups that can be loaded --
 		if (self.groupSelect:GetValue() == nil) then
-			self.errorLabel:SetText(Scripts.translate("groupLoadFailedError"));
+			self.errorLabel:SetText(Scripts.translate("TEXT_FAILED_TO_LOAD_GROUP"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end

@@ -19,7 +19,7 @@ function analyzeMessage(args)
 
 	
 	-- Check if the player has pending invitation --
-	name = string.match(message, translate("invited", clientLanguage));
+	name = string.match(message, translate("TEXT_CHAT_INVITED", clientLanguage));
 	if name ~= nil then
 		-- Make sure the player is the leader of the party --
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
@@ -32,17 +32,17 @@ function analyzeMessage(args)
 
 
 	-- Check if player joined the party --
-	name = string.match(message, translate("hasJoined", clientLanguage));
+	name = string.match(message, translate("TEXT_CHAT_HAS_JOINED", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "joined"); return end
 
 
 	-- Check if player declined invitation --
-	name = string.match(message, translate("declined", clientLanguage));
+	name = string.match(message, translate("TEXT_CHAT_DECLINED", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "declined"); return end
 
 
 	-- Check if player is already in party --
-	if (string.find(message, translate("alreadyInParty", clientLanguage)) and lastInvitedPlayerName ~= "") then
+	if (string.find(message, translate("TEXT_CHAT_ALREADY_IN_PARTY", clientLanguage)) and lastInvitedPlayerName ~= "") then
 		party = Turbine.Gameplay.LocalPlayer.GetInstance().GetParty();
 
 		-- If player doesn't have a party then invited player must be in another party --
@@ -63,32 +63,32 @@ function analyzeMessage(args)
 
 	
 	-- Check is the character online --
-	name = string.match(message, translate("unknownCharacter", clientLanguage));
+	name = string.match(message, translate("TEXT_CHAT_UNKNOWN_CHARACTER", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "unknownCharacter"); return end
 
 
 	-- Check if the character leaves the party --
-	name = string.match(message, translate("hasLeft", clientLanguage));
+	name = string.match(message, translate("TEXT_CHAT_HAS_LEFT", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "left/dismiss"); return end
 
 
 	-- Check if the character is dismissed from the raid --
-	name = string.match(message, translate("personDismissed", clientLanguage));
+	name = string.match(message, translate("TEXT_CHAT_PERSON_DISMISSED", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "left/dismiss"); return end
 
 
 	-- check if player leaves the party --
-	if string.find(message, translate("dropped", clientLanguage)) then updateNameLabels("", "disband"); return end
+	if string.find(message, translate("TEXT_CHAT_DROPPED", clientLanguage)) then updateNameLabels("", "disband"); return end
 
 
 	-- Update UI when player joins a group --
-	if string.find(message, translate("joinedFellowship", clientLanguage)) then
+	if string.find(message, translate("TEXT_CHAT_JOINED_FELLOWSHIP", clientLanguage)) then
 		Scripts.settings["loadRequest"] = "previous group";
 		Scripts.saveSettings();
 		reloadPlugin();
 		return
 	end
-	if string.find(message, translate("joinedRaid", clientLanguage)) then
+	if string.find(message, translate("TEXT_CHAT_JOINED_RAID", clientLanguage)) then
 		Scripts.settings["loadRequest"] = "previous group";
 		Scripts.saveSettings();
 		reloadPlugin();
@@ -97,13 +97,13 @@ function analyzeMessage(args)
 
 
 	-- Check if player was dismissed --
-	if string.find(message, translate("dismissedFromFellowship", clientLanguage)) then updateNameLabels("", "disband"); return end
-	if string.find(message, translate("dismissedFromRaid", clientLanguage)) then updateNameLabels("", "disband"); return end
+	if string.find(message, translate("TEXT_CHAT_DISMISSED_FROM_FELLOWSHIP", clientLanguage)) then updateNameLabels("", "disband"); return end
+	if string.find(message, translate("TEXT_CHAT_DISMISSED_FROM_RAID", clientLanguage)) then updateNameLabels("", "disband"); return end
 
 
 	-- Check if fellowship/raid was dismissed --
-	if string.find(message, translate("fellowshipDisbanded", clientLanguage)) then updateNameLabels("", "disband"); return end
-	if string.find(message, translate("raidDisbanded", clientLanguage)) then updateNameLabels("", "disband"); return end
+	if string.find(message, translate("TEXT_CHAT_FELLOWSHIP_DISBANDED", clientLanguage)) then updateNameLabels("", "disband"); return end
+	if string.find(message, translate("TEXT_CHAT_RAID_DISBANDED", clientLanguage)) then updateNameLabels("", "disband"); return end
 end
 
 

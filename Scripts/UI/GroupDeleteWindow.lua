@@ -3,7 +3,7 @@ if Scripts.settings["goldenTheme"] then deleteGroupWindow = class(Turbine.UI.Lot
 -- Constructor --
 function deleteGroupWindow:Constructor()
 	if Scripts.settings["goldenTheme"] then Turbine.UI.Lotro.GoldWindow.Constructor(self); else Turbine.UI.Lotro.Window.Constructor(self); end
-	self:SetText(Scripts.translate("deleteGroup"));
+	self:SetText(Scripts.translate("TEXT_DELETE_GROUP"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
 	self:SetSize(300, 240);
@@ -22,7 +22,7 @@ function deleteGroupWindow:Constructor()
 	self.groupSelectLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
 	self.groupSelectLabel:SetSize(200, 30);
 	self.groupSelectLabel:SetPosition(50, 40);
-	self.groupSelectLabel:SetText(Scripts.translate("selectGroup"));
+	self.groupSelectLabel:SetText(Scripts.translate("TEXT_SELECT_GROUP"));
 
 	-- Group select drop down list --
 	self.groupSelect = TeamOrganizer.Utility.DropDownList();
@@ -46,21 +46,21 @@ function deleteGroupWindow:Constructor()
 	-- Button to delete group --
 	self.deleteGroupButton = Turbine.UI.Lotro.Button();
 	self.deleteGroupButton:SetParent(self);
-	self.deleteGroupButton:SetText(Scripts.translate("deleteGroup"));
+	self.deleteGroupButton:SetText(Scripts.translate("TEXT_DELETE_GROUP"));
 	self.deleteGroupButton:SetSize(130, 30);
 	self.deleteGroupButton:SetPosition(self:GetWidth()/2 - self.deleteGroupButton:GetWidth()/2, 195);
 	self.deleteGroupButton.Click = function( sender, args)
 
 		-- Check are there any groups to delete --
 		if (self.groupSelect:GetValue() == nil) then
-			self.errorLabel:SetText(Scripts.translate("nothingToDelete"));
+			self.errorLabel:SetText(Scripts.translate("TEXT_NOTHING_TO_DELETE"));
 			self.errorLabel:SetForeColor(Scripts.color["red"]);
 			self.errorLabel:SetVisible(true);
 			return;
 		end
 
 		-- Notify user that group has been deleted --
-		self.errorLabel:SetText(Scripts.translate("deletedGroup") .. self.groupSelect:GetValue() .. "!");
+		self.errorLabel:SetText(Scripts.translate("TEXT_DELETED_GROUP") .. self.groupSelect:GetValue() .. "!");
 		self.errorLabel:SetForeColor(Scripts.color["white"]);
 		self.errorLabel:SetVisible(true);
 

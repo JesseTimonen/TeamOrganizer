@@ -23,11 +23,11 @@ function createCustomizationOption(parent, xPos, yPos, text, tooltipText, keyVal
 	name:SetPosition(xPos, yPos + 20);
 	name:SetFont(Turbine.UI.Lotro.Font.Verdana16);
 	name:SetForeColor(Scripts.playerNameColor[keyValue]);
-	name:SetText(Scripts.translate("username"));
+	name:SetText(Scripts.translate("TEXT_USERNAME"));
 
 
 	local editButton = Turbine.UI.Lotro.Button();
-	editButton:SetText(Scripts.translate("edit"));
+	editButton:SetText(Scripts.translate("TEXT_EDIT"));
 	editButton:SetParent(parent);
 	editButton:SetSize(75, 30);
 	editButton:SetPosition(xPos + 100, yPos + 20);
@@ -56,7 +56,7 @@ function createCustomizationOption(parent, xPos, yPos, text, tooltipText, keyVal
 
 
 	local revertButton = Turbine.UI.Lotro.Button();
-	revertButton:SetText(Scripts.translate("revert"));
+	revertButton:SetText(Scripts.translate("TEXT_REVERT"));
 	revertButton:SetParent(parent);
 	revertButton:SetSize(75, 30);
 	revertButton:SetPosition(xPos + 180, yPos + 20);
@@ -67,7 +67,7 @@ function createCustomizationOption(parent, xPos, yPos, text, tooltipText, keyVal
 
 
 	local defaultButton = Turbine.UI.Lotro.Button();
-	defaultButton:SetText(Scripts.translate("default"));
+	defaultButton:SetText(Scripts.translate("TEXT_DEFAULT"));
 	defaultButton:SetParent(parent);
 	defaultButton:SetSize(75, 30);
 	defaultButton:SetPosition(xPos + 260, yPos + 20);

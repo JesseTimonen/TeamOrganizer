@@ -3,7 +3,7 @@ if Scripts.settings["goldenTheme"] then removePlayerWindow = class(Turbine.UI.Lo
 -- Constructor --
 function removePlayerWindow:Constructor()
 	if Scripts.settings["goldenTheme"] then Turbine.UI.Lotro.GoldWindow.Constructor(self); else Turbine.UI.Lotro.Window.Constructor(self); end
-	self:SetText(Scripts.translate("removePlayer"));
+	self:SetText(Scripts.translate("TEXT_REMOVE_PLAYER"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
 	self:SetSize(300, 310);
@@ -19,7 +19,7 @@ function removePlayerWindow:Constructor()
 	self.playerSelectLabel = Turbine.UI.Label();
 	self.playerSelectLabel:SetParent(self);
 	self.playerSelectLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
-	self.playerSelectLabel:SetText(Scripts.translate("selectPlayer"));
+	self.playerSelectLabel:SetText(Scripts.translate("TEXT_SELECT_PLAYER"));
 	self.playerSelectLabel:SetSize(200, 30);
 	self.playerSelectLabel:SetPosition(50, 40);
 
@@ -47,12 +47,12 @@ function removePlayerWindow:Constructor()
 	-- Button to remove player --
 	self.removePlayerButton = Turbine.UI.Lotro.Button();
 	self.removePlayerButton:SetParent(self);
-	self.removePlayerButton:SetText(Scripts.translate("removePlayer"));
+	self.removePlayerButton:SetText(Scripts.translate("TEXT_REMOVE_PLAYER"));
 	self.removePlayerButton:SetSize(130, 30);
 	self.removePlayerButton:SetPosition(self:GetWidth()/2 - self.removePlayerButton:GetWidth()/2, 240);
 	self.removePlayerButton.Click = function( sender, args)
 		if (self.playerSelect:GetValue() == nil) then
-			self.errorLabel:SetText(Scripts.translate("nothingToRemove"));
+			self.errorLabel:SetText(Scripts.translate("TEXT_NOTHING_TO_REMOVE"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end
@@ -62,7 +62,7 @@ function removePlayerWindow:Constructor()
 	-- Button to remove all player --
 	self.removeAllPlayersButton = Turbine.UI.Lotro.Button();
 	self.removeAllPlayersButton:SetParent(self);
-	self.removeAllPlayersButton:SetText(Scripts.translate("removeAll"));
+	self.removeAllPlayersButton:SetText(Scripts.translate("TEXT_REMOVE_ALL"));
 	self.removeAllPlayersButton:SetSize(130, 30);
 	self.removeAllPlayersButton:SetPosition(self:GetWidth()/2 - self.removeAllPlayersButton:GetWidth()/2, 270);
 	self.removeAllPlayersButton.Click = function( sender, args)
@@ -78,7 +78,7 @@ function removePlayerWindow:Constructor()
 	self.confirmationLabel = Turbine.UI.Label();
 	self.confirmationLabel:SetParent(self);
 	self.confirmationLabel:SetVisible(false);
-	self.confirmationLabel:SetText(Scripts.translate("removeAllConfirmation"));
+	self.confirmationLabel:SetText(Scripts.translate("TEXT_REMOVE_ALL_CONFIRMATION"));
 	self.confirmationLabel:SetSize(200, 50);
 	self.confirmationLabel:SetPosition(50, 130);
 	self.confirmationLabel:SetTextAlignment(Turbine.UI.ContentAlignment.MiddleCenter);
@@ -87,7 +87,7 @@ function removePlayerWindow:Constructor()
 	self.confirmButton = Turbine.UI.Lotro.Button();
 	self.confirmButton:SetParent(self);
 	self.confirmButton:SetVisible(false);
-	self.confirmButton:SetText(Scripts.translate("no"));
+	self.confirmButton:SetText(Scripts.translate("TEXT_NO"));
 	self.confirmButton:SetSize(100, 30);
 	self.confirmButton:SetPosition(self:GetWidth()/2 - self.confirmButton:GetWidth()/2 + 60, 180);
 	self.confirmButton.Click = function(sender, args)
@@ -103,7 +103,7 @@ function removePlayerWindow:Constructor()
 	self.declineButton = Turbine.UI.Lotro.Button();
 	self.declineButton:SetParent(self);
 	self.declineButton:SetVisible(false);
-	self.declineButton:SetText(Scripts.translate("yes"));
+	self.declineButton:SetText(Scripts.translate("TEXT_YES"));
 	self.declineButton:SetSize(100, 30);
 	self.declineButton:SetPosition(self:GetWidth()/2 - self.declineButton:GetWidth()/2 - 60, 180);
 	self.declineButton.Click = function(sender, args)

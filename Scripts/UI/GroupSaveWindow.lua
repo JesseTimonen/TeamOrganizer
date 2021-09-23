@@ -3,7 +3,7 @@ if Scripts.settings["goldenTheme"] then saveGroupWindow = class(Turbine.UI.Lotro
 -- Constructor --
 function saveGroupWindow:Constructor()
 	if Scripts.settings["goldenTheme"] then Turbine.UI.Lotro.GoldWindow.Constructor(self); else Turbine.UI.Lotro.Window.Constructor(self); end
-	self:SetText(Scripts.translate("saveGroup"));
+	self:SetText(Scripts.translate("TEXT_SAVE_GROUP"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
 	self:SetSize(300, 240);
@@ -18,7 +18,7 @@ function saveGroupWindow:Constructor()
 	-- Name label --
 	self.nameLabel = Turbine.UI.Label();
 	self.nameLabel:SetParent(self);
-	self.nameLabel:SetText(Scripts.translate("name"));
+	self.nameLabel:SetText(Scripts.translate("TEXT_NAME"));
 	self.nameLabel:SetSize(200, 30);
 	self.nameLabel:SetPosition(30, 50);
 
@@ -41,12 +41,12 @@ function saveGroupWindow:Constructor()
 	self.errorLabel:SetSize(200, 30);
 	self.errorLabel:SetPosition(50, 160);
 	self.errorLabel:SetForeColor(Scripts.color["red"]);
-	self.errorLabel:SetText(Scripts.translate("groupSaveFailedError"));
+	self.errorLabel:SetText(Scripts.translate("TEXT_FAILED_TO_SAVE_GROUP"));
 
 	-- Button to save group --
 	self.saveGroupButton = Turbine.UI.Lotro.Button();
 	self.saveGroupButton:SetParent(self);
-	self.saveGroupButton:SetText(Scripts.translate("saveGroup"));
+	self.saveGroupButton:SetText(Scripts.translate("TEXT_SAVE_GROUP"));
 	self.saveGroupButton:SetSize(130, 30);
 	self.saveGroupButton:SetPosition(self:GetWidth()/2 - self.saveGroupButton:GetWidth()/2, 195);
 	self.saveGroupButton.Click = function( sender, args)

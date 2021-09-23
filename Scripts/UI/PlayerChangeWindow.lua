@@ -3,7 +3,7 @@ if Scripts.settings["goldenTheme"] then changePlayerWindow = class(Turbine.UI.Lo
 -- Constructor --
 function changePlayerWindow:Constructor()
 	if Scripts.settings["goldenTheme"] then Turbine.UI.Lotro.GoldWindow.Constructor(self); else Turbine.UI.Lotro.Window.Constructor(self); end
-	self:SetText(Scripts.translate("changePlayer"));
+	self:SetText(Scripts.translate("TEXT_CHANGE_PLAYER"));
 	self:SetVisible(false);
 	self:SetWantsKeyEvents(true);
 	self:SetSize(300, 310);
@@ -18,7 +18,7 @@ function changePlayerWindow:Constructor()
 	-- Change label --
 	self.nameLabel = Turbine.UI.Label();
 	self.nameLabel:SetParent(self);
-	self.nameLabel:SetText(Scripts.translate("change"));
+	self.nameLabel:SetText(Scripts.translate("TEXT_CHANGE"));
 	self.nameLabel:SetSize(200, 30);
 	self.nameLabel:SetPosition(30, 50);
 
@@ -40,7 +40,7 @@ function changePlayerWindow:Constructor()
 	-- Change to label --
 	self.toLabel = Turbine.UI.Label();
 	self.toLabel:SetParent(self);
-	self.toLabel:SetText(Scripts.translate("to"));
+	self.toLabel:SetText(Scripts.translate("TEXT_TO"));
 	self.toLabel:SetSize(200, 30);
 	self.toLabel:SetPosition(30, 100);
 
@@ -65,16 +65,16 @@ function changePlayerWindow:Constructor()
 	self.classSelect:SetBackColor(Scripts.color["black"]);
 	self.classSelect:SetTextColor(Scripts.color["white"]);
 	self.classSelect:SetCurrentBackColor(Scripts.color["black"]);
-	self.classSelect:AddItem(Scripts.translate("beorning"), 214);
-	self.classSelect:AddItem(Scripts.translate("burglar"), 40);
-	self.classSelect:AddItem(Scripts.translate("captain"), 24);
-	self.classSelect:AddItem(Scripts.translate("champion"), 172);
-	self.classSelect:AddItem(Scripts.translate("guardian"), 23);
-	self.classSelect:AddItem(Scripts.translate("hunter"), 162);
-	self.classSelect:AddItem(Scripts.translate("lore_master"), 185);
-	self.classSelect:AddItem(Scripts.translate("minstrel"), 31);
-	self.classSelect:AddItem(Scripts.translate("rune_keeper"), 193);
-	self.classSelect:AddItem(Scripts.translate("warden"), 194);
+	self.classSelect:AddItem(Scripts.translate("TEXT_BEORNING"), 214);
+	self.classSelect:AddItem(Scripts.translate("TEXT_BURGLAR"), 40);
+	self.classSelect:AddItem(Scripts.translate("TEXT_CAPTAIN"), 24);
+	self.classSelect:AddItem(Scripts.translate("TEXT_CHAMPION"), 172);
+	self.classSelect:AddItem(Scripts.translate("TEXT_GUARDIAN"), 23);
+	self.classSelect:AddItem(Scripts.translate("TEXT_HUNTER"), 162);
+	self.classSelect:AddItem(Scripts.translate("TEXT_LORE_MASTER"), 185);
+	self.classSelect:AddItem(Scripts.translate("TEXT_MINSTREL"), 31);
+	self.classSelect:AddItem(Scripts.translate("TEXT_RUNE_KEEPER"), 193);
+	self.classSelect:AddItem(Scripts.translate("TEXT_WARDEN"), 194);
 
 	-- Error label --
 	self.errorLabel = Turbine.UI.Label();
@@ -88,21 +88,21 @@ function changePlayerWindow:Constructor()
 	-- Button to change player --
 	self.changePlayerButton = Turbine.UI.Lotro.Button();
 	self.changePlayerButton:SetParent(self);
-	self.changePlayerButton:SetText(Scripts.translate("changePlayer"));
+	self.changePlayerButton:SetText(Scripts.translate("TEXT_CHANGE_PLAYER"));
 	self.changePlayerButton:SetSize(130, 30);
 	self.changePlayerButton:SetPosition(self:GetWidth()/2 - self.changePlayerButton:GetWidth()/2, 270);
 	self.changePlayerButton.Click = function( sender, args)
 
 		-- Check is there any players to change --
 		if (self.playerSelect:GetValue() == nil) then
-			self.errorLabel:SetText(Scripts.translate("nothingToChange"));
+			self.errorLabel:SetText(Scripts.translate("TEXT_NOTHING_TO_CHANGE"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end
 		
 		-- Make sure username is not too short --
 		if (string.len(self.nameInput:GetText()) < 2) then
-			self.errorLabel:SetText(Scripts.translate("nameTooShort"));
+			self.errorLabel:SetText(Scripts.translate("TEXT_NAME_TOO_SHORT"));
 			self.errorLabel:SetVisible(true);
 			return;
 		end

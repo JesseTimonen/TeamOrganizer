@@ -5,7 +5,7 @@ else
 	mainWindow = Turbine.UI.Lotro.Window();
 end
 
-mainWindow:SetText(Scripts.translate("pluginName"));
+mainWindow:SetText(Scripts.translate("TEXT_PLUGIN_NAME"));
 mainWindow:SetVisible(true);
 mainWindow:SetWantsKeyEvents(true);
 mainWindow:SetPosition(Scripts.settings["windowPosition"]["xPos"], Scripts.settings["windowPosition"]["yPos"]);
@@ -17,7 +17,7 @@ end
 
 -- Button to get players --
 getPlayersButton = Turbine.UI.Lotro.Button();
-getPlayersButton:SetText(Scripts.translate("getPlayers"));
+getPlayersButton:SetText(Scripts.translate("TEXT_GET_PLAYERS"));
 getPlayersButton:SetParent(mainWindow);
 getPlayersButton:SetSize(120, 40);
 getPlayersButton:SetPosition(35, 38);
@@ -70,7 +70,7 @@ end
 
 -- Button to save group --
 saveGroupButton = Turbine.UI.Lotro.Button();
-saveGroupButton:SetText(Scripts.translate("save"));
+saveGroupButton:SetText(Scripts.translate("TEXT_SAVE"));
 saveGroupButton:SetParent(mainWindow);
 saveGroupButton:SetSize(85, 30);
 saveGroupButton:SetPosition(mainWindow:GetWidth()/2 - saveGroupButton:GetWidth()/2 - 90, mainWindow:GetHeight() - 40);
@@ -83,7 +83,7 @@ end
 
 -- Button to load group --
 loadGroupButton = Turbine.UI.Lotro.Button();
-loadGroupButton:SetText(Scripts.translate("load"));
+loadGroupButton:SetText(Scripts.translate("TEXT_LOAD"));
 loadGroupButton:SetParent(mainWindow);
 loadGroupButton:SetSize(85, 30);
 loadGroupButton:SetPosition(mainWindow:GetWidth()/2 - loadGroupButton:GetWidth()/2, mainWindow:GetHeight() - 40);
@@ -96,7 +96,7 @@ end
 
 -- Button to Deleting group --
 deleteGroupButton = Turbine.UI.Lotro.GoldButton();
-deleteGroupButton:SetText(Scripts.translate("delete"));
+deleteGroupButton:SetText(Scripts.translate("TEXT_DELETE"));
 deleteGroupButton:SetParent(mainWindow);
 deleteGroupButton:SetSize(85, 30);
 deleteGroupButton:SetPosition(mainWindow:GetWidth()/2 - deleteGroupButton:GetWidth()/2 + 90, mainWindow:GetHeight() - 40);
@@ -120,8 +120,8 @@ errorLabel:SetVisible(false);
 
 
 -- Convert to raid button --
-createRaidButton = createButton(mainWindow, 180, 40, 90, 20, Scripts.color["darkGreen"], Scripts.translate("action_raidCreate", Scripts.clientLanguage));
-createRaidLabel = createLabel(mainWindow, 175, 38, 100, 20, Scripts.color["white"], Scripts.translate("raid"));
+createRaidButton = createButton(mainWindow, 180, 40, 90, 20, Scripts.color["darkGreen"], Scripts.translate("TEXT_ACTION_CREATE_RAID", Scripts.clientLanguage));
+createRaidLabel = createLabel(mainWindow, 175, 38, 100, 20, Scripts.color["white"], Scripts.translate("TEXT_RAID"));
 createRaidLabel:SetMouseVisible(false);
 createRaidLabel:SetVisible(true);
 createRaidLabel:SetZOrder(3);
@@ -132,8 +132,8 @@ createRaidButton.button:SetVisible(true);
 
 
 -- Readycheck button --
-readycheckButton = createButton(mainWindow, 180, 65, 90, 20, Scripts.color["darkBlue"], Scripts.translate("action_readycheck", Scripts.clientLanguage));
-readycheckLabel = createLabel(mainWindow, 175, 63, 100, 20, Scripts.color["white"], Scripts.translate("readycheck"));
+readycheckButton = createButton(mainWindow, 180, 65, 90, 20, Scripts.color["darkBlue"], Scripts.translate("TEXT_ACTION_READYCHECK", Scripts.clientLanguage));
+readycheckLabel = createLabel(mainWindow, 175, 63, 100, 20, Scripts.color["white"], Scripts.translate("TEXT_READYCHECK"));
 readycheckLabel:SetMouseVisible(false);
 readycheckLabel:SetVisible(true);
 readycheckLabel:SetZOrder(3);
@@ -145,8 +145,8 @@ readycheckButton.button:SetVisible(true);
 
 -- Disband button --
 if Scripts.settings["enableDisband"] then
-	disbandButton = createButton(mainWindow, 180, 90, 90, 20, Scripts.color["darkRed"], Scripts.translate("action_raidDisband", Scripts.clientLanguage));
-	disbandLabel = createLabel(mainWindow, 175, 88, 100, 20, Scripts.color["white"], Scripts.translate("disband"));
+	disbandButton = createButton(mainWindow, 180, 90, 90, 20, Scripts.color["darkRed"], Scripts.translate("TEXT_ACTION_DISBAND_RAID", Scripts.clientLanguage));
+	disbandLabel = createLabel(mainWindow, 175, 88, 100, 20, Scripts.color["white"], Scripts.translate("TEXT_DISBAND"));
 	disbandLabel:SetMouseVisible(false);
 	disbandLabel:SetVisible(true);
 	disbandLabel:SetZOrder(3);

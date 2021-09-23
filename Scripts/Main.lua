@@ -77,7 +77,7 @@ function updateUI()
 		end
 
 		-- Invite buttons --
-		local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_invite", clientLanguage) .. groupMembers[tostring(i)].name);
+		local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("TEXT_ACTION_INVITE", clientLanguage) .. groupMembers[tostring(i)].name);
 		inviteButtons[i].quickSlot:SetVisible(true);
 		inviteButtons[i].button:SetVisible(true);
 		inviteButtons[i].quickSlot:SetShortcut(act);
@@ -85,7 +85,7 @@ function updateUI()
 
 		-- Dismiss buttons --
 		if (settings["enableDismiss"]) then
-			local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_dismiss", clientLanguage) .. groupMembers[tostring(i)].name);
+			local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("TEXT_ACTION_DISMISS", clientLanguage) .. groupMembers[tostring(i)].name);
 			dismissButtons[i].quickSlot:SetVisible(true);
 			dismissButtons[i].button:SetVisible(true);
 			dismissButtons[i].quickSlot:SetShortcut(act);
@@ -94,14 +94,14 @@ function updateUI()
 
 		if (settings["enablePromote"]) then
 			-- Promote buttons --
-			local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_promote", clientLanguage) .. groupMembers[tostring(i)].name);
+			local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("TEXT_ACTION_PROMOTE", clientLanguage) .. groupMembers[tostring(i)].name);
 			promoteButtons[i].quickSlot:SetVisible(true);
 			promoteButtons[i].button:SetVisible(true);
 			promoteButtons[i].quickSlot:SetShortcut(act);
 			promoteButtons[i].quickSlot:SetAllowDrop(false);
 
 			-- Demote buttons --
-			local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("action_demote", clientLanguage) .. groupMembers[tostring(i)].name);
+			local act = Turbine.UI.Lotro.Shortcut(Turbine.UI.Lotro.ShortcutType.Alias, translate("TEXT_ACTION_DEMOTE", clientLanguage) .. groupMembers[tostring(i)].name);
 			demoteButtons[i].quickSlot:SetVisible(true);
 			demoteButtons[i].button:SetVisible(true);
 			demoteButtons[i].quickSlot:SetShortcut(act);

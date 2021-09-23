@@ -14,7 +14,7 @@ Plugins[pluginName].Load = function()
 	end
 
 	-- Display plugin loaded message --
-	notification(translate("loaded") .. " " .. Plugins[pluginName]:GetVersion() .. " " .. translate("credits"));
+	notification(translate("TEXT_LOADED") .. " " .. Plugins[pluginName]:GetVersion() .. " " .. translate("TEXT_CREDITS"));
 end
 
 
@@ -34,7 +34,7 @@ Plugins[pluginName].Unload = function()
 		settings["loadRequest"] = "previous group";
 
 		-- Display plugin unloaded message --
-		notification(translate("unloaded"));
+		notification(translate("TEXT_UNLOADED"));
 	end
 
 	-- Save settings --

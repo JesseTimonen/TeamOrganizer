@@ -49,7 +49,7 @@ function loadGroupWindow:Constructor()
 	self.loadGroupButton = Turbine.UI.Lotro.Button();
 	self.loadGroupButton:SetParent(self);
 	self.loadGroupButton:SetText(Scripts.translate("TEXT_LOAD_GROUP"));
-	self.loadGroupButton:SetSize(130, 30);
+	self.loadGroupButton:SetSize(150, 30);
 	self.loadGroupButton:SetPosition(self:GetWidth()/2 - self.loadGroupButton:GetWidth()/2, 195);
 	self.loadGroupButton.Click = function( sender, args)
 

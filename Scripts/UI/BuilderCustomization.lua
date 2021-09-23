@@ -12,7 +12,7 @@ function createCustomizationOption(parent, xPos, yPos, text, tooltipText, keyVal
 
 	local labelTooltipHolder = Turbine.UI.Label();
 	labelTooltipHolder:SetParent(parent);
-	labelTooltipHolder:SetSize(60, 30);
+	labelTooltipHolder:SetSize(95, 30);
 	labelTooltipHolder:SetPosition(xPos, yPos);
 	Scripts.Utility.TooltipAttach(labelTooltipHolder, tooltipText);
 

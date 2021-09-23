@@ -48,7 +48,7 @@ function removePlayerWindow:Constructor()
 	self.removePlayerButton = Turbine.UI.Lotro.Button();
 	self.removePlayerButton:SetParent(self);
 	self.removePlayerButton:SetText(Scripts.translate("TEXT_REMOVE_PLAYER"));
-	self.removePlayerButton:SetSize(130, 30);
+	self.removePlayerButton:SetSize(150, 30);
 	self.removePlayerButton:SetPosition(self:GetWidth()/2 - self.removePlayerButton:GetWidth()/2, 240);
 	self.removePlayerButton.Click = function( sender, args)
 		if (self.playerSelect:GetValue() == nil) then
@@ -63,7 +63,7 @@ function removePlayerWindow:Constructor()
 	self.removeAllPlayersButton = Turbine.UI.Lotro.Button();
 	self.removeAllPlayersButton:SetParent(self);
 	self.removeAllPlayersButton:SetText(Scripts.translate("TEXT_REMOVE_ALL"));
-	self.removeAllPlayersButton:SetSize(130, 30);
+	self.removeAllPlayersButton:SetSize(150, 30);
 	self.removeAllPlayersButton:SetPosition(self:GetWidth()/2 - self.removeAllPlayersButton:GetWidth()/2, 270);
 	self.removeAllPlayersButton.Click = function( sender, args)
 		self.errorLabel:SetVisible(false);

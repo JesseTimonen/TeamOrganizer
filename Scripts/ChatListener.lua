@@ -71,6 +71,11 @@ function analyzeMessage(args)
 	name = string.match(message, translate("TEXT_CHAT_HAS_LEFT", clientLanguage));
 	if name ~= nil then updateNameLabels(name, "left/dismiss"); return end
 
+	
+	-- Check if party members are dismissed from the party --
+	name = string.match(message, translate("TEXT_CHAT_HAS_BEEN_DISMISSED", clientLanguage));
+	if name ~= nil then updateNameLabels(name, "left/dismiss"); return end
+
 
 	-- Check if the character is dismissed from the raid --
 	name = string.match(message, translate("TEXT_CHAT_PERSON_DISMISSED", clientLanguage));

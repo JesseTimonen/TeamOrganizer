@@ -47,7 +47,7 @@ function saveGroupWindow:Constructor()
 	self.saveGroupButton = Turbine.UI.Lotro.Button();
 	self.saveGroupButton:SetParent(self);
 	self.saveGroupButton:SetText(Scripts.translate("TEXT_SAVE_GROUP"));
-	self.saveGroupButton:SetSize(130, 30);
+	self.saveGroupButton:SetSize(150, 30);
 	self.saveGroupButton:SetPosition(self:GetWidth()/2 - self.saveGroupButton:GetWidth()/2, 195);
 	self.saveGroupButton.Click = function( sender, args)
 

@@ -50,16 +50,17 @@ function addPlayerWindow:Constructor(windowType)
 	self.classSelect:SetBackColor(Scripts.color["black"]);
 	self.classSelect:SetTextColor(Scripts.color["white"]);
 	self.classSelect:SetCurrentBackColor(Scripts.color["black"]);
-	self.classSelect:AddItem(Scripts.translate("TEXT_BEORNING"), 214);
-	self.classSelect:AddItem(Scripts.translate("TEXT_BURGLAR"), 40);
-	self.classSelect:AddItem(Scripts.translate("TEXT_CAPTAIN"), 24);
-	self.classSelect:AddItem(Scripts.translate("TEXT_CHAMPION"), 172);
 	self.classSelect:AddItem(Scripts.translate("TEXT_GUARDIAN"), 23);
-	self.classSelect:AddItem(Scripts.translate("TEXT_HUNTER"), 162);
-	self.classSelect:AddItem(Scripts.translate("TEXT_LORE_MASTER"), 185);
+	self.classSelect:AddItem(Scripts.translate("TEXT_CAPTAIN"), 24);
 	self.classSelect:AddItem(Scripts.translate("TEXT_MINSTREL"), 31);
+	self.classSelect:AddItem(Scripts.translate("TEXT_BURGLAR"), 40);
+	self.classSelect:AddItem(Scripts.translate("TEXT_HUNTER"), 162);
+	self.classSelect:AddItem(Scripts.translate("TEXT_CHAMPION"), 172);
+	self.classSelect:AddItem(Scripts.translate("TEXT_LORE_MASTER"), 185);
 	self.classSelect:AddItem(Scripts.translate("TEXT_RUNE_KEEPER"), 193);
 	self.classSelect:AddItem(Scripts.translate("TEXT_WARDEN"), 194);
+	self.classSelect:AddItem(Scripts.translate("TEXT_BEORNING"), 214);
+	self.classSelect:AddItem(Scripts.translate("TEXT_BRAWLER"), 215);
 
 	-- Error label --
 	self.errorLabel = Turbine.UI.Label();
@@ -74,7 +75,7 @@ function addPlayerWindow:Constructor(windowType)
 	self.addPlayerButton = Turbine.UI.Lotro.Button();
 	self.addPlayerButton:SetParent(self);
 	self.addPlayerButton:SetText(Scripts.translate("TEXT_ADD_PLAYER"));
-	self.addPlayerButton:SetSize(130, 30);
+	self.addPlayerButton:SetSize(150, 30);
 	self.addPlayerButton:SetPosition(self:GetWidth()/2 - self.addPlayerButton:GetWidth()/2, 270);
 	self.addPlayerButton.Click = function( sender, args)
 

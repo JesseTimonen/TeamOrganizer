@@ -22,7 +22,7 @@ translations = {
 	TEXT_PLUGIN_NAME = {
 		english = "Team Organizer",
 		german  = "Teamorganisator",
-		french  = "Team Organizer"
+		french  = "Organisateur d'équipe"
 	},
 
 
@@ -31,7 +31,7 @@ translations = {
 	TEXT_BEORNING = {
 		english = "Beorning",
 		german  = "Beorninger",
-		french  = "Beornides"
+		french  = "Beornide"
 	},
 	TEXT_BURGLAR = {
 		english = "Burglar",
@@ -47,6 +47,11 @@ translations = {
 		english = "Champion",
 		german  = "Waffenmeister",
 		french  = "Champion"
+	},
+	TEXT_BRAWLER = {
+		english = "Brawler",
+		german  = "Schläger",
+		french  = "Bagarreur"
 	},
 	TEXT_GUARDIAN = {
 		english = "Guardian",
@@ -85,12 +90,12 @@ translations = {
 	TEXT_LANGUAGE = {
 		english = "Language",
 		german  = "Sprache",
-		french  = "La langue"
+		french  = "Langue"
 	},
 	TEXT_GENERAL_SETTINGS = {
 		english = "General Settings",
 		german  = "Allgemeine Einstellungen",
-		french  = "Réglages Généraux"
+		french  = "réglages généraux"
 	},
 	TEXT_CUSTOMIZATION = {
 		english = "Customization",
@@ -98,64 +103,64 @@ translations = {
 		french  = "Personnalisation"
 	},
 	TEXT_ENABLE_ESCAPE = {
-		english = "Close window by pressing 'ESC'",
-		german  = "Fenster schließen mit 'ESC'",
-		french  = "Fermez la fenêtre en appuyant sur 'ESC'"
+		english = "Close window by pressing [ESC]",
+		german  = "Fenster schließen mit [ESC]",
+		french  = "Fermez la fenêtre en appuyant sur [ESC]"
 	},
 	TEXT_ENABLE_ESCAPE_TOOLTIP = {
-		english = "Team Organizer window will be hidden when 'ESC' is pressed",
-		german  = "Teamorganisator Fenster wird versteckt wenn 'ESC'",
-		french  = "La fenêtre du gestionnaire de groupe sera masquée lorsque vous appuierez sur 'ESC'"
+		english = "Team Organizer window will be hidden when [ESC] is pressed",
+		german  = "Das Teamorganisator-Fenster wird ausgeblendet, wenn [ESC] gedrückt wird",
+		french  = "La fenêtre de l'organisateur d'équipe sera masquée lorsque [ESC] est enfoncé"
 	},
 	TEXT_ENABLE_DISBAND = {
 		english = "Display disband button",
-		german  = "Schaltfläche zum Auflösen der Anzeige",
-		french  = "Afficher le bouton Dissoudre"
+		german  = "Schaltfläche zum Auflösen anzeigen",
+		french  = "Afficher le bouton de suppression"
 	},
 	TEXT_ENABLE_DISBAND_TOOLTIP = {
 		english = "Disband button will be displayed in the UI",
-		german  = "Die Auflösen-Schaltfläche wird in der Benutzeroberfläche angezeigt",
-		french  = "Dissoudre bouton sera affiché dans l'interface utilisateur"
+		german  = "Die Schaltfläche Auflösen wird in der Benutzeroberfläche angezeigt",
+		french  = "Le bouton Disband s'affichera dans l'interface utilisateur"
 	},
 	TEXT_ENABLE_DISMISS = {
 		english = "Display dismiss player button",
-		german  = "Anzeige der Schaltfläche zum Entfernen des Spielers",
-		french  = "Afficher le bouton de rejet du lecteur"
+		german  = "Schaltfläche zum Schließen des Players anzeigen",
+		french  = "Afficher le bouton de rejet du joueur"
 	},
 	TEXT_ENABLE_DISMISS_TOOLTIP = {
 		english = "Dismiss player button will be displayed in the UI",
-		german  = "Die Schaltfläche Spieler schließen wird in der Benutzeroberfläche angezeigt",
+		german  = "Die Schaltfläche Spieler verwerfen wird in der Benutzeroberfläche angezeigt",
 		french  = "Le bouton Ignorer le joueur s'affichera dans l'interface utilisateur"
 	},
 	TEXT_ENABLE_PROMOTE = {
 		english = "Display promote player button",
-		german  = "Anzeige der Schaltfläche 'Spieler fördern'",
+		german  = "Schaltfläche zum Werben für Spieler anzeigen",
 		french  = "Afficher le bouton de promotion du joueur"
 	},
 	TEXT_ENABLE_PROMOTE_TOOLTIP = {
 		english = "Promote player button will be displayed in the UI",
-		german  = "Die Schaltfläche 'Spieler hochstufen' wird in der Benutzeroberfläche angezeigt",
-		french  = "Le bouton de promotion du joueur sera affiché dans l'interface utilisateur"
+		german  = "Die Schaltfläche Spieler befördern wird in der Benutzeroberfläche angezeigt",
+		french  = "Le bouton Promouvoir le joueur s'affichera dans l'interface utilisateur"
 	},
 	TEXT_ENABLE_HORIZONTAL_UI = {
-		english = "Horizontal UI",
-		german  = "Horizontales UI",
-		french  = "Interface horizontale"
+		english = "Horizontal UI with large groups",
+		german  = "Horizontale Benutzeroberfläche mit großen Gruppen",
+		french  = "Interface utilisateur horizontale avec de grands groupes"
 	},
 	TEXT_ENABLE_HORIZONTAL_UI_TOOLTIP = {
 		english = "Players are seperated into 2 columns if there are more than 12 players in your party",
-		german  = "Spieler werden in 2 Reihen aufgeteilt wenn mehr als 12 Spieler in der Gruppe sind",
+		german  = "Spieler werden in 2 Spalten unterteilt, wenn mehr als 12 Spieler in Ihrer Gruppe sind",
 		french  = "Les joueurs sont séparés en 2 colonnes s'il y a plus de 12 joueurs dans votre groupe"
 	},
 	TEXT_ENABLE_FORCE_TOP = {
-		english = "Force window on top of other elements",
-		german  = "Fenster über andere Elemente erzwingen",
-		french  = "Forcer la fenêtre au-dessus des autres éléments"
+		english = "Force window on top of other game elements",
+		german  = "Fenster über anderen Spielelementen erzwingen",
+		french  = "Forcer la fenêtre au-dessus des autres éléments du jeu"
 	},
 	TEXT_ENABLE_FORCE_TOP_TOOLTIP = {
-		english = "Team Organizer window will always be on top of other game elements.",
-		german  = "Das Teamorganisator Fenster befindet sich immer über anderen Spielelementen.",
-		french  = "La fenêtre Team Organizer sera toujours au-dessus des autres éléments du jeu."
+		english = "Team Organizer window will always be on top of other game elements",
+		german  = "Das Team-Organizer-Fenster wird immer über anderen Spielelementen angezeigt",
+		french  = "La fenêtre de l'organisateur d'équipe sera toujours au-dessus des autres éléments du jeu"
 	},
 	TEXT_ENABLE_GOLD_THEME = {
 		english = "Golden theme",
@@ -164,33 +169,33 @@ translations = {
 	},
 	TEXT_ENABLE_GOLD_THEME_TOOLTIP = {
 		english = "Disable this option to change the theme back to normal Lotro UI",
-		german  = "Deaktivieren Sie diese Option, um das Design wieder in die normale Lotro-Benutzeroberfläche zu ändern",
-		french  = "Désactivez cette option pour rétablir le thème en interface utilisateur normale de Lotro"
+		german  = "Deaktivieren Sie diese Option, um das Thema wieder auf die normale Lotro-Benutzeroberfläche zu ändern",
+		french  = "Désactivez cette option pour ramener le thème à l'interface utilisateur normale de Lotro"
 	},
 	TEXT_SETTINGS_SAVED = {
-		english = "Settings have been successfully saved",
-		german  = "Einstellungen erfolgreich gespeichert",
-		french  = "Les paramètres ont été enregistrés avec succès"
+		english = "Settings have been successfully saved!",
+		german  = "Einstellungen wurden erfolgreich gespeichert!",
+		french  = "Les paramètres ont été enregistrés avec succès!"
 	},
 	TEXT_CUSTOMIZATION_LABEL_IN_PARTY = {
-		english = "Players in Party",
-		german  = "Spieler in Gruppe",
+		english = "Players in group",
+		german  = "Spieler in der gruppe",
 		french  = "Joueurs en groupe"
 	},
 	TEXT_CUSTOMIZATION_LABEL_IN_PARTY_TOOLTIP = {
 		english = "Players who are in your group will be displayed using this color",
-		german  = "Spieler, die sich in Ihrer Gruppe befinden, werden in dieser Farbe angezeigt",
-		french  = "Les joueurs qui sont dans votre groupe sont affichés en utilisant cette couleur"
+		german  = "Spieler, die in deiner Gruppe sind, werden in dieser Farbe angezeigt",
+		french  = "Les joueurs qui sont dans votre groupe seront affichés avec cette couleur"
 	},
 	TEXT_CUSTOMIZATION_LABEL_NOT_IN_PARTY = {
-		english = "Players Not In Party",
-		german  = "Spieler nicht in Gruppe",
-		french  = "Joueurs non en groupe"
+		english = "Players Not In group",
+		german  = "Spieler nicht in der Gruppe",
+		french  = "Joueurs hors groupe"
 	},
 	TEXT_CUSTOMIZATION_LABEL_NOT_IN_PARTY_TOOLTIP = {
 		english = "Players who are not in your group will be displayed using this color",
-		german  = "Spieler, die nicht zu Ihrer Gruppe gehören, werden in dieser Farbe angezeigt",
-		french  = "Les joueurs qui ne font pas partie de votre groupe sont affichés en utilisant cette couleur"
+		german  = "Spieler, die nicht in deiner Gruppe sind, werden in dieser Farbe angezeigt",
+		french  = "Les joueurs qui ne font pas partie de votre groupe seront affichés avec cette couleur"
 	},
 	TEXT_CUSTOMIZATION_LABEL_INVITED = {
 		english = "Invited Players",
@@ -199,8 +204,8 @@ translations = {
 	},
 	TEXT_CUSTOMIZATION_LABEL_INVITED_TOOLTIP = {
 		english = "Players who have pending invitations will be displayed using this color",
-		german  = "Spieler mit ausstehender Einladung werden in dieser Farbe angezeigt",
-		french  = "Les joueurs ayant une invitation en attente sont affichés en utilisant cette couleur"
+		german  = "Spieler mit ausstehenden Einladungen werden in dieser Farbe angezeigt",
+		french  = "Les joueurs qui ont des invitations en attente seront affichés avec cette couleur"
 	},
 	TEXT_CUSTOMIZATION_LABEL_DECLINED = {
 		english = "Invitation Declined",
@@ -209,28 +214,28 @@ translations = {
 	},
 	TEXT_CUSTOMIZATION_LABEL_DECLINED_TOOLTIP = {
 		english = "Players who have declined your invitation will be displayed using this color",
-		german  = "Spieler, die Ihre Einladung abgelehnt haben, werden in dieser Farbe angezeigt",
-		french  = "Les joueurs qui ont refusé votre invitation seront affichés en utilisant cette couleur"
+		german  = "Spieler, die deine Einladung abgelehnt haben, werden in dieser Farbe angezeigt",
+		french  = "Les joueurs qui ont décliné votre invitation seront affichés avec cette couleur"
 	},
 	TEXT_CUSTOMIZATION_LABEL_IN_ANOTHER_GROUP = {
-		english = "Players In Another Party",
+		english = "Players In Another group",
 		german  = "Spieler in einer anderen Gruppe",
-		french  = "Joueur dans un autre groupe"
+		french  = "Joueurs d'un autre groupe"
 	},
 	TEXT_CUSTOMIZATION_LABEL_IN_ANOTHER_GROUP_TOOLTIP = {
-		english = "Players who are in another group will be displayed using this color",
-		german  = "Spieler, die sich in einer anderen Gruppe befinden, werden in dieser Farbe angezeigt",
-		french  = "Les joueurs qui sont dans un autre groupe seront affichés en utilisant cette couleur"
+		english = "Players who are already in another group will be displayed using this color",
+		german  = "Spieler, die bereits in einer anderen Gruppe sind, werden in dieser Farbe angezeigt",
+		french  = "Les joueurs qui sont déjà dans un autre groupe seront affichés avec cette couleur"
 	},
 	TEXT_CUSTOMIZATION_LABEL_OFFLINE = {
-		english = "Players offline",
-		german  = "Spieler Offline",
-		french  = "Joueur hors ligne"
+		english = "Offline players",
+		german  = "Offline-Spieler",
+		french  = "joueurs hors ligne"
 	},
 	TEXT_CUSTOMIZATION_LABEL_OFFLINE_TOOLTIP = {
 		english = "Players who are offline will be displayed using this color",
 		german  = "Spieler, die offline sind, werden in dieser Farbe angezeigt",
-		french  = "Les joueurs qui sont hors ligne seront affichés en utilisant cette couleur"
+		french  = "Les joueurs hors ligne seront affichés avec cette couleur"
 	},
 
 	
@@ -247,19 +252,19 @@ translations = {
 		french  = "Non"
 	},
 	TEXT_REMOVE_ALL = {
-		english = "Remove All",
-		german  = "Alles Entfernen",
-		french  = "Enlever Tout"
+		english = "Remove all",
+		german  = "Alles entfernen",
+		french  = "Enlever tout"
 	},
 	TEXT_REMOVE_ALL_CONFIRMATION = {
 		english = "Are you sure you want to remove every player?",
 		german  = "Möchten Sie wirklich alle Spieler entfernen?",
-		french  = "Êtes-vous sûr de vouloir supprimer chaque joueur?"
+		french  = "Êtes-vous sûr de vouloir supprimer tous les joueurs?"
 	},
 	TEXT_SAVE = {
 		english = "Save",
 		german  = "Speichern",
-		french  = "Sauver"
+		french  = "sauver"
 	},
 	TEXT_LOAD = {
 		english = "Load",
@@ -272,19 +277,19 @@ translations = {
 		french  = "Effacer"
 	},
 	TEXT_SAVE_GROUP = {
-		english = "Save Group",
-		german  = "Gruppe Speichern",
-		french  = "sauver le groupe"
+		english = "Save group",
+		german  = "Gruppe speichern",
+		french  = "Enregistrer le groupe"
 	},
 	TEXT_LOAD_GROUP = {
 		english = "Load Group",
-		german  = "Gruppe Laden",
-		french  = "Groupe de Charge"
+		german  = "Lastgruppe",
+		french  = "Groupe de charge"
 	},
 	TEXT_DELETE_GROUP = {
 		english = "Delete Group",
-		german  = "Gruppe Löschen",
-		french  = "Effacer Groupe"
+		german  = "Gruppe löschen",
+		french  = "Supprimer le groupe"
 	},
 	TEXT_SELECT_PLAYER = {
 		english = "Select player",
@@ -298,23 +303,23 @@ translations = {
 	},
 	TEXT_ADD_PLAYER = {
 		english = "Add Player",
-		german  = "Spieler Addieren",
+		german  = "Spieler hinzufügen",
 		french  = "Ajouter un Joueur"
 	},
 	TEXT_REMOVE_PLAYER = {
 		english = "Remove Player",
-		german  = "Spieler Entfernen",
-		french  = "Enlever le Joueur"
+		german  = "Spieler entfernen",
+		french  = "Supprimer le joueur"
 	},
 	TEXT_CHANGE_PLAYER = {
 		english = "Change Player",
-		german  = "Spieler Wechseln",
-		french  = "Changer de Joueur"
+		german  = "Ändern spieler",
+		french  = "Changer de joueur"
 	},
 	TEXT_GET_PLAYERS = {
 		english = "Get Players",
-		german  = "Spieler bekommen",
-		french  = "Obtenir joueurs"
+		german  = "Spieler holen",
+		french  = "Obtenir des joueurs"
 	},
 	TEXT_RAID = {
 		english = "Raid",
@@ -333,43 +338,43 @@ translations = {
 	},
 	TEXT_NO_PARTY = {
 		english = "No party members found!",
-		german  = "Keine Gruppenmitglieder gefunden!",
-		french  = "Aucun membre du parti trouvé!"
+		german  = "Keine Partymitglieder gefunden!",
+		french  = "Aucun membre du groupe trouvé!"
 	},
 	TEXT_GROUP_SAVED = {
-		english = "Saved group with name ",
-		german  = "Gruppe mit Namen gespeichert ",
-		french  = "Groupe enregistré avec nom "
+		english = "Saved group with name: ",
+		german  = "Gespeicherte Gruppe mit Namen: ",
+		french  = "Groupe enregistré avec nom: "
 	},
 	TEXT_NOTHING_TO_SAVE = {
-		english = "You need to have a group before you can save it!",
-		german  = "Sie müssen eine Gruppe haben, bevor Sie sie speichern können!",
-		french  = "Vous devez avoir un groupe avant de pouvoir le sauvegarder!"
+		english = "You need to have a group before you can save it",
+		german  = "Sie müssen eine Gruppe haben, bevor Sie sie speichern können",
+		french  = "Vous devez avoir un groupe avant de pouvoir l'enregistrer"
 	},
 	TEXT_INVALID_SAVE_NAME = {
 		english = "Save failed: Invalid name (only letters and numbers are accepted)!",
-		german  = "Speichern fehlgeschlagen: Ungültiger Name (es werden nur Buchstaben und Zahlen akzeptiert)!",
-		french  = "Sauver échoué: Nom incorrect (seules les lettres et les chiffres sont acceptés)!"
+		german  = "Speichern fehlgeschlagen: Ungültiger Name (nur Buchstaben und Zahlen werden akzeptiert)!",
+		french  = "Échec de l'enregistrement: nom invalide (seuls les lettres et les chiffres sont acceptés)!"
 	},
 	TEXT_SAVE_NAME_TOO_SHORT = {
 		english = "Save failed: name was too long (name should be 50 characters or less)!",
-		german  = "Speichern fehlgeschlagen: Name war zu lang (Der Name sollte maximal 50 Zeichen lang sein)",
-		french  = "Échec de la sauvegarde: le nom était trop long (le nom doit comporter 50 caractères ou moins)"
+		german  = "Speichern fehlgeschlagen: Name war zu lang (der Name sollte maximal 50 Zeichen lang sein)!",
+		french  = "Échec de l'enregistrement: le nom était trop long (le nom ne doit pas dépasser 50 caractères)!"
 	},
 	TEXT_FAILED_TO_SAVE_GROUP = {
 		english = "Failed to save group!",
-		german  = "Speichern der Gruppe fehlgeschlagen!",
-		french  = "Échec de la sauvegarde du groupe!"
+		german  = "Fehler beim Speichern der Gruppe!",
+		french  = "Échec de l'enregistrement du groupe!"
 	},
 	TEXT_UNKNOWN_ERROR = {
 		english = "Unknown Error!",
 		german  = "Unbekannter Fehler!",
-		french  = "Erreur Inconnue!"
+		french  = "Erreur inconnue!"
 	},
 	TEXT_GROUP_LOADED = {
-		english = "Loaded group with name ",
-		german  = "Geladene Gruppe mit Namen ",
-		french  = "Groupe chargé avec nom "
+		english = "Loaded group with name: ",
+		german  = "Geladene Gruppe mit Namen: ",
+		french  = "Groupe chargé avec nom: "
 	},
 	TEXT_FAILED_TO_LOAD_GROUP_DETAILED = {
 		english = "Failed to load group, unknown group name: ",
@@ -379,31 +384,31 @@ translations = {
 	TEXT_FAILED_TO_LOAD_GROUP = {
 		english = "Failed to load group!",
 		german  = "Fehler beim Laden der Gruppe!",
-		french  = "Impossible de charger le groupe!"
+		french  = "Échec du chargement du groupe !"
 	},
 	TEXT_INVALID_LOAD_NAME = {
 		english = "Load failed: Invalid load name!",
-		german  = "Laden fehlgeschlagen: Ungültiger Ladungsname!",
-		french  = "Echec du chargement: Nom de chargement invalide!"
+		german  = "Laden fehlgeschlagen: Ungültiger Ladename!",
+		french  = "Échec du chargement: nom de chargement non valide!"
 	},
 	TEXT_INVALID_CLASS = {
-		english = " is an invalid class!",
-		german  = " ist eine ungültige Klasse!",
-		french  = " est une classe invalide!"
+		english = " is not a valid class!",
+		german  = " ist keine gültige Klasse!",
+		french  = " n'est pas une classe valide!"
 	},
 	TEXT_MISSING_CLASS = {
-		english = "No class specified for ",
-		german  = "Keine Klasse angegeben für ",
-		french  = "Aucune classe spécifiée pour "
+		english = "No class specified for user ",
+		german  = "Keine Klasse für Benutzer angegeben ",
+		french  = "Aucune classe spécifiée pour l'utilisateur "
 	},
 	TEXT_PLAYER_ALREADY_IN_GROUP_SETUP = {
 		english = " is already in your group setup!",
-		german  = " befindet sich bereits in Ihrer Gruppeneinrichtung!",
-		french  = " est déjà dans votre groupe!"
+		german  = " ist bereits in deiner Gruppeneinrichtung!",
+		french  = " est déjà dans votre configuration de groupe!"
 	},
 	TEXT_ADD_COMMAND_MESSAGE = {
 		english = " Usage: /team add <name> <class>",
-		german  = " Usage: /team add <name> <class>",
+		german  = " Verwendungszweck: /team add <name> <class>",
 		french  = " Usage: /team add <name> <class>"
 	},
 	TEXT_PLAYER_NOT_IN_GROUP = {
@@ -424,7 +429,7 @@ translations = {
 	TEXT_CREDITS = {
 		english = "by Henna.",
 		german  = "von Henna.",
-		french  = "par le Henna."
+		french  = "par Henna."
 	},
 	TEXT_USERNAME = {
 		english = "Username",
@@ -438,13 +443,13 @@ translations = {
 	},
 	TEXT_REVERT = {
 		english = "Revert",
-		german  = "Umkehren",
+		german  = "Zurück",
 		french  = "Revenir"
 	},
 	TEXT_EDIT = {
 		english = "Edit",
 		german  = "Ändern",
-		french  = "Modifier"
+		french  = "Éditer"
 	},
 	TEXT_NAME = {
 		english = "Name",
@@ -472,9 +477,9 @@ translations = {
 		french  = "Rien à changer!"
 	},
 	TEXT_DELETED_GROUP = {
-		english = "Deleted group ",
-		german  = "Gelöschte Gruppe ",
-		french  = "Groupe supprimé "
+		english = "Deleted group: ",
+		german  = "Gelöschte Gruppe: ",
+		french  = "Groupe supprimé: "
 	},
 	TEXT_NAME_TOO_SHORT = {
 		english = "Username was too short!",
@@ -482,29 +487,29 @@ translations = {
 		french  = "Le nom d'utilisateur était trop court!"
 	},
 	TEXT_NAME_TOO_LONG = {
-		english = "Name too long!",
-		german  = "Name zu lang!",
-		french  = "Nom trop long!"
+		english = "Name was too long!",
+		german  = "Name war zu lang!",
+		french  = "Le nom était trop long!"
 	},
 	TEXT_FAILED_TO_ADD_PLAYER = {
 		english = "Failed to add player!",
-		german  = "Fehler beim Hinzufügen des Players!",
-		french  = "Impossible d'ajouter le joueur!"
+		german  = "Fehler beim Hinzufügen des Spielers!",
+		french  = "Échec de l'ajout du joueur!"
 	},
 	TEXT_GROUP_FULL_ERROR = {
-		english = "Group is full, can not add more players!",
-		german  = "Gruppe ist voll, kann nicht mehr Spieler hinzufügen!",
-		french  = "Le groupe est complet, impossible d'ajouter plus de joueurs!"
+		english = "Group is full, you can't add more players!",
+		german  = "Gruppe ist voll, Sie können keine weiteren Spieler hinzufügen!",
+		french  = "Le groupe est plein, vous ne pouvez plus ajouter de joueurs!"
 	},
 	TEXT_CHANGE = {
 		english = "Change",
-		german  = "Ändern Sie",
+		german  = "Ändern",
 		french  = "changer"
 	},
 	TEXT_TO = {
-		english = "To",
-		german  = "In",
-		french  = "En"
+		english = "change to",
+		german  = "ändern",
+		french  = "changer pour"
 	},
 
 
@@ -567,12 +572,12 @@ translations = {
 	},
 	TEXT_COMMAND_UNKNOWN_1 = {
 		english = "Unknown command argument, use '/team ",
-		german  = "Unbekanntes Befehlsargument. Verwenden Sie die '/team ",
+		german  = "Unbekanntes Befehlsargument, verwenden Sie '/team ",
 		french  = "Argument de commande inconnu, utilisez '/team "
 	},
 	TEXT_COMMAND_UNKNOWN_2 = {
 		english = "' to see list of all commands",
-		german  = "' um die Liste aller Befehle anzuzeigen",
+		german  = "' um eine Liste aller Befehle anzuzeigen",
 		french  = "' pour voir la liste de toutes les commandes"
 	},
 
@@ -647,6 +652,11 @@ translations = {
 		german  = "(%S+) hat Eure.+",
 		french  = "(%S+) a quitté votre .+"
 	},
+	TEXT_CHAT_HAS_BEEN_DISMISSED = {
+		english = "(%S+) has been dismissed from your .+",
+		german  = "(%S+) wurde aus Eur.+",
+		french  = "(%S+) ne fait plus partie de votre .+"
+	},
 	TEXT_CHAT_PERSON_DISMISSED = {
 		english = "You dismiss (%S+) from the .+",
 		german  = "Ihr schließt (%S+) .+",
@@ -670,12 +680,12 @@ translations = {
 	TEXT_CHAT_DISMISSED_FROM_FELLOWSHIP = {
 		english = "You have been dismissed from your Fellowship",
 		german  = "hr wurdet aus Eurer Gruppe von Gefährten ausgeschlossen",
-		french  = "Vous avez été renvoyée de votre communauté"
+		french  = "Vous avez été renvoyé de votre communauté"
 	},
 	TEXT_CHAT_DISMISSED_FROM_RAID = {
 		english = "You have been dismissed from your Raid",
 		german  = "Ihr wurdet aus Eurem Schlachtzug ausgeschlossen",
-		french  = "Vous avez été renvoyée de votre raid"
+		french  = "Vous avez été renvoyé de votre raid"
 	},
 	TEXT_CHAT_FELLOWSHIP_DISBANDED = {
 		english = "Your .+ has been disbanded",

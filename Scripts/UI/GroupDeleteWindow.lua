@@ -47,7 +47,7 @@ function deleteGroupWindow:Constructor()
 	self.deleteGroupButton = Turbine.UI.Lotro.Button();
 	self.deleteGroupButton:SetParent(self);
 	self.deleteGroupButton:SetText(Scripts.translate("TEXT_DELETE_GROUP"));
-	self.deleteGroupButton:SetSize(130, 30);
+	self.deleteGroupButton:SetSize(150, 30);
 	self.deleteGroupButton:SetPosition(self:GetWidth()/2 - self.deleteGroupButton:GetWidth()/2, 195);
 	self.deleteGroupButton.Click = function( sender, args)
 

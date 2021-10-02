@@ -1,8 +1,6 @@
 -- Sends notifications to chat --
 function notification(message)
-	if (type(message) == "string") then
-		Turbine.Shell.WriteLine(rgb["pluginName"] .. translate("TEXT_PLUGIN_NAME") .. rgb["clear"] .. ": " .. message);
-	end
+	Turbine.Shell.WriteLine(rgb["pluginName"] .. translate("TEXT_PLUGIN_NAME") .. rgb["clear"] .. ": " .. tostring(message));
 end
 
 

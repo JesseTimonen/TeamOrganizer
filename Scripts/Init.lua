@@ -1,6 +1,6 @@
 -- Plugin's name --
 pluginName = "Team Organizer";
-pluginReloaderName = "Team Organizer Reloader";
+pluginReloaderName = "~Team Organizer Reloader";
 
 -- File names --
 settingsFileName = "TeamOrganizer_Main_Settings";

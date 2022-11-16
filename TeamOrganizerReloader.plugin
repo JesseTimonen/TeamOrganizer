@@ -1,12 +1,12 @@
 <?xml version = "1.0"?>
 <Plugin>
     <Information>
-        <Name>Team Organizer Reloader</Name>
+        <Name>~Team Organizer Reloader</Name>
         <Author>Henna</Author>
-        <Version>1.5.0</Version>
-        <Description>This plugin is required for Team Organizer to work properly. No actions from the user are needed.</Description>
+        <Version>1.5.1</Version>
+        <Description>This plugin is required for Team Organizer to work properly. This plugin is controlled by the main plugin, no actions from the player are needed.</Description>
         <Image>TeamOrganizer/Images/icon.tga</Image>
     </Information>
     <Package>TeamOrganizer.Scripts.Reloader</Package>
-    <Configuration Apartment = "Team Organizer Reloader" />
+    <Configuration Apartment = "~Team Organizer Reloader" />
 </Plugin>

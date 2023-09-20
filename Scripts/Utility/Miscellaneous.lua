@@ -86,6 +86,7 @@ function getClassIDFromName(class)
 		["warden"] = 194, ["ward"] = 194, ["194"] = 194, ["hüter"] = 194, ["sentinelle"] = 194,
 		["beorning"] = 214, ["beorn"] = 214, ["bear"] = 214, ["214"] = 214, ["beorninger"] = 214, ["beornide"] = 214,
 		["brawler"] = 215, ["brawl"] = 215, ["bra"] = 215, ["br"] = 215, ["215"] = 215, ["Schläger"] = 215, ["Bagarreur"] = 215,
+		["mariner"] = 216, ["pirate"] = 216, ["marin"] = 216, ["mar"] = 216, ["216"] = 216,
 	};
 	
 	return classes[class];
@@ -108,6 +109,7 @@ function getClassNameFromID(id)
 		["194"] = "warden",
 		["214"] = "beorning",
 		["215"] = "brawler",
+		["216"] = "mariner",
 	};
 
 	if (IDs[id] == nil) then

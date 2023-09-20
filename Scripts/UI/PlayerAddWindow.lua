@@ -61,6 +61,7 @@ function addPlayerWindow:Constructor(windowType)
 	self.classSelect:AddItem(Scripts.translate("TEXT_WARDEN"), 194);
 	self.classSelect:AddItem(Scripts.translate("TEXT_BEORNING"), 214);
 	self.classSelect:AddItem(Scripts.translate("TEXT_BRAWLER"), 215);
+	self.classSelect:AddItem(Scripts.translate("TEXT_MARINER"), 216);
 
 	-- Error label --
 	self.errorLabel = Turbine.UI.Label();

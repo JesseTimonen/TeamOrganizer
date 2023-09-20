@@ -33,6 +33,11 @@ translations = {
 		german  = "Beorninger",
 		french  = "Beornide"
 	},
+	TEXT_MARINER = {
+		english = "Mariner",
+		german  = "Mariner",
+		french  = "Mariner"
+	},
 	TEXT_BURGLAR = {
 		english = "Burglar",
 		german  = "Schurke",

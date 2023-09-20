@@ -3,7 +3,7 @@
     <Information>
         <Name>~Team Organizer Reloader</Name>
         <Author>Henna</Author>
-        <Version>1.5.1</Version>
+        <Version>1.6.0</Version>
         <Description>This plugin is required for Team Organizer to work properly. This plugin is controlled by the main plugin, no actions from the player are needed.</Description>
         <Image>TeamOrganizer/Images/icon.tga</Image>
     </Information>
